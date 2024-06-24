@@ -301,6 +301,9 @@ public class LCPOne {
     //     return count;
         
     // }
+    public static void push(){
+        
+    }
     public int minKBitFlips(int[] nums, int k) {
         int l=0;
         int count=0;
