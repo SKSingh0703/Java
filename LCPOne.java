@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.PriorityQueue;
 
+import javax.swing.tree.TreeNode;
+
 public class LCPOne {
     // public int lengthOfLongestSubstring(String s) {
     //     HashSet<Character> hs=new HashSet<>();
@@ -301,28 +303,84 @@ public class LCPOne {
     //     return count;
         
     // }
-    public static void push(){
+    // public static void push(){
         
+    // }
+    // public int minKBitFlips(int[] nums, int k) {
+    //     int l=0;
+    //     int count=0;
+    //     for(int i=k;i<nums.length;i++){
+    //         if (nums[l]==0) {
+    //             count++;
+    //             for(int j=l;j<k;j++){
+    //                 nums[j]=nums[j]==0?1:0;
+    //             }
+    //         }
+    //         l++;
+    //     }
+    //     for(int i=0;i<nums.length;i++){
+    //         if (nums[i]==0) {
+    //             return -1;
+    //         }
+    //     }
+    //     return count;
+    // }
+    public class TreeNode {
+
+        int val;
+        TreeNode left;
+        TreeNode right;
+      TreeNode() {}
+      TreeNode(int val) { this.val = val; }
+      TreeNode(int val, TreeNode left, TreeNode right) {
+          this.val = val;
+          this.left = left;
+          this.right = right;
+       }
     }
-    public int minKBitFlips(int[] nums, int k) {
-        int l=0;
-        int count=0;
-        for(int i=k;i<nums.length;i++){
-            if (nums[l]==0) {
-                count++;
-                for(int j=l;j<k;j++){
-                    nums[j]=nums[j]==0?1:0;
-                }
-            }
-            l++;
-        }
-        for(int i=0;i<nums.length;i++){
-            if (nums[i]==0) {
-                return -1;
-            }
-        }
-        return count;
-    }
+    // public static TreeNode bstToGst(TreeNode root) {
+    //     List<Integer> arr=new ArrayList<>();
+    //     inorderTraversal(arr, root);
+    //     int reqArr[]=new int[arr.size()];
+    //     int prevSum=0;
+    //     int sum=0;
+    //     for (int i = 0; i < arr.size(); i++) {
+    //         sum+=arr.get(i);
+    //     }
+    //     for(int i=0;i<arr.size();i++){
+    //         reqArr[i]=sum-prevSum;
+    //         prevSum+=arr.get(i);
+    //     }
+    //     helper(reqArr,0,reqArr.length-1);
+    //     return newRoot;
+    // }
+    // private static TreeNode helper(int[] nums, int left, int right) {
+    //     if (left > right) {
+    //         return null;
+    //     }
+
+    //     int mid = left + (right - left) / 2;
+    //     TreeNode node = new TreeNode(nums[mid]);
+
+    //     node.left = helper(nums, left, mid - 1);
+    //     node.right = helper(nums, mid + 1, right);
+
+    //     return node;
+    // }
+    // public static void inorderTraversal(List<Integer> arr,TreeNode root){
+    //     if(root==null){
+    //         arr.add(-1);
+    //         return;
+    //     }
+    //     if (root.left!=null) {
+    //         inorderTraversal(arr, root.left);
+    //     }
+    //     arr.add(root.val);
+    //     if (root.right!=null) {
+    //         inorderTraversal(arr, root.right);
+    //     }
+    //     return;
+    // }
     
     public static void main(String[] args) {
         
