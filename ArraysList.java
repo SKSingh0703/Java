@@ -1,4 +1,4 @@
-// import java.util.*;
+import java.util.*;
 public class ArraysList {
 
 //     public static void printArrayList(ArrayList<Integer> list){
