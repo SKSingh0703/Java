@@ -7,34 +7,21 @@ public class ArraysList {
 //         }
 //     }
 
-//     public static void SwapTwoNumbers(ArrayList<Integer> list,int i,int j){
-//         int temp=list.get(j);
-//         list.set(j,list.get(i) );
-//         list.set(i,temp );
-//         return;
-
-//     }
-
-//     public static int ContainerWithMostWater(ArrayList<Integer> height){
-//         int maxwater=0,currWater=0,lp=0,rp=height.size()-1;
-//         while(lp<rp){
-//             currWater=(rp-lp)*Math.min(height.get(rp), height.get(lp));
-//             maxwater=Math.max(maxwater,currWater);
-//             if(height.get(rp)< height.get(lp)) rp--;
-//             else lp++;
-//         }
-//         return maxwater;
-//     }
-
-//     public static boolean SumTarget(ArrayList<Integer> list,int target){
-//         int i= 0,j=list.size()-1;
-//         while(i<j){
-//             if(list.get(i)==list.get(j)) return true;
-//             else if(list.get(i)+list.get(j)>target) j--;
-//             else i++;
-//         }
-//         return false;
-//     }
+    public static void SwapTwoNumbers(ArrayList<Integer> list,int i,int j){
+        int temp=list.get(j);
+        list.set(j,list.get(i) );
+        list.set(i,temp );
+        return;
+    }
+    public static boolean SumTarget(ArrayList<Integer> list,int target){
+        int i= 0,j=list.size()-1;
+        while(i<j){
+            if(list.get(i)==list.get(j)) return true;
+            else if(list.get(i)+list.get(j)>target) j--;
+            else i++;
+        }
+        return false;
+    }
 
 //     public static boolean PairsuminrotatedArray(ArrayList<Integer> list,int target){
 //         int bp=-1;
