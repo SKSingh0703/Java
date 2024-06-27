@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
@@ -287,26 +288,70 @@ public class TwoPointerApproach {
     //     }
     //     return sb.toString();
     // }
-    public class TreeNode {
-        *     int val;
-        *     TreeNode left;
-        *     TreeNode right;
-        *     TreeNode() {}
-        *     TreeNode(int val) { this.val = val; }
-        *     TreeNode(int val, TreeNode left, TreeNode right) {
-        *         this.val = val;
-        *         this.left = left;
-        *         this.right = right;
-        *     }
-        * }
-    public TreeNode balanceBST(TreeNode root) {
-        ArrayList<Integer> arr=new ArrayList<>();
-
-    }
-    public void inorderTraversal(TreeNode root,ArrayList<Integer> arr){
-        
-    }
+    // public class TreeNode {
+    //     *     int val;
+    //     *     TreeNode left;
+    //     *     TreeNode right;
+    //     *     TreeNode() {}
+    //     *     TreeNode(int val) { this.val = val; }
+    //     *     TreeNode(int val, TreeNode left, TreeNode right) {
+    //     *         this.val = val;
+    //     *         this.left = left;
+    //     *         this.right = right;
+    //     *     }
+    //     * }
+    // public TreeNode balanceBST(TreeNode root) {
+    //     ArrayList<Integer> arr=new ArrayList<>();
+    //     inorderTraversal(root, arr);
+    //     return helper(arr);
+    // }
+    // public TreeNode helper(ArrayList<Integer> arr,int start,int end){
+    //     if (start>end) {
+    //         return;
+    //     }
+    //     int mid=start+(end-start)/2+1;
+    //     TreeNode newNode=new TreeNode(arr.get(mid));
+    //     newNode.left=helper(arr, start,mid-1);
+    //     newNode.right=helper(arr, mid+1, end);
+    //     return newNode;
+    // }
+    // public void inorderTraversal(TreeNode root,ArrayList<Integer> arr){
+    //     if (root==null) {
+    //         return;
+    //     }
+    //     inorderTraversal(root.left, arr);
+    //     arr.add(root.val);
+    //     inorderTraversal(root.right, arr);
+    //     return;
+    // }
+    // public String defangIPaddr(String address) {
+    //     address.replaceAll(".","[.]");
+    //     return address;
+    // }
+    // public int numIdenticalPairs(int[] nums) {
+    //    HashMap<Integer,Integer> hm=new HashMap<>();
+    //    int count=0;
+    //    for (int i = 0; i < nums.length; i++) {
+    //         if (hm.containsKey(nums[i])) {
+    //             count+=hm.get(nums[i]);
+    //             hm.put(nums[i], hm.get(nums[i])+1);
+    //         }
+    //         else hm.put(nums[i],1);
+    //    }
+    //    return count;
+    // }
+    // public List<Integer> findWordsContaining(String[] words, char x) {
+    //    List<Integer> ans=new ArrayList<>();
+    //    for (int i = 0; i < words.length; i++) {
+    //         if (words[i].contains(null)) {
+    //             ans.add(i);
+    //         }
+    //    } 
+    //    return ans;
+    // }
     public static void main(String[] args) {
+        String s="sgfd";
+        
         // Scanner sc=new Scanner(System.in);
         // int t=sc.nextInt();
         // for (int i = 0; i < t; i++) {
