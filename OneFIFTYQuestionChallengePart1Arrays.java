@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 
 public class OneFIFTYQuestionChallengePart1Arrays {
@@ -62,7 +63,9 @@ public class OneFIFTYQuestionChallengePart1Arrays {
     //         return res;
     //     }
     // }
-     
+     public List<String> fullJustify(String[] words, int maxWidth) {
+        
+    }
     public String convert(String s, int numRows) {
         char arr[][]=new char[numRows][s.length()];
         int idx=0;
