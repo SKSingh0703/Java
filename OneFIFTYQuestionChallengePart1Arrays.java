@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -481,20 +482,145 @@ public class OneFIFTYQuestionChallengePart1Arrays {
     //         }
     //     }
     // }
-    public class UnionFind{
-        int rank[];
-        int parent[];
+    // public class UnionFind{
+    //     int rank[];
+    //     int parent[];
 
-        public UnionFind(int n){
-            rank=new int[n];
-            parent=new int[n];
-            for (int i = 0; i < parent.length; i++) {
-                parent[i]=i;
-                rank[i]=1;
+    //     public UnionFind(int n){
+    //         rank=new int[n];
+    //         parent=new int[n];
+    //         for (int i = 0; i < parent.length; i++) {
+    //             parent[i]=i;
+    //             rank[i]=1;
+    //         }
+    //     }
+
+    //     public int find(int x){
+    //         if (parent[x]!=x) {
+    //             parent[x]=find(parent[x]);
+    //         }
+    //         return parent[x];
+    //     }
+
+    //     public boolean union(int x,int y){
+    //         int rootX=find(x);
+    //         int rootY=find(y);
+
+    //         if (rootX==rootY) {
+    //             return false;
+    //         }
+    //         if (rank[rootX]>rank[rootY]) {
+    //             parent[rootY]=rootX;
+    //         }
+    //         else if(rank[rootX]<rank[rootY]){
+    //             parent[rootX]=rootY;
+    //         }
+    //         else{
+    //             parent[rootY]=rootX;
+    //             rank[rootX]++;
+    //         }
+    //         return true;
+    //     }
+    // }
+    // public int maxNumEdgesToRemove(int n, int[][] edges){
+    //     UnionFind ufA=new UnionFind(n+1);
+    //     UnionFind ufB=new UnionFind(n+1);
+    //     int edgesAdded=0;
+
+    //     for (int[] edge : edges) {
+    //         if (edge[0]==3) {
+    //             if (ufA.union(edge[1],edge[2])==true && ufB.union(edge[1],edge[2])==true) {
+    //                 edgesAdded++;
+    //             }
+    //         }
+    //     }
+
+    //     for (int[] edge : edges) {
+    //         if (edge[0]==1) {
+    //             if (ufA.union(edge[1],edge[2])){
+    //                 edgesAdded++;
+    //             }
+    //         }
+    //         else if (edge[0]==2) {
+    //             if (ufB.union(edge[1],edge[2])) {
+    //                 edgesAdded++;
+    //             }
+    //         }
+    //     }
+
+    //     int compA=0,compB=0;
+
+    //     for (int i = 1; i <= n; i++) {
+    //         if(ufA.find(i)==i) compA++;
+    //         if(ufB.find(i)==i) compB++; 
+    //     }
+
+    //     if (compA!=1 || compB!=1) {
+    //         return -1;
+    //     }
+
+    //     return edges.length-edgesAdded;
+    // }
+    // public List<String> summaryRanges(int[] nums) {
+    //     List<String> ans=new ArrayList<>();
+    //     int l=nums[0];
+    //     int r=nums[0];
+    //     for (int i = 1; i < nums.length; i++) {
+    //         if (nums[i]!=r+1) {
+    //             if (l==r) {
+    //                 String x=l;
+    //                 ans.add(x);
+    //             }
+    //             else{
+    //                 String c=l+"->"+r;
+    //                 ans.add(c);
+    //             }
+    //             l=r=nums[i];
+    //         }
+    //         else{
+    //             r+=1;
+    //         }
+    //     }
+    //     return ans;
+    // }
+    public int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        ArrayList<int[]> ans=new ArrayList<>();
+        int l=0;
+        int r=0;
+        for (int i = 0; i < intervals.length; i++) {
+            l=intervals[i][0];
+            r=intervals[i][1];
+            while (i<intervals.length && r>intervals[i+1][0]) {
+                r=intervals[i+1][1];
+                i++;
+            }
+            ans.add(new int[]{l,r});
+        }
+        int a[][]=new int[ans.size()][2];
+        for (int i = 0; i < ans.size(); i++) {
+            for(int j=0;j<ans.get(i).length;i++){
+                a[i][j]=ans.get(i)[j];
+            }
+        }
+        return a;
+    }
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+        ArrayList<int[]> arr=new ArrayList<>();
+        int l=0;
+        int r=0;
+        int startOfnew=newInterval[0];
+        int endOfnew=newInterval[1];
+        for(int i=0;i<intervals.length;i++){
+            l=intervals[i][0];
+            r=intervals[i][1];
+
+            if (l>startOfnew) {
+                
             }
         }
     }
     public static void main(String[] args) {
-        
+        System.out.println(curr);
     }
 }
