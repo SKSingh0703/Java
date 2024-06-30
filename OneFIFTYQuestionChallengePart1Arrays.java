@@ -173,11 +173,326 @@ public class OneFIFTYQuestionChallengePart1Arrays {
     //     }
     //     return true;
     // }
-    public List<Integer> spiralOrder(int[][] matrix) {
-        int strow=0;
-        int stcol=0;
+    // public List<Integer> spiralOrder(int[][] matrix) {
+    //     int strow=0;
+    //     int stcol=0;
+    //     List<Integer> ans=new ArrayList<>();
+    //     int endrow=matrix.length;
+    //     int endcol=matrix[0].length;
+    //     while (stcol<=endcol && strow<=endrow) {
+    //         for(int i=stcol;i<=endcol;i++){
+    //             ans.add(matrix[strow][i]);
+    //         }
+    //         strow++;
+    //         for(int i=strow;i<=endrow;i++){
+    //             ans.add(matrix[i][endcol]);
+    //         }
+    //         endcol--;
+    //         for(int i=endcol;i>=stcol;i--){
+    //             ans.add(matrix[endrow][i]);
+    //         }
+    //         endrow--;
+    //         for(int i=endrow;i>=strow;i--){
+    //             ans.add(matrix[i][stcol]);
+    //         }
+    //         stcol++;
+    //     }
+    //     return ans;
+    // }
+    // public boolean wordPattern(String pattern, String s) {
+    //     String st[]=s.split("\\s+");
+    //     HashMap<Character,String> hm=new HashMap<>();
+    //     HashSet<String> hs=new HashSet<>();
 
-        int endrow=matrix
+    //     if (pattern.length()!=st.length) {
+    //         return false;
+    //     }
+    //     for (int i = 0; i < st.length; i++) {
+    //         if (hm.containsKey(pattern.charAt(i))) {
+    //             if (!hm.get(pattern.charAt(i)).equals(st[i])) {
+    //                 return false;
+    //             }
+    //         }
+    //         else if(hs.contains(st[i])) return false;
+    //         else{
+    //             hm.put(pattern.charAt(i),st[i]);
+    //             hs.add(st[i]);
+    //         }
+    //     }
+    //     return true;
+    // }
+    // public List<Integer> findSubstring(String s, String[] words) {
+    //     List<Integer> ans=new ArrayList<>();
+
+    //     int size=0;
+    //     HashMap<String,Integer> hm=new HashMap<>();
+    //     for (int i = 0; i < words.length; i++) {
+    //         size+=words[i].length();
+    //         hm.put(words[i],hm.getOrDefault(words[i],0)+1);
+    //     }
+
+    //     int l=0;
+    //     int n=words[0].length();
+
+    //     StringBuilder currWord=new StringBuilder("");
+
+    //     for(int i=0;i<s.length();i+=n){
+    //         if(i>=s.length()-n-1) break;
+    //         String wordInConsideration=s.substring(i,i+n);
+    //         if (!checkIfcanTakeInWindow(wordInConsideration,currWord,hm,n)) {
+    //             l=i;
+    //         }
+    //         else{
+    //             currWord.append(wordInConsideration);
+    //         }
+    //         if (currWord.length()==size) {
+    //             if (checkIfPermutation(currWord,words)) {
+    //                 ans.add(l);
+    //                 l=i;
+    //                 currWord=new StringBuilder("");
+                    
+    //             }
+    //         }
+    //     }
+    //     return ans;
+    // }
+    // private boolean checkIfcanTakeInWindow(String toCheck,String currWindow,HashMap<String,Integer> hm,int n){
+    //     if (!hm.containsKey(toCheck)) {
+    //         return false;
+    //     }
+    //     int freq=1;
+    //     for(int i=0;i<currWindow.length();i+=n){
+    //         String c=currWindow.substring(i,i+n);
+    //         if (c.equals(toCheck)) {
+    //             freq++;
+    //         }
+    //     }
+    //     if (hm.get(toCheck)<=freq) {
+    //         return true;
+    //     }
+    //     else return false;
+    // }
+    // private boolean checkIfPermutation(String currWindow,HashMap<String,Integer> hm,int n){
+    //     HashMap<String,Integer> tempHm=new HashMap<>();
+    //     for (int i = 0; i < currWindow.length(); i++) {
+    //         String curr=currWindow.substring(i, i+n);
+    //         tempHm.put(curr,tempHm.getOrDefault(curr,0)+1);
+    //         if (!hm.containsKey(curr)) {
+    //             return false;
+    //         }
+    //         else{
+    //             if (!(tempHm.get(curr)<=hm.get(curr))) {
+    //                 return false;
+    //             }
+    //         }
+    //     }
+    //     return true;
+        
+    // }
+    // public boolean isAnagram(String s, String t) {
+    //     int n=s.length();
+    //     int m=t.length();
+    //     if (n!=m) {
+    //         return false;            
+    //     }
+    //     int freq[]=new int[26];
+    //     for (int i = 0; i < n; i++) {
+    //         freq[s.charAt(i)-'a']++;
+    //     }
+    //     for(int i=0;i<m;i++){
+    //         if (freq[t.charAt(i)]==0) {
+    //             return false;
+    //         }
+    //         else freq[t.charAt(i)]--;
+    //     }
+    //     return true;
+    //   }
+    // public void rotate(int[][] matrix) {
+    //     for (int i = 0; i < matrix.length; i++) {
+    //         for (int j = i+1; j < matrix[0].length; j++) {
+    //             int temp=matrix[j][i];
+    //             matrix[j][i]=matrix[i][j];
+    //             matrix[i][j]=temp;
+    //         }
+    //     }
+    //     for (int i = 0; i < matrix.length; i++) {
+    //         int l=0;
+    //         int r=matrix[0].length-1;
+    //         while (l<r) {
+    //             int temp=matrix[i][r];
+    //             matrix[i][r]=matrix[i][l];
+    //             matrix[i][l]=temp;
+
+    //             l++;
+    //             r--;
+    //         }
+    //     }
+    // }
+    // public void setZeroes(int[][] matrix) {
+    //     int clone[][]=matrix.clone();
+    //     for (int i = 0; i < clone.length; i++) {
+    //         for (int j = 0; j < clone[0].length; j++) {
+    //             if (matrix[i][j]==0) {
+    //                 for (int j2 = 0; j2 < clone.length; j2++) {
+    //                     clone[i][j2]=0;
+    //                 }
+    //                 for (int j2 = 0; j2 < clone.length; j2++) {
+    //                     clone[j2][j]=0;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     matrix=clone.clone();
+    // }
+    // public void setZeroes(int[][] matrix) {
+    //     for(int i=0;i<matrix.length;i++){
+    //         for(int j=0;j<matrix[0].length;j++){
+    //             if (matrix[i][j]==0) {
+    //                 matrix[i][0]=0;
+    //                 matrix[0][j]=0;
+    //             }
+    //         }
+    //     }
+    //     for (int i = 0; i < matrix.length; i++) {
+    //         if (matrix[i][0]==0) {
+    //             for (int j = 0; j < matrix[0].length; j++) {
+    //                 matrix[i][j]=0;
+    //             }
+    //         }
+    //     }
+    //     for (int i = 0; i < matrix[0].length; i++) {
+    //         if (matrix[0][j]==0) {
+    //             for (int j = 0; j < matrix[0].length; j++) {
+    //                 matrix[j][i]=0;
+    //             }
+    //         }
+    //     }
+    // }
+    // public void setZeroes(int[][] matrix) {
+    //     int ans[][]=matrix.clone();
+    //     for (int i = 0; i < matrix.length; i++) {
+    //         for (int j = 0; j < matrix[0].length; j++) {
+    //             if (matrix[i][j]==0) {
+    //                 for (int j2 = 0; j2 < ans.length; j2++) {
+    //                     ans[j2][j]=0;
+    //                 }
+    //                 for (int j2 = 0; j2 < ans[0].length; j2++) {
+    //                     ans[i][j2]=0;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     for (int i = 0; i < ans.length; i++) {
+    //         for (int j = 0; j < ans.length; j++) {
+    //             matrix[i][j]=ans[i][j];
+    //         }
+    //     }   
+    // }
+    // public int[] plusOne(int[] digits) {
+    //     int carry=0;
+    //     if (digits[digits.length-1]+1>9) {
+    //         digits[digits.length-1]=0;
+    //         carry=1;
+    //         for (int i = digits.length-2; i >=0; i--) {
+    //             if (digits[i]+carry>9) {
+    //                 digits[i]=0;
+    //                 carry=(digits[i]+carry)-9;
+    //                 if (carry<0) {
+    //                     carry==0;
+    //                 }
+    //             }
+    //         }
+    //         if (carry>0) {
+    //             int ans[]=new int[digits.length+1];
+    //             ans[0]=1;
+    //             for (int j = 1; j < ans.length; j++) {
+    //                 ans[j]=digits[j-1];
+    //             }
+    //             return ans;
+    //         }
+    //     }
+    //     else{
+    //         digits[digits.length-1]++;
+    //     }
+        
+    //     return digits;
+    // }
+    // public void gameOfLife(int[][] board) {
+    //     int neighbours=0;
+    //     for (int i = 0; i < board.length; i++) {
+    //         for (int j = 0; j < board.length; j++) {
+    //             neighbours=0;
+    //             if(i-1>=0){
+    //                 if (board[i-1][j]==1) {
+    //                     neighbours++;
+    //                 }
+    //             }
+    //             if (i-1>=0 && j-1>=0) {
+    //                 if (board[i-1][j-1]==1) {
+    //                     neighbours++;
+    //                 }
+    //             }
+    //             if (i-1>=0 && j+1<board[0].length) {
+    //                 if (board[i-1][j+1]==1) {
+    //                     neighbours++;
+    //                 }
+    //             }
+    //             if (j-1>=0) {
+    //                 if (board[i][j-1]==1) {
+    //                     neighbours++;
+    //                 }
+    //             }
+    //             if (j+1<board[0].length) {
+    //                 if (board[i][j+1]==1) {
+    //                     neighbours++;
+    //                 }
+    //             }
+    //             if (i+1<board.length && j-1>=0) {
+    //                 if (board[i+1][j-1]==1) {
+    //                     neighbours++;
+    //                 }
+    //             }
+    //             if (i+1<board.length) {
+    //                 if (board[i+1][j]==1) {
+    //                     neighbours++;
+    //                 }
+    //             }
+    //             if (i+1<board.length && j+1<board[0].length) {
+    //                 if (board[i-1][j]==1) {
+    //                     neighbours++;
+    //                 }
+    //             }
+    //             if (board[i][j]==1) {
+    //                 if (neighbours<2) {
+    //                     board[i][j]=0;
+    //                 }
+    //                 else if(neighbours<=3){
+    //                     board[i][j]=1;
+    //                 }
+    //                 else{
+    //                     board[i][j]=0;
+    //                 }
+    //             }
+    //             else{
+    //                 if (neighbours==3) {
+    //                     board[i][j]=1;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+    public class UnionFind{
+        int rank[];
+        int parent[];
+
+        public UnionFind(int n){
+            rank=new int[n];
+            parent=new int[n];
+            for (int i = 0; i < parent.length; i++) {
+                parent[i]=i;
+                rank[i]=1;
+            }
+        }
     }
     public static void main(String[] args) {
         
