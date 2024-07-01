@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Stack;
 
 public class OneFIFTYQuestionChallengePart1Arrays {
     // class RandomizedSet {
@@ -583,43 +584,236 @@ public class OneFIFTYQuestionChallengePart1Arrays {
     //     }
     //     return ans;
     // }
-    public int[][] merge(int[][] intervals) {
-        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
-        ArrayList<int[]> ans=new ArrayList<>();
-        int l=0;
-        int r=0;
-        for (int i = 0; i < intervals.length; i++) {
-            l=intervals[i][0];
-            r=intervals[i][1];
-            while (i<intervals.length && r>intervals[i+1][0]) {
-                r=intervals[i+1][1];
-                i++;
-            }
-            ans.add(new int[]{l,r});
-        }
-        int a[][]=new int[ans.size()][2];
-        for (int i = 0; i < ans.size(); i++) {
-            for(int j=0;j<ans.get(i).length;i++){
-                a[i][j]=ans.get(i)[j];
-            }
-        }
-        return a;
-    }
-    public int[][] insert(int[][] intervals, int[] newInterval) {
-        ArrayList<int[]> arr=new ArrayList<>();
-        int l=0;
-        int r=0;
-        int startOfnew=newInterval[0];
-        int endOfnew=newInterval[1];
-        for(int i=0;i<intervals.length;i++){
-            l=intervals[i][0];
-            r=intervals[i][1];
+    // public int[][] merge(int[][] intervals) {
+    //     Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+    //     ArrayList<int[]> ans=new ArrayList<>();
+    //     int l=0;
+    //     int r=0;
+    //     for (int i = 0; i < intervals.length; i++) {
+    //         l=intervals[i][0];
+    //         r=intervals[i][1];
+    //         while (i<intervals.length && r>intervals[i+1][0]) {
+    //             r=intervals[i+1][1];
+    //             i++;
+    //         }
+    //         ans.add(new int[]{l,r});
+    //     }
+    //     int a[][]=new int[ans.size()][2];
+    //     for (int i = 0; i < ans.size(); i++) {
+    //         for(int j=0;j<ans.get(i).length;i++){
+    //             a[i][j]=ans.get(i)[j];
+    //         }
+    //     }
+    //     return a;
+    // }
+    // public int[][] insert(int[][] intervals, int[] newInterval) {
+    //     ArrayList<int[]> arr=new ArrayList<>();
+    //     int l=0;
+    //     int r=0;
+    //     int startOfnew=newInterval[0];
+    //     int endOfnew=newInterval[1];
+    //     boolean flag=true;
+    //     if (intervals.length==0) {
+    //         int x[][]=new int[1][2];
+    //         x[0][1]=startOfnew;
+    //         x[0][2]=endOfnew;
+    //         return x;
+    //     }
+    //     for(int i=0;i<intervals.length;i++){
+    //         l=intervals[i][0];
+    //         r=intervals[i][1];
 
-            if (l>startOfnew) {
+    //         if (l>endOfnew ) {
+    //             if (flag) {
+    //                 arr.add(new int[]{startOfnew,endOfnew});
+    //                 flag=false;
+    //             }
+    //             arr.add(new int[]{l,r});
                 
-            }
-        }
-    }
+    //         }
+    //         else if (r<startOfnew) {
+    //             arr.add(new int[]{l,r});
+    //         }
+    //         else{
+    //             if (startOfnew>l) {
+    //                 r=Math.max(endOfnew,r);
+    //                 while (i<intervals.length-1 && intervals[i+1][0]<=r) {
+    //                     r=Math.max(r, intervals[i+1][0]);
+    //                     i++;
+    //                 }
+    //                 arr.add(new int[]{l,r});
+    //             }
+    //         }
+    //     }
+    //     int ans[][]=new int[arr.size()][2];
+    //     for(int i=0;i<arr.size();i++){
+    //         for (int j = 0; j <2; j++) {
+    //             ans[i][j]=arr.get(i)[j];
+    //         }
+    //     }
+    //     return ans;
+    // }
+    // public List<List<String>> groupAnagrams(String[] strs) {
+    //     List<List<String>> ans=new ArrayList<>();
+    //     boolean vis[]=new boolean[strs.length];
+    //     for(int i=0;i<strs.length;i++){
+    //         if (!vis[i]) {
+    //             vis[i]=true;
+    //             ans.add(strs[i]);
+    //             for(int j=i+1 ;j<strs.length;j++){
+    //                 if (!vis[j]) {
+    //                     if (isAnagram(strs[i],strs[j])) {
+    //                         vis[j]=true;
+    //                         ans.add(strs[j]);
+    //                     }
+    //                 }
+    //             }                
+    //         }
+    //     }
+    //     return ans;
+    // }
+    // private boolean isAnagram(String s1,String s2){
+    //     if(s1.length()!=s2.length()) return false;
+    //     int str1[]=new int[26];
+    //     for(int i=0;i<s1.length();i++){
+    //         str1[s1.charAt(i)-'a']++;
+    //     }
+    //     for(int i=0;i<s2.length();i++){
+    //         if (str1[s2.charAt(i)-'a']<=0) {
+    //             return false;
+    //         }
+    //         str1[s2.charAt(i)-'a']--;
+    //     }
+    //     return true;
+    // }
+    // public String simplifyPath(String path) {
+    //     String arr[]=path.split("/");
+    //     Stack<String> s=new Stack<>();
+    //     for (int i = 0; i < arr.length; i++) {
+    //         s.push(arr[i]);
+    //     }
+    //     Stack<String> r=new Stack<>();
+    //     while (!s.isEmpty()) {
+    //         String curr=s.pop();
+    //         if (curr.equals(".")) {
+    //             continue;
+    //         }
+    //         else if(curr.equals("..")){
+    //             s.pop();
+    //         }
+    //         else{
+    //             if(!curr.isBlank()) r.push(curr);
+    //         }
+    //     }
+    //     StringBuilder sb=new StringBuilder("/");
+    //     while (r.isEmpty()) {
+    //         String curr=r.pop();
+    //         sb.append(curr);
+    //         sb.append("/");
+    //     }
+    //     if (sb.length()>1) {
+    //         return sb.toString().substring(0,sb.length()-1);
+    //     }
+    //     else return sb.toString();
+    // }
+    // public boolean threeConsecutiveOdds(int[] arr) {
+    //     int l=0;
+    //     for (int i = 0; i < arr.length; i++) {
+    //         if (arr[i]%2==0) {
+    //             l=i;
+    //         }
+    //         if (i-l>=2) {
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
+    // class MinStack {
+    //     Stack<Integer> s;
+    //     Stack<Integer> min;
+    //     public MinStack() {
+    //         this.s=new Stack<>();
+    //         this.min=new Stack<>();
+    //     }
+        
+    //     public void push(int val) {
+    //         s.push(val);
+    //         while(!min.isEmpty() && min.peek()>=val){
+    //             min.pop();
+    //         }
+    //         min.push(val);
+    //     }
+        
+    //     public void pop() {
+    //         int x=s.pop();
+    //         if (x<=min.peek()) {
+    //             while(!min.isEmpty() && min.peek()>=val){
+    //                 min.pop();
+    //             } 
+    //         }
+    
+    //     }
+        
+    //     public int top() {
+    //         return s.peek();
+    //     }
+        
+    //     public int getMin() {
+    //         return min.peek();
+    //     }
+    // }
+    // public int evalRPN(String[] tokens) {
+    //     Stack<Integer> s=new Stack<>();
+    //     for (String token : tokens) {
+    //         if (check(token)) {
+    //             int b=s.pop();
+    //             int a=s.pop();
+    //             int c=evaluate(a, b, token);
+    //             s.push(c);
+    //         }
+    //         s.push(Integer.parseInt(token));
+    //     }
+    //     return s.pop();
+    // }
+    // private boolean check(String s){
+    //     if(s.equals("+")) return true;
+    //     if(s.equals("-")) return true;
+    //     if(s.equals("/")) return true;
+    //     if(s.equals("*")) return true;
+    //     return false;
+    // }
+    // private int evaluate(int a,int b,String op){
+    //     if(op.equals("+")) return a+b;
+    //     if(op.equals("-")) return a-b;
+    //     if(op.equals("/")) return a/b;
+    //     if(op.equals("*")) return a*b;
+    //     return 1;
+    // }
+    // public boolean equalFrequency(String word) {
+    //     for (int i = 0; i < word.length(); i++) {
+    //         if (check(word, i)) {
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
+    // private boolean check(String word,int idx){
+    //     int freq[]=new int[26];
+    //     for(int i=0;i<word.length();i++){
+    //         if (i!=idx) {
+    //             freq[word.charAt(i)-'a']++;
+    //         }
+    //     }
+    //     int constant=freq[word.charAt(0)-'a'];
+    //     for (int i = 0; i < freq.length; i++) {
+    //         if (freq[i]!=0) {
+    //             if (freq[i]!=constant) {
+    //                 return false;
+    //             }
+    //         }
+    //     }
+    //     return true;
+    // }
     public static void main(String[] args) {
         System.out.println(curr);
     }
