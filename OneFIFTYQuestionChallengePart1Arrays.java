@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
+import org.w3c.dom.Node;
+
 public class OneFIFTYQuestionChallengePart1Arrays {
     // class RandomizedSet {
     //     HashSet<Integer> hs;
@@ -814,6 +816,31 @@ public class OneFIFTYQuestionChallengePart1Arrays {
     //     }
     //     return true;
     // }
+    // public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+    //     List<Boolean> ans=new ArrayList<>();
+    //     int max=Integer.MIN_VALUE;
+    //     for (int i = 0; i < candies.length; i++) {
+    //         max=Math.max(max, candies[i]);
+    //     }
+    //     for (int i = 0; i < candies.length; i++) {
+    //         if (candies[i]+extraCandies>=max) {
+    //             ans.add(true);
+    //         }
+    //         else ans.add(false);
+    //     }
+    //     return ans;
+    // }
+    class Node {
+    int val;
+    Node next;
+    Node random;
+
+    public Node(int val) {
+        this.val = val;
+        this.next = null;
+        this.random = null;
+    }
+
     public static void main(String[] args) {
         System.out.println(curr);
     }
