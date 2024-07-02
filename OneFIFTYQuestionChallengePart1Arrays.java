@@ -3,10 +3,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Stack;
 
 import org.w3c.dom.Node;
+
+import TwoPointerApproach.ListNode;
 
 public class OneFIFTYQuestionChallengePart1Arrays {
     // class RandomizedSet {
@@ -975,19 +978,123 @@ public class OneFIFTYQuestionChallengePart1Arrays {
     //     }
     //     else return xpowNby2*xpowNby2*x;
     // }
-    class LRUCache {
+    // public class LRUCache {
+    //     HashMap<Integer,Integer> hm;
+    //     int capacity;
+    //     HashMap<Integer,Integer> freq;
+    //     public LRUCache(int capacity) {
+    //         this.capacity=capacity;
+    //         hm=new HashMap<>();
+    //         freq=new HashMap<>();
+    //     }
+        
+    //     public int get(int key) {
+    //         if (hm.containsKey(key)) {
+    //             freq.put(key,freq.getOrDefault(key,0)+1);
+    //             return hm.get(key);
+    //         }
+    //         else return -1;
+    //     }
+        
+    //     public void put(int key, int value) {
+    //         if (key<=capacity) {
+    //             hm.put(key,value);
+    //             freq.put(key,freq.getOrDefault(key,0)+1);
+    //         }
+    //         else{
+    //             int minValue=Integer.MAX_VALUE;
+    //             for (Map.Entry(Integer,Integer) entry : freq.entrySet()) {
+    //                 if (entry.keySet) {
+                        
+    //                 }
+    //             }
 
-        public LRUCache(int capacity) {
-            
+    //         }
+    //     }
+    // }
+    public class ListNode {
+        *     int val;
+        *     ListNode next;
+        *     ListNode() {}
+        *     ListNode(int val) { this.val = val; }
+        *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+        * }
+    // public ListNode deleteDuplicates(ListNode head) {
+    //     ListNode dummyHead=new ListNode(0,head);
+    //     ListNode dummy=dummyHead.next;
+
+    //     while (head.next!=null) {
+    //         dummy=head;
+    //         while (head.val==head.next.val) {
+    //             head=head.next;
+    //         }
+    //         dummy=dummy.next;
+    //     }
+
+    //     return dummyHead.next;
+    // }
+    // public ListNode reverseList(ListNode head) {
+    //     if (head==null || head.next==null) {
+    //         return head;
+    //     }
+    //     ListNode prev=null;
+    //     ListNode dummyHead=new ListNode(0,head);
+    //     ListNode next=head.next;
+    //     while (head.next!=null) {
+    //         next=head.next;
+    //         head.next=prev;
+    //         prev=head;
+    //         head=next;
+    //     }
+
+    //     return dummyHead.next;
+    // }
+    // public boolean isPalindrome(ListNode head) {
+    //     ListNode slow=head;
+    //     ListNode fast=head;
+    //     //To find th midPoint
+    //     while (fast!=null && fast.next!=null) {
+    //         slow=slow.next;
+    //         fast=fast.next.next;
+    //     }
+    //     //To reverse the second half
+    //     ListNode prev=null;
+    //     ListNode curr=slow;
+    //     ListNode next=curr.next;
+
+    //     while (curr!=null) {
+    //         next=curr.next;
+    //         curr.next=prev;
+    //         prev=next;
+    //         curr=next;
+    //     }
+    //     //To check
+    //     ListNode head2=prev;
+    //     while (head2.next!=null) {
+    //         if (head.val!=head2.val) {
+    //             return false;
+    //         }
+    //         head=head.next;
+    //         head2=head2.next;
+    //     }
+
+    //     return true;
+    // }
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode dummy1=headA;
+        ListNode dummy2=headB;
+
+        while (dummy1!=null) {
+            ListNode curr=dummy2;
+            while (curr!=null) {
+                if (dummy1.val==curr.val) {
+                    return dummy1;
+                }
+                curr=curr.next;
+            }
+            dummy2=dummy2.next;
         }
-        
-        public int get(int key) {
-            
-        }
-        
-        public void put(int key, int value) {
-            
-        }
+        return null;
     }
 
     public static void main(String[] args) {
