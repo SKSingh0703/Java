@@ -830,15 +830,164 @@ public class OneFIFTYQuestionChallengePart1Arrays {
     //     }
     //     return ans;
     // }
-    class Node {
-    int val;
-    Node next;
-    Node random;
+    // class Node {
+    // int val;
+    // Node next;
+    // Node random;
 
-    public Node(int val) {
-        this.val = val;
-        this.next = null;
-        this.random = null;
+    // public Node(int val) {
+    //     this.val = val;
+    //     this.next = null;
+    //     this.random = null;
+    // }
+    public class ListNode {
+            int val;
+            ListNode next;
+            ListNode() {}
+            ListNode(int val) { this.val = val; }
+            ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
+    // public ListNode reverseBetween(ListNode head, int left, int right) {
+    //     if (head==null || head.next==null) {
+    //         return head;
+    //     }
+    //     int position=1;
+    //     ListNode x=new ListNode(0);
+    //     ListNode y=new ListNode(0);
+    //     ListNode prevX=null;
+    //     ListNode prevY=null;
+
+    //     ListNode temp=head;
+
+    //     while (temp.next!=null) {
+    //         if (position==left-1) {
+    //             prevX=temp;
+    //         }
+    //         if (position==left) {
+    //             x=temp;
+    //         }
+    //         if (position==right-1) {
+    //             prevY=temp;
+    //         }
+    //         if (position==right) {
+    //             y=temp;
+    //         }
+    //         position++;
+    //         temp=temp.next;
+    //     }
+
+    //     ListNode nextX=x.next;
+    //     ListNode nextY=y.next;
+
+    //     prevX.next=y;
+    //     prevY.next=x;
+
+    //     x.next=nextY;
+    //     y.next=nextX;
+
+    //     return head;
+    // }
+    // public ListNode reverseKGroup(ListNode head, int k) {
+    //     ListNode dummyHead=new ListNode(0);
+    //     dummyHead.next=head;
+    //     ListNode dummy=dummyHead.next;
+
+    //     while (dummy.next!=null) {
+    //         ListNode prev=null;
+    //         ListNode curr=dummy;
+
+    //         for(int i=0;i<k;i++){
+    //             ListNode next=curr.next;
+    //             curr.next=prev;
+    //             prev=curr;
+    //             curr=next;
+    //         }
+
+    //     }
+    //     return dummyHead.next;
+    // }
+    // public int[] intersect(int[] nums1, int[] nums2) {
+    //     int freq[]=new int[1001];
+    //     for(int i=0;i<nums1.length;i++){
+    //         freq[nums1[i]]++;
+    //     }
+    //     ArrayList<Integer> ans=new ArrayList<>();
+    //     for (int i = 0; i < nums2.length; i++) {
+    //         if (freq[nums2[i]]>0) {
+    //             ans.add(nums2[i]);
+    //             freq[nums2[i]]--;
+    //         }
+    //     }
+    //     return ans.toArray(int[] a);
+    // }
+    // public int getLastMoment(int n, int[] left, int[] right) {
+    //     boolean l=true;
+    //     boolean r=true;
+    //     int time=0;
+    //     while (l || r) {
+    //         time++:
+    //         if (l) {
+    //             for(int i=0;i<left.length;i++){
+    //                 left[i]--;
+    //             }
+    //             boolean check=true;
+    //             for (int i = 0; i < left.length; i++) {
+    //                 if (left[i]>0) {
+    //                     check=false;
+    //                     break;
+    //                 }
+    //             }
+    //             if (check) {
+    //                 l=false;
+    //             }
+    //         }
+    //         if (r) {
+    //             for(int i=0;i<right.length;i++){
+    //                 right[i]++;
+    //             }
+    //             boolean check=true;
+    //             for (int i = 0; i < right.length; i++) {
+    //                 if (right[i]<n) {
+    //                     check=false;
+    //                     break;
+    //                 }
+    //             }
+    //             if (check) {
+    //                 r=false;
+    //             }
+    //         }
+    //     }
+    //     return time;
+    // }
+    // public double myPow(double x, int n) {
+    //     return helper(x,n);
+    // }
+    // private int helper(int x,int n){
+    //     if (n==1) {
+    //         return x;
+    //     }
+    //     if (n==0) {
+    //         return 1;
+    //     }
+    //     int xpowNby2=helper(x, n/2);
+    //     if (n%2==0) {
+    //         return xpowNby2*xpowNby2
+    //     }
+    //     else return xpowNby2*xpowNby2*x;
+    // }
+    class LRUCache {
+
+        public LRUCache(int capacity) {
+            
+        }
+        
+        public int get(int key) {
+            
+        }
+        
+        public void put(int key, int value) {
+            
+        }
     }
 
     public static void main(String[] args) {
