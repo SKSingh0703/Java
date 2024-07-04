@@ -1192,10 +1192,15 @@ public class OneFIFTYQuestionChallengePart1Arrays {
         //     }
         // }
 
-    private 
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
-        
-    }
+    // private HashMap<Integer.Integer> hm;
+    // private centerIndex;
+
+    // public TreeNode buildTree(int[] preorder, int[] inorder) {
+    //     hm=new HashMap<>();
+    //     centerIndex=0;
+
+    //     fori
+    // }
     public static void main(String[] args) {
         // Scanner sc=new Scanner(System.in);
         // int t=sc.nextInt();
