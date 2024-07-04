@@ -8,6 +8,8 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Stack;
 
+import javax.swing.tree.TreeNode;
+
 import org.w3c.dom.Node;
 
 import TwoPointerApproach.ListNode;
@@ -1144,38 +1146,56 @@ public class OneFIFTYQuestionChallengePart1Arrays {
     //     }
     //     return minAbsDiff;
     // }
-    public void reorderList(ListNode head) {
-        ListNode slow=head;
-        ListNode fast=head;
-        while (fast!=null && fast.next!=null) {
-            slow=slow.next;
-            fast=fast.next.next;
-        }
+    // public void reorderList(ListNode head) {
+    //     ListNode slow=head;
+    //     ListNode fast=head;
+    //     while (fast!=null && fast.next!=null) {
+    //         slow=slow.next;
+    //         fast=fast.next.next;
+    //     }
 
-        ListNode prev=null;
-        ListNode curr=slow;
-        ListNode next=null;
+    //     ListNode prev=null;
+    //     ListNode curr=slow;
+    //     ListNode next=null;
 
-        while (curr!=null) {
-            next=curr.next;
-            curr.next=prev;
-            prev=curr;
-            curr=next;
-        }
+    //     while (curr!=null) {
+    //         next=curr.next;
+    //         curr.next=prev;
+    //         prev=curr;
+    //         curr=next;
+    //     }
 
-        ListNode head2=prev;
-        ListNode head1=head;
+    //     ListNode head2=prev;
+    //     ListNode head1=head;
 
-        while (head2!=null) {
-            head=new ListNode(head1.val);
-            head.next=new ListNode(head2.val);
+    //     while (head2!=null) {
+    //         head=new ListNode(head1.val);
+    //         head.next=new ListNode(head2.val);
 
-            head=head.next.next;
-            head1=head1.next;
-            head2=head2.next;
-        }
+    //         head=head.next.next;
+    //         head1=head1.next;
+    //         head2=head2.next;
+    //     }
+    // }
+        // public ListNode mergeNodes(ListNode head) {
+        //     ListNode temp=head;
+        //     ListNode dummyHead=new ListNode(0);
+        //     ListNode dummy=dummyHead;
+        //     while (temp!=null) {
+        //         if (temp.val==0) {
+        //             int sum=0;
+        //             while (temp!=null && temp.next.val!=0) {
+        //                 sum+=temp.val;
+        //                 temp=temp.next;
+        //             }
+        //         }
+        //     }
+        // }
+
+    private 
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        
     }
-
     public static void main(String[] args) {
         // Scanner sc=new Scanner(System.in);
         // int t=sc.nextInt();
@@ -1200,5 +1220,5 @@ public class OneFIFTYQuestionChallengePart1Arrays {
         //         }
         //     }
         //     System.out.println(ways);
-        // }
+        }
 }
