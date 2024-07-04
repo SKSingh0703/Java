@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Stack;
 
 import org.w3c.dom.Node;
@@ -1080,24 +1081,124 @@ public class OneFIFTYQuestionChallengePart1Arrays {
 
     //     return true;
     // }
-    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        ListNode dummy1=headA;
-        ListNode dummy2=headB;
+    // public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+    //     ListNode dummy1=headA;
+    //     ListNode dummy2=headB;
 
-        while (dummy1!=null) {
-            ListNode curr=dummy2;
-            while (curr!=null) {
-                if (dummy1.val==curr.val) {
-                    return dummy1;
-                }
-                curr=curr.next;
-            }
-            dummy2=dummy2.next;
+    //     while (dummy1!=null) {
+    //         ListNode curr=dummy2;
+    //         while (curr!=null) {
+    //             if (dummy1.val==curr.val) {
+    //                 return dummy1;
+    //             }
+    //             curr=curr.next;
+    //         }
+    //         dummy2=dummy2.next;
+    //     }
+    //     return null;
+    // }
+    // public int minDifference(int[] nums) {
+    //     if(nums.length<5) return 0;
+    //     Arrays.sort(nums);
+
+    //     int min=Integer.MAX_VALUE;
+    //     int max=Integer.MAX_VALUE;
+
+    //     int minRemoval=0;
+    //     for(int i=3;i<nums.length;i++){
+    //         min=Math.min(min, nums[i]);
+    //         max=Math.max(max, nums[i]);
+    //     }
+    //     minRemoval=max-min;
+
+    //     min=Integer.MAX_VALUE;
+    //     max=Integer.MIN_VALUE;
+
+    //     int maxRemoval=0;
+    //     for(int i=0;i<nums.length-2;i++){
+    //         min=Math.min(min, nums[i]);
+    //         max=Math.max(max, nums[i]);
+    //     }
+    //     maxRemoval=max-min;
+
+    //     return Math.min(minRemoval, maxRemoval);
+    // }
+    // public int minDifference(int[] nums) {
+    //     if(nums.length<5) return 0;
+    //     Arrays.sort(nums);
+
+    //     int l=nums.length;
+    //     int r=2;
+    //     int minAbsDiff=Integer.MAX_VALUE;
+    //     while (r>=0) {
+    //         int min=Integer.MAX_VALUE;
+    //         int max=Integer.MIN_VALUE;
+    //         for(int i=r+1;i<l;i++){
+    //             min=Math.min(min, nums[i]);
+    //             max=Math.max(max, nums[i]);
+    //         }
+    //         int minDiff=max-min;
+    //         r--;
+    //         l--;
+    //         minAbsDiff=Math.min(minDiff, minAbsDiff);
+    //     }
+    //     return minAbsDiff;
+    // }
+    public void reorderList(ListNode head) {
+        ListNode slow=head;
+        ListNode fast=head;
+        while (fast!=null && fast.next!=null) {
+            slow=slow.next;
+            fast=fast.next.next;
         }
-        return null;
+
+        ListNode prev=null;
+        ListNode curr=slow;
+        ListNode next=null;
+
+        while (curr!=null) {
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+
+        ListNode head2=prev;
+        ListNode head1=head;
+
+        while (head2!=null) {
+            head=new ListNode(head1.val);
+            head.next=new ListNode(head2.val);
+
+            head=head.next.next;
+            head1=head1.next;
+            head2=head2.next;
+        }
     }
 
     public static void main(String[] args) {
-        System.out.println(curr);
-    }
+        // Scanner sc=new Scanner(System.in);
+        // int t=sc.nextInt();
+        // for(int j=0;j<t;j++){
+        //     int n=sc.nextInt();
+        //     int k=sc.nextInt();
+        //     int h=sc.nextInt();
+
+        //     long minDisInOneJump=h/k;
+        //     if (h%k!=0) {
+        //         minDisInOneJump+=1;
+        //     }           
+        //     long ways=0;
+        //     for(int i=1;i<=n;i++){
+        //         long jumpPower=i;
+        //         long slippinessALlowed=i-minDisInOneJump;
+        //         if (jumpPower>=h) {
+        //             ways+=n;
+        //         }
+        //         else if (slippinessALlowed>0) {
+        //             ways+=slippinessALlowed;
+        //         }
+        //     }
+        //     System.out.println(ways);
+        // }
 }
