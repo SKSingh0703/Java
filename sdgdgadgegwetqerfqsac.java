@@ -1,11 +1,16 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
 import javax.swing.tree.TreeNode;
+
+import org.w3c.dom.Node;
+
+import GraphsDSA.info;
 
 public class sdgdgadgegwetqerfqsac {
     // private HashMap<Integer.Integer> hm;
@@ -240,33 +245,33 @@ public class sdgdgadgegwetqerfqsac {
     //     }
     //     return false;
     // }
-    public int numberOfAlternatingGroups(int[] colors) {
-        int n = colors.length;
-        int count = 0;
+    // public int numberOfAlternatingGroups(int[] colors) {
+    //     int n = colors.length;
+    //     int count = 0;
     
-        for (int i = 0; i < n; i++) {
-            if (colors[i] != colors[(i + 1) % n] && colors[(i + 1) % n] != colors[(i + 2) % n]) {
-                count++;
-            }
-        }
+    //     for (int i = 0; i < n; i++) {
+    //         if (colors[i] != colors[(i + 1) % n] && colors[(i + 1) % n] != colors[(i + 2) % n]) {
+    //             count++;
+    //         }
+    //     }
     
-        return count;
-    }
+    //     return count;
+    // }
 
-    public long maximumPoints(int[] enemyEnergies, int currentEnergy) {
-        long min=Long.MAX_VALUE;
-        long energy=(long)currentEnergy;
-        for (int i = 0; i < enemyEnergies.length; i++) {
-            energy+=(long)enemyEnergies[i];
-            min=Math.min(min,(long)enemyEnergies[i]);
-        }
-        energy-=min;
-        if (currentEnergy<min) {
-            return 0;
-        }
-        long count=energy/min;
-        return count;
-    }
+    // public long maximumPoints(int[] enemyEnergies, int currentEnergy) {
+    //     long min=Long.MAX_VALUE;
+    //     long energy=(long)currentEnergy;
+    //     for (int i = 0; i < enemyEnergies.length; i++) {
+    //         energy+=(long)enemyEnergies[i];
+    //         min=Math.min(min,(long)enemyEnergies[i]);
+    //     }
+    //     energy-=min;
+    //     if (currentEnergy<min) {
+    //         return 0;
+    //     }
+    //     long count=energy/min;
+    //     return count;
+    // }
     // public int numberOfAlternatingGroups(int[] colors, int k) {
     //     int n = colors.length;
     //     int count = 0;
@@ -288,31 +293,388 @@ public class sdgdgadgegwetqerfqsac {
     //     }
     //     return true;
     // }
-    public String getEncryptedString(String s, int k) {
-        int n=s.length();
-        StringBuilder sb=new StringBuilder("");
-        for(int i=0;i<s.length();i++){
-            sb.append(s.charAt((i+k)%n));
+    // public String getEncryptedString(String s, int k) {
+    //     int n=s.length();
+    //     StringBuilder sb=new StringBuilder("");
+    //     for(int i=0;i<s.length();i++){
+    //         sb.append(s.charAt((i+k)%n));
+    //     }
+    //     return sb.toString();
+    // }
+    // public List<String> validStrings(int n) {
+    //     List<String> ans=new ArrayList<>();
+    //     StringBuilder curr=new StringBuilder("");
+    //     helper(sb,"",n,ans);
+    //     return ans;
+    // }
+    // private void helper(StringBuilder curr,String prevChar,int n,List<String> ans){
+    //     if (curr.length()==n) {
+    //         ans.add(curr);
+    //     }
+    //     helper(curr.append("1"), "1", n, ans);
+    //     if(!prevChar.equals("0")){
+    //         helper(curr.append("0"),"0", n, ans);
+    //     }
+    // }
+    // public int findTheWinner(int n, int k) {
+    //     LinkedList<Integer> ll=new LinkedList<>();
+    //     for(int i=1;i<=n;i++){
+    //         ll.addLast(i);
+    //     }
+    //     while (ll.size()!=1) {
+    //         for(int i=1;i<=k;i++){
+    //             int curr=ll.removeFirst();
+    //             ll.addLast(curr);
+    //         }
+    //         ll.removeLast();
+    //     }
+    //     return ll.removeFirst();
+    // }
+    // public List<String> letterCombinations(String digits) {
+    //     List<String> ans=new ArrayList<>();
+    //     StringBuilder sb =new StringBuilder("");
+    //     String s[]=new String[digits.length()];
+    //     for(int i=0;i<digits.length();i++){
+    //         s[i]=convert(digits.charAt(i));
+    //     }
+    //     helper(0, sb, ans, s);
+    //     return ans;
+    // }
+    // private String convert(char c){
+    //     if(c=='2') return "abc";
+    //     if(c=='3') return "def";
+    //     if(c=='4') return "ghi";
+    //     if(c=='5') return "jkl";
+    //     if(c=='6') return "mno";
+    //     if(c=='7') return "pqrs";
+    //     if(c=='8') return "tuv";
+    //     if(c=='9') return "wxyz";
+    //     return "";
+    // }
+    // private void helper(int idx,StringBuilder sb,List<String> ans,String s[]){
+    //     if (idx==s.length) {
+    //         ans.add(sb.toString());
+    //     }
+    //     String curr=s[idx];
+    //     for(int i=0;i<curr.length();i++){
+    //         sb.append(curr.charAt(i));
+    //         helper(idx+1, sb, ans, s);
+    //         sb.deleteCharAt(sb.length()-1);
+    //     }
+    //     return;
+    // }
+    // public List<List<Integer>> combine(int n, int k) {
+    //     List<List<Integer>> ans=new ArrayList<>();
+    //     List<Integer> curr=new ArrayList<>();
+    //     helper(1, n, k, ans, curr);;
+    //     return ans;
+    // }
+    // private void helper(int idx,int n,int k,List<List<Integer>> ans,List<Integer> curr){
+    //     if (curr.size()==k) {
+    //         ans.add(new ArrayList<>(curr));
+    //         return;
+    //     }
+    //     for(int i=idx;i<=n;i++){
+    //         curr.add(i);
+    //         helper(idx+1, n, k, ans, curr);
+    //         curr.remove(curr.size()-1);
+    //     }
+    //     return;
+    // }
+    // public List<List<Integer>> permute(int[] nums) {
+    //     List<List<Integer>> ans=new ArrayList<>();
+    //     List<Integer> curr=new ArrayList<>();
+    //     HashSet<Integer> hs=new HashSet<>();
+    //     helper(curr, ans, nums, hs);
+    //     return;
+    // }
+    // private void helper(List<Integer> curr,List<List<Integer>> ans,int[] nums,HashSet<Integer> hs){
+    //     if (curr.size()==nums.length) {
+    //         ans.add(new ArrayList<>(curr));
+    //         return;
+    //     }
+    //     for(int i=0;i<nums.length;i++){
+    //         if (!hs.contains(nums[i])) {
+    //             hs.add(nums[i]);
+    //             curr.add(nums[i]);
+    //             helper(curr, ans, nums, hs);
+    //             curr.removeLast();
+    //             hs.remove(nums[i]);
+    //         }
+    //     }
+    //     return;
+    // }
+    // public boolean exist(char[][] board, String word) {
+    //     for(int i=0;i<board.length;i++){
+    //         for(int j=0;j<board[0].length;j++){
+    //             if (board[i][j]==word.charAt(0)) {
+    //                 if (check(i, j, 0, board, word)) {
+    //                     return true;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return false;
+    // }
+    // private boolean check(int i,int j,int idx,char[][] board, String word){
+    //     if (idx==word.length()) {
+    //         return true;
+    //     }
+    //     if (i<0 || i==board.length || j<0 || j==board[0].length) {
+    //         return false;
+    //     }
+    //     if (board[i][j]!=word.charAt(idx)) {
+    //         return false;
+    //     }
+    //     return check(i-1, j, idx+1, board, word) || check(i+1, j, idx+1, board, word) || check(i, j-1, idx+1, board, word) || check(i, j+1, idx+1, board, word);
+    // }
+    // class Node {
+    // public boolean val;
+    // public boolean isLeaf;
+    // public Node topLeft;
+    // public Node topRight;
+    // public Node bottomLeft;
+    // public Node bottomRight;
+
+    
+    // public Node() {
+    //     this.val = false;
+    //     this.isLeaf = false;
+    //     this.topLeft = null;
+    //     this.topRight = null;
+    //     this.bottomLeft = null;
+    //     this.bottomRight = null;
+    // }
+    
+    // public Node(boolean val, boolean isLeaf) {
+    //     this.val = val;
+    //     this.isLeaf = isLeaf;
+    //     this.topLeft = null;
+    //     this.topRight = null;
+    //     this.bottomLeft = null;
+    //     this.bottomRight = null;
+    // }
+    
+    // public Node(boolean val, boolean isLeaf, Node topLeft, Node topRight, Node bottomLeft, Node bottomRight) {
+    //     this.val = val;
+    //     this.isLeaf = isLeaf;
+    //     this.topLeft = topLeft;
+    //     this.topRight = topRight;
+    //     this.bottomLeft = bottomLeft;
+    //     this.bottomRight = bottomRight;
+    // }
+    // }
+    // public Node construct(int[][] grid) {
+    //     return helper(0, grid.length-1, 0,grid[0].length-1, grid);
+    // }
+    // private Node helper(int i1,int i2,int j1,int j2,int grid[][]){
+    //     if (i1>i2 || j1>j2) {
+    //         return null;
+    //     }
+    //     boolean one=true;
+    //     boolean zero=true;
+    //     for(int i=i1;i<=i2;i++){
+    //         for(int j=j1;j<=j2;j++){
+    //             if (one) {
+    //                 if (grid[i][j]!=1) {
+    //                     one =false;
+    //                 }
+    //             }
+    //             if (zero) {
+    //                 if (grid[i][j]!=0) {
+    //                     zero=false;
+    //                 }
+    //             }
+    //         }
+    //         if (!(zero && one)) {
+    //             break;
+    //         }
+    //     }
+    //     Node curr=new Node();
+    //     if (one) {
+    //         curr.isLeaf=true;
+    //         curr.val=true;
+    //         return curr;
+    //     }
+    //     if (zero) {
+    //         curr.isLeaf=true;
+    //         curr.val=false;
+    //         return curr;
+    //     }
+    //     int midi=(i1+i2)/2;
+    //     int mid2=(j1+j2)/2;
+    //     curr.isLeaf=false;
+    //     curr.val=true;
+    //     curr.topLeft=helper(i1, midi-1, j1, mid2-1, grid);
+    //     curr.topRight=helper(i1, midi-1, mid2,j2, grid);
+    //     curr.bottomLeft=helper(midi, i2, j1, mid2-1, grid);
+    //     curr.bottomRight=helper(midi, i2, mid2, j2, grid);
+    //     return curr;
+    // }
+    // public int maxSubarraySumCircular(int[] nums) {
+    //     int maxSum=Integer.MIN_VALUE;
+    //     int currSum=0;
+    //     for(int i=0;i<2*nums.length;i++){
+    //         currSum+=nums[i%nums.length];
+    //         maxSum=Math.max(maxSum, currSum);
+    //         if (currSum<0) {
+    //             currSum=0;
+    //         }
+    //     }
+    //     return maxSum;
+    // }
+    // public boolean searchMatrix(int[][] matrix, int target) {
+    //     int i=helper(0,matrix.length-1,matrix,target);
+    //     if (i==-1) {
+    //         return false;
+    //     }
+    //     return check(i,matrix,target,0,matrix[0].length-1);
+    // }
+    // private int helper(int i1,int i1,int matrix[][],int target){
+    //     if (i1>i2) {
+    //         return -1;
+    //     }
+    //     int mid=(i1+i2)/2;
+    //     if (matrix[mid][0]<=target && matrix[mid][matrix[0].length-1]>=target) {
+    //         return mid;
+    //     }
+    //     else if(target>matrix[mid][matrix[0].length-1]){
+    //         return helper(mid+1, i1, matrix, target);
+    //     }
+    //     else if (target<matrix[mid][0]) {
+    //         return helper(i1, mid-1, matrix, target);
+    //     }
+    //     else return -1;
+    // }
+    // private boolean check(int i,int matrix[][],int target,int j1,int j2){
+    //     if (j1>j2) {
+    //         return false;
+    //     }
+    //     int mid=(j1+j2)/2;
+    //     if (target==matrix[i][mid]) {
+    //         return true;
+    //     }
+    //     else if (target>matrix[i][mid]) {
+    //         return check(i, matrix, target, mid+1, j2);
+    //     }
+    //     else{
+    //         return check(i, matrix, target, j1, mid-1);
+    //     }
+    // }
+    // public int search(int[] nums, int target) {
+    //     int pivot=0;
+    //     for(int i=0;i<nums.length-2;i++){
+    //         if (nums[i]>nums[i+1]) {
+    //             pivot=i;
+    //             break;
+    //         }
+    //     }
+    //     if (target>nums[pivot]) {
+    //         return -1;
+    //     }
+    //     else if(target>rmax){
+    //         int l=0;
+    //         int r=pivot;
+    //         while (l<r) {
+    //             int mid=l+(r-l)/2;
+    //             if (nums[mid]==target) {
+    //                 return mid;
+    //             }
+    //             else if(nums[mid]>target){
+    //                 r=mid-1;
+    //             }
+    //             else l=mid+1;
+    //         }
+    //     }
+    //     else{
+    //         int l=pivot+1;
+    //         int r=nums.length-1;
+    //         while (l<r) {
+    //             int mid=l+(r-l)/2;
+    //             if (nums[mid]==target) {
+    //                 return mid;
+    //             }
+    //             else if(nums[mid]>target){
+    //                 r=mid-1;
+    //             }
+    //             else l=mid+1;
+    //         }
+    //     }
+    //     return -1;
+    // }
+    // public int[] searchRange(int[] nums, int target) {
+    //     int ans[]={-1,-1};
+    //     int l=0;
+    //     int r=nums.length-1;
+    //     while (l<=r) {
+    //         int mid=l+(r-l)/2;
+    //         if (nums[mid]==target) {
+    //             ans[0]=mid;
+    //             while (nums[mid+1]==target) {
+    //                 mid++;
+    //             }
+    //             ans[1]=mid;
+    //         }
+    //         else if (nums[mid]>target) {
+    //             r=mid-1;
+    //         }
+    //         else l=mid+1;
+    //     }
+    //     return ans;
+    // }
+    // public int findMin(int[] nums) {
+    //     int l=0;
+    //     int r=nums.length-1;
+    //     if (nums[l]<nums[r]) {
+    //         return nums[l];
+    //     }
+    //     while (l<=r) {
+    //         int mid=l+(r-l)/2;
+    //         if (mid<r && nums[mid]>nums[mid+1]) {
+    //             return nums[mid+1];
+    //         }
+    //         if (mid>l nums[mid]<nums[mid-1]) {
+    //             return nums[mid];
+    //         }
+    //         if (nums[l]>=nums[mid]) {
+    //             r=mid-1;
+    //         }
+    //         else l=mid+1;
+    //     }
+    //     return -1;
+    // }
+    // public String addBinary(String a, String b) {
+    //     int x=convertToDecimal(a);
+    //     int y=convertToDecimal(b);
+    //     int z=x+y;
+    //     StringBuilder sb=new StringBuilder("");
+    //     while (z>0) {
+    //         int curr=z%2;
+    //         char c=curr==1?'1':'0';
+    //         sb.append(c);
+    //         z=z/2;
+    //     }
+    //     sb.reverse();
+    //     return sb.toString();
+    // }
+    private int convertToDecimal(String s){
+        int mul=1;
+        int sum=0;
+        for(int i=s.length()-1;i>=0;i--){
+            int curr=s.charAt(i)=='1'?1:0;
+            sum+=curr*mul;
+            mul*=2;
         }
-        return sb.toString();
+        return sum;
     }
-    public List<String> validStrings(int n) {
-        List<String> ans=new ArrayList<>();
-        StringBuilder curr=new StringBuilder("");
-        helper(sb,"",n,ans);
-        return ans;
-    }
-    private void helper(StringBuilder curr,String prevChar,int n,List<String> ans){
-        if (curr.length()==n) {
-            ans.add(curr);
+    public int reverseBits(int n) {
+        StringBuilder sb =new StringBuilder("");
+        while (n>0) {
+            int z=z%2;
+            char ch=z==1?'1':'0';
+            sb.append(ch);
+            n=n/2;
         }
-        helper(curr.append("1"), "1", n, ans);
-        if(!prevChar.equals("0")){
-            helper(curr.append("0"),"0", n, ans);
-        }
-    }
-    public int findTheWinner(int n, int k) {
-        
     }
 
 }
