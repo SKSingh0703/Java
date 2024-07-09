@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 import javax.swing.tree.TreeNode;
@@ -657,24 +658,128 @@ public class sdgdgadgegwetqerfqsac {
     //     sb.reverse();
     //     return sb.toString();
     // }
-    private int convertToDecimal(String s){
-        int mul=1;
-        int sum=0;
-        for(int i=s.length()-1;i>=0;i--){
-            int curr=s.charAt(i)=='1'?1:0;
-            sum+=curr*mul;
-            mul*=2;
-        }
-        return sum;
-    }
-    public int reverseBits(int n) {
-        StringBuilder sb =new StringBuilder("");
-        while (n>0) {
-            int z=z%2;
-            char ch=z==1?'1':'0';
-            sb.append(ch);
-            n=n/2;
-        }
-    }
+    // private int convertToDecimal(String s){
+    //     int mul=1;
+    //     int sum=0;
+    //     for(int i=s.length()-1;i>=0;i--){
+    //         int curr=s.charAt(i)=='1'?1:0;
+    //         sum+=curr*mul;
+    //         mul*=2;
+    //     }
+    //     return sum;
+    // }
+    // public int reverseBits(int n) {
+    //     StringBuilder sb =new StringBuilder("");
+    //     while (n>0) {
+    //         int z=z%2;
+    //         char ch=z==1?'1':'0';
+    //         sb.append(ch);
+    //         n=n/2;
+    //     }
+    //     return convertToDecimal(sb.toString());
+    // }
+    // public int reverseBits(int n) {
+    //     StringBuilder sb=new StringBuilder("");
+    //     while (n>0) {
+    //         int curr=n%2;
+    //         char ch=curr==1?'1':'0';
+    //         sb.append(ch);
+    //         n=n/2;
+    //     }
+    //     int sum=0;
+    //     int mul=1;
+    //     for(int i=0;i<s.length();i++){
+    //         int curr=s.charAt(i)=='1'?1:0;
+    //         sum+=curr*mul;
+    //         mul*=2;
+    //     }
+    //     return sum;
+    // }
+    /**
+     * Innersdgdgadgegwetqerfqsac
+     */
+    // public class Pair implements Comparable<Pair> {
+    //     List<Integer> arr;
+    //     int sum;
+    //     public Pair(int x,int y){
+    //         arr=new ArrayList<>();
+    //         arr.add(x);
+    //         arr.add(y);
+    //         this.sum=x+y;
+    //     }
+    //     @Override
+    //     public int compareTo(Pair p2){
+    //         return -this.sum+p2.sum;
+    //     }        
+    // }
+    // public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
+    //     List<List<Integer>> ans=new ArrayList<>();
+    //     PriorityQueue<Pair> pq=new PriorityQueue<>();
+
+    //     for(int i=0;i<nums1.length;i++){
+    //         for(int j=0;j<nums2.length;j++){
+    //             int sum=nums1[i]+nums2[j];
+    //             if (pq.size()>=k && sum>pq.peek().sum) {
+    //                 break;
+    //             }
+    //             pq.add(new Pair(nums1[i],nums2[j]));
+    //             if (pq.size()>k) {
+    //                 pq.poll();
+    //             }
+    //         }
+    //     }
+    //     while (!pq.isEmpty()) {
+    //         ans.add(new ArrayList<>(pq.poll().arr));
+    //     }
+    //     return ans;
+    // }
+    // public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    //     ArrayList<Integer> path1=new ArrayList<>();
+    //     ArrayList<Integer> path2=new ArrayList<>();
+    //     findPath(path1,)
+    // }
+    // public double averageWaitingTime(int[][] customers) {
+    //     int time=customers[0][0];
+    //     double waitTime=0;
+    //     for(int i=0;i<customers.length;i++){
+    //         time+=customers[i][1];
+    //         waitTime+=time-customers[i][0];
+    //     }
+    //     return waitTime/customers.length;
+    // }
+    public class TreeNode {
+        *     int val;
+        *     TreeNode left;
+        *     TreeNode right;
+        *     TreeNode(int x) { val = x; }
+        * }
+    // public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    //     ArrayList<Integer> arr1=new ArrayList<>();
+    //     ArrayList<Integer> arr2=new ArrayList<>();
+    //     path(root, p, arr1);
+    //     path(root, q, arr2);
+    //     int n=Math.min(arr1.size(), arr2.size());
+    //     int common=root.val;
+    //     for(int i=0;i<n;i++){
+    //         if (arr1.get(i)==arr2.get(i)) {
+    //             common=arr1.get(i);
+    //         }
+    //     }
+    //     return common;
+    // }
+    // private boolean path(TreeNode root,TreeNode p,ArrayList<Integer> arr){
+    //     if (root==null) {
+    //         return false;
+    //     }
+    //     arr.add(root.val);
+    //     if (root.val==p.val) {
+    //         return true;
+    //     }
+    //     boolean flag=(path(root.left, p, arr) || path(root.right, p, arr));
+    //     if (flag==false) {
+    //         arr.remove(arr.size()-1);
+    //     }
+    //     return flag;
+    // }
 
 }
