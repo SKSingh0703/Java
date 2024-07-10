@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Scanner;
+import java.util.Stack;
 
 import javax.swing.tree.TreeNode;
 
@@ -781,5 +783,38 @@ public class sdgdgadgegwetqerfqsac {
     //     }
     //     return flag;
     // }
+    // public int rangeBitwiseAnd(int left, int right) {
+        
+    // }
+    public int minOperations(String[] logs) {
+        Stack<String> s=new Stack<>();
+        for(int i=0;i<logs.length;i++){
+            if (logs[i].equals("../")) {
+                if (!s.isEmpty()) {
+                    s.pop();
+                }
+            }
+            else if(logs[i].equals("./")) continue;
+            else{
+                s.push(logs[i]);
+            }
+        }
+        return s.size();
+    }
+    public static boolean isPrime(long n) {
+        if (n <= 1) return false;
+        if (n <= 3) return true;
 
+        if (n % 2 == 0 || n % 3 == 0) return false;
+
+        for (long i = 5; i * i <= n; i += 6) {
+            if (n % i == 0 || n % (i + 2) == 0) return false;
+        }
+        return true;
+    }
+    public static boolean isForm2xMinus1(int num) {
+        return (num & (num + 1)) == 0 && num != 0;
+    }
 }
+
+
