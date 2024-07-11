@@ -815,6 +815,30 @@ public class sdgdgadgegwetqerfqsac {
     public static boolean isForm2xMinus1(int num) {
         return (num & (num + 1)) == 0 && num != 0;
     }
+    // public String reverseParentheses(String s) {
+    //     StringBuilder sb =new StringBuilder("");
+    //     Stack<StringBuilder> stack=new Stack<>();
+    //     for(int i=0;i<s.length();i++){
+    //         if (s.charAt(i)=='(') {
+    //             if(!sb.isEmpty()) stack.push(sb);
+    //             sb=new StringBuilder("");
+    //         }
+    //         else if(s.charAt(i)==')'){
+    //             StringBuilder temp=sb.reverse();
+    //             if (!stack.isEmpty()) {
+    //                 sb=new StringBuilder(stack.pop());
+    //                 sb.append(temp);
+    //             }
+    //             else{
+    //                 sb=new StringBuilder("");
+    //                 sb.append(temp);
+    //             }
+    //         }
+    //         else{
+    //             sb.append(s.charAt(i));
+    //         }
+    //     }
+    // }
 }
 
 
