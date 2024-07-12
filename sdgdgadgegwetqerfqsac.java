@@ -839,6 +839,9 @@ public class sdgdgadgegwetqerfqsac {
     //         }
     //     }
     // }
+    public int maximumGain(String s, int x, int y) {
+        
+    }
 }
 
 
