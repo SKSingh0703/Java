@@ -876,6 +876,39 @@ public class sdgdgadgegwetqerfqsac {
     //     }
     //     return 0;
     // }
+    
+    * public class TreeNode {
+    *     int val;
+    *     TreeNode left;
+    *     TreeNode right;
+    *     TreeNode() {}
+    *     TreeNode(int val) { this.val = val; }
+    *     TreeNode(int val, TreeNode left, TreeNode right) {
+    *         this.val = val;
+    *         this.left = left;
+    *         this.right = right;
+    *     }
+    * }
+    public class Pair{
+        TreeNode n;
+        int freq;
+        int left;
+        int right;
+        public Pair(int n){
+            this.n.val=n;
+            freq=1;
+        }
+    }
+    public TreeNode createBinaryTree(int[][] descriptions) {
+        HashMap<Integer,Pair> hm =new HashMap<>();
+        for(int i=0;i<descriptions.length;i++){
+            int curr=descriptions[i][0];
+            if (!hm.containsKey(curr)) {
+               
+                
+            }
+        }
+    }
 }
 
 
