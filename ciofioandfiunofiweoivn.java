@@ -34,6 +34,7 @@ public class ciofioandfiunofiweoivn {
                     arr[i]=++x;
                 }
             }
+            
             System.out.println(x);
             System.out.println();
             for(int i=0;i<arr.length;i++){
