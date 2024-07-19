@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ciofioandfiunofiweoivn {
@@ -17,6 +19,31 @@ public class ciofioandfiunofiweoivn {
             }
         }
         return true;
+    }
+    public List<Integer> luckyNumbers (int[][] matrix) {
+        int max[]=new int[matrix.length];
+        int min[]=new int[matrix[0].length];
+        for(int i=0;i<matrix.length;i++){
+            int maxNum=Integer.MIN_VALUE;
+            for(int j=0;j<matrix[0].length;j++){
+                maxNum=Math.max(maxNum, matrix[i][j]);
+            }
+            max[i]=maxNum;
+        }
+        for(int i=0;i<matrix[0].length;i++){
+            int minNum=Integer.MAX_VALUE;
+            for(int j=0;j<matrix.length;j++){
+                minNum=Math.min(minNum, matrix[i][j]);
+            }
+            min[i]=minNum;
+        }
+        List<Integer> ans=new ArrayList<>();
+        for(int i=0;i<max.length;i++){
+            if (min[i]==max[i]) {
+                ans.add(min[i]);
+            }
+        }
+        return ans;
     }
     public static void main(String[] args) {
         Scanner sc =new Scanner(System.in);
