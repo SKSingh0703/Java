@@ -1,18 +1,18 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Scanner;
-import java.util.Stack;
+// import java.lang.reflect.Array;
+// import java.util.ArrayList;
+// import java.util.Arrays;
+// import java.util.HashMap;
+// import java.util.HashSet;
+// import java.util.LinkedList;
+// import java.util.List;
+// import java.util.PriorityQueue;
+// import java.util.Queue;
+// import java.util.Scanner;
+// import java.util.Stack;
 
-import javax.swing.tree.TreeNode;
+// import javax.swing.tree.TreeNode;
 
-public class BFS {
+// public class BFS {
     // public static class TreeNode {
     //     int val;
     //     TreeNode left;
@@ -566,31 +566,31 @@ public class BFS {
     // public int theMaximumAchievableX(int num, int t) {
     //     return (num+2*t);
     // }
-    public static int minIncrementForUnique(int[] nums) {
-        HashMap<Integr,Integer> hm =new HashMap<>();
+//     public static int minIncrementForUnique(int[] nums) {
+//         HashMap<Integr,Integer> hm =new HashMap<>();
     
-        for(int i=0;i<nums.length;i++){
+//         for(int i=0;i<nums.length;i++){
             
-        }
-    }
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        HashMap<Integr,Integer> hm =new HashMap<>();
+//         }
+//     }
+//     public static void main(String[] args) {
+//         Scanner sc = new Scanner(System.in);
+//         HashMap<Integr,Integer> hm =new HashMap<>();
         
-        int T = sc.nextInt();
-        while (T-- > 0) {
-            int N = sc.nextInt();
-            int K = sc.nextInt();
+//         int T = sc.nextInt();
+//         while (T-- > 0) {
+//             int N = sc.nextInt();
+//             int K = sc.nextInt();
 
-            // Calculate the minimum required length
-            int minLength = (K * (K + 1)) / 2 + K + 1;
+//             // Calculate the minimum required length
+//             int minLength = (K * (K + 1)) / 2 + K + 1;
 
-            if (N < minLength) {
-                System.out.println("NO");
-            } else {
-                System.out.println("YES");
-            }
-        }
-    }
+//             if (N < minLength) {
+//                 System.out.println("NO");
+//             } else {
+//                 System.out.println("YES");
+//             }
+//         }
+//     }
 
-}
+// }
