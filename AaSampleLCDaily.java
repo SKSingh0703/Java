@@ -78,18 +78,18 @@ public class AaSampleLCDaily {
     /**
      * InnerAaSampleLCDaily
      */
-    public class Pair implements Comparable<Pair> {
-        int val;
-        int idx;
-        public Pair(int val,int idx){
-            this.val=val;
-            this.idx=idx;
-        }
-        @Override
-        public int compareTo(Pair p2){
-            return this.val-p2.val;
-        }
-    }
+    // public class Pair implements Comparable<Pair> {
+    //     int val;
+    //     int idx;
+    //     public Pair(int val,int idx){
+    //         this.val=val;
+    //         this.idx=idx;
+    //     }
+    //     @Override
+    //     public int compareTo(Pair p2){
+    //         return this.val-p2.val;
+    //     }
+    // }
     public int maxDistance(List<List<Integer>> arrays){
         PriorityQueue<Pair> min=new PriorityQueue<>();
         PriorityQueue<Pair> max=new PriorityQueue<>(Comparator.reverseOrder());
@@ -97,7 +97,7 @@ public class AaSampleLCDaily {
         for(int i=0;i<arrays.size();i++){
             
             min.add(new Pair(arrays.get(i).get(0), i));
-            max.add(new Pair(arrays.get(i).get(arrays.size()-1), i));
+            max.add(new Pair(arrays.get(i).get(arrays.get(i).size()-1), i));
         }
         int maxDistance=max.peek().val-min.peek().val;
         if (min.peek().idx==max.peek().idx) {
@@ -107,8 +107,68 @@ public class AaSampleLCDaily {
         }
         return maxDistance;
     }
+
+    
+    public long maxPoints(int[][] points) {
+        PriorityQueue<Pair> pq=new PriorityQueue<>(Comparator.reverseOrder());
+        long count=0;
+        for(int i=0;i<points.length;i++){
+
+        }
+
+    }
+    public class Pair {
+        int val;
+        boolean isTrue;
+        public Pair(int val,boolean j){
+            this.val=val;
+            this.isTrue=false;
+        }
+    }
+
+   
+    public Pair isConsecutive(int nums[],int i,int j,Pair prev){
+        if (prev.isTrue) {
+            if (nums[j]!=nums[j-1]) {
+                return new Pair(-1, false);
+            }
+            int max=nums[i];
+            if (prev.val==nums[i-1]) {
+                for(int k=i+1;k<=j;k++){
+                    max=Math.max(max, nums[k]);
+                }
+                return new Pair(max, true);
+            }
+            return new Pair(Math.max(prev.val, nums[j]),true);
+        }
+        Pair curr=new Pair(-1, false);
+        int max=nums[i];
+        for(int k=i+1;k<=j;k++){
+            if (nums[k]!=nums[k-1]+1) {
+                return curr;
+            }
+            max=Math.max(max, nums[k]);
+        }
+        curr.val=max;
+        curr.isTrue=true;
+        return curr;
+    }
+    public int[] resultsArray(int[] nums, int k) {
+        int i=0;
+        int j=k-1;
+        int ans[]=new int[nums.length-k+1];
+        Pair prev=new Pair(0, false);
+        while (i<nums.length-k && j<nums.length) {
+            Pair curr=isConsecutive(nums, i, j,prev);
+            ans[i]=curr.val;
+            i++;
+            j++;
+            prev=curr;
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
-        ArrayList<Integer> arr=new ArrayList<>();
-        arr.
+        
     }
 }
