@@ -167,7 +167,57 @@ public class AaSampleLCDaily {
         }
         return ans;
     }
+    public int countKConstraintSubstrings(String s, int k) {
+        int count=0;
+        int one=0;
+        int zero=0;
+        for(int i=0;i<s.length();i++){
+            for(int j=i;j<s.length();j++){
+                zero=0;
+                one=0;
+                for(int k=i;k<=j;k++){
+                    if (s.charAt(k)=='0') {
+                        zero++;
+                    }
+                    if (s.charAt(k)=='1') {
+                        one++;
+                    }
 
+                }
+                if (zero<=k || one<=k) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+    public long maxEnergyBoost(int[] energyDrinkA, int[] energyDrinkB) {
+        long ans=0;
+        if () {
+            
+        }
+        int Asum=energyDrinkA[0]+energyDrinkA[1];
+        int Anext=energyDrinkA[1];
+        int Bsum=energyDrinkB[0]+energyDrinkB[1];
+        int Bnext=energyDrinkB[1];
+        for(int i=0;i<energyDrinkA.length;i++){
+            if (Asum>) {
+                
+            }
+        }
+    }
+    public long maxEnergyBoost(int[] energyDrinkA, int[] energyDrinkB){
+
+    }
+    public long helper(int A[][],int B[][],long ans,int i,char x){
+        if (i==A.length) {
+            return 0;
+        }
+        int x,y;
+        if (x=='A') {
+            
+        }
+    }
     public static void main(String[] args) {
         
     }
