@@ -218,6 +218,30 @@ public class AaSampleLCDaily {
             
         }
     }
+    public static int findHighestFactor(int num) {
+        for (int i = num / 2; i >= 1; i--) {
+            if (num % i == 0) {
+                return i;
+            }
+        }
+        return 1;
+    }
+    public int minSteps(int n) {
+        if (n==1) {
+            return 0;
+        }
+        if (n==2 || n==3) {
+            return n;
+        }
+        int steps=0;
+        int hf=findHighestFactor(n);
+        int times=n/hf;
+        steps=helper(hf)*times;
+        return steps;
+    }
+    public int helper(int n){
+        
+    }
     public static void main(String[] args) {
         
     }
