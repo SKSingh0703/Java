@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.List;
+
+import org.w3c.dom.Node;
 
 public class ACMCQSIX {
 
@@ -191,7 +194,7 @@ public class ACMCQSIX {
         }
         
         for(int i=0;i<num1.length;i++){
-            if(num1[i]!=num2.[i]) return false;
+            if(num1[i]!=num2[i]) return false;
         }
         
         return true;
@@ -270,7 +273,38 @@ public class ACMCQSIX {
 
         return true;
     }
-    public static void main(String[] args) {
-        
+    class Node {
+        public int val;
+        public List<Node> children;
+    
+        public Node() {}
+    
+        public Node(int _val) {
+            val = _val;
+        }
+    
+        public Node(int _val, List<Node> _children) {
+            val = _val;
+            children = _children;
+        }
+    };
+    public List<Integer> postorder(Node root) {
+        List<Integer> ans=new ArrayList<>();
+        helper(root,ans);
+        return ans;
     }
+    private void helper(Node root,List<Integer> ans){
+        if(root==null) return;
+        for(int i=0;i<root.children.size();i++){
+            helper(root.children.get(i),ans);
+        }
+        ans.add(root.val);
+    }
+    
+ 
+        public static void main(String[] args) {
+            System.out.println("Java version: " + System.getProperty("java.version"));
+        }
+    
+    
 }
