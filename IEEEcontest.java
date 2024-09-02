@@ -55,7 +55,21 @@ class Solution {
 
         return max;
     }
+    
 }
+    public int chalkReplacer(int[] chalk, int k) {
+        int sum=0;
+       for(int i=0;i<chalk.length;i++){
+            sum+=chalk[i];
+        }
+        int finalChalks=k%sum;
+        int i=0;
+        while (chalk[i]>k) {
+            k-=chalk[i];
+            i++;
+        }
+        return i;
+    }
 
     public static void main(String[] args) {
         
