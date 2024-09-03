@@ -70,6 +70,28 @@ class Solution {
         }
         return i;
     }
+    public int getLucky(String s, int k) {
+        StringBuilder sb=new StringBuilder("");
+        int sum=0;
+        for(int i=0;i<s.length;i++){
+            int num=s.charAt(i)-'a'+1;
+            sb.append(Integer.toString(num));
+        }
+        for(int i=0;i<sb.length();i++){
+            sum+=Character.getNumericValue(sb.charAt(i));
+        }
+        k--;
+        while(k>0){
+            int temp=0;
+            while(sum>0){
+                temp+=sum%10;
+                sum/=10;
+            }
+            sum=temp;
+            k--;
+        }
+        return sum;
+    }
 
     public static void main(String[] args) {
         
