@@ -92,7 +92,102 @@ class Solution {
         }
         return sum;
     }
+    public boolean check(HashMap<Integer,ArrayList<Integer>> hm,int x,int y,int k){
+        if (!hm.containsKey(x)) {
+            return false;
+        }
+        ArrayList<Integer> arr=hm.get(x);
+        for(int i=0;i<arr.size();i++){
+            int curr=arr.get(i);
+            if (curr>=y && curr<=y+k) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public class ListNode {
+        *     int val;
+        *     ListNode next;
+        *     ListNode() {}
+        *     ListNode(int val) { this.val = val; }
+        *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+        * }
+    public ListNode modifiedList(int[] nums, ListNode head) {
+        ListNode temphead=new ListNode(0,head);
+        ListNode temp=temphead;
+        HashSet<Integer> hs =new HashSet<>();
+        for(int i=0;i<nums.length;i++){
+            hs.add(nums[i]);
+        }
 
+        while (temp!=null && temp.next!=null) {
+            int curr=temp.next.val;
+            if (hs.contains(curr)) {
+                temp.next=temp.next.next;
+            }
+            else{
+                temp=temp.next;
+            }
+        }
+        return temphead.next;
+    }
+    public int robotSim(int[] commands, int[][] obstacles) {
+        HashMap<Integer,ArrayList<Integer>> hmX=new HashMap<>();
+        HashMap<Integer,ArrayList<Integer>> hmY=new HashMap<>();
+        for(int i=0;i<obstacles.length;i++){
+            int x=obstacles[i][0];
+            int y=obstacles[i][1];
+
+            hmX.putIfAbsent(x, new ArrayList<>());
+            hmX.get(x).add(y);
+            hmY.putIfAbsent(y, new ArrayList<>());
+            hmY.get(y).add(x);
+        }
+        int direction=2;
+        int currX=0;
+        int currY=0;
+        for(int i=0;i<commands.length;i++){
+            int currCommand=commands[i];
+            if (currCommand<0) {
+                if (currCommand==-2) {
+                    direction+=1;
+                    if (direction>4) {
+                        direction=1;
+                    }
+                }
+                if (currCommand==-1) {
+                    direction-=1;
+                    if (direction<1) {
+                        direction=4;
+                    }
+                }
+            }
+            else{
+                if (direction==1) {
+                    if (!check(hmY, currY, currX, currCommand)) {
+                        currX+=currCommand;
+                    }
+                }
+                if (direction==2) {
+                    if (!check(hmX, currX, currY, currCommand)) {
+                        currY+=currCommand;
+                    }
+                }
+                if (direction==3) {
+                    if (!check(hmY, currY, currX, currCommand)) {
+                        currX-=currCommand;
+                    }
+                }
+                if (direction==4) {
+                    if (!check(hmX, currX, currY, currCommand)) {
+                        currY-=currCommand;
+                    }
+                }
+            }
+            int ans=currY*currY+currX*currX;
+            return ans;
+        }
+    }
     public static void main(String[] args) {
         
     }
