@@ -35,6 +35,8 @@ public class IEEEcontest {
     }
     import java.util.*;
 
+import LCPOne.TreeNode;
+
 class Solution {
     public int maxScore(List<List<Integer>> grid) {
         Set<Integer> hs = new HashSet<>();
@@ -187,6 +189,29 @@ class Solution {
             int ans=currY*currY+currX*currX;
             return ans;
         }
+    }
+    public boolean isSubPath(ListNode head, TreeNode root) {
+        if (root==null) {
+            return false;
+        }
+        if (root.val==head.val) {
+            if (isPresent(head,root)) {
+                return true;
+            }
+        }
+        return isSubPath(head, root.left) || isSubPath(head, root.right);
+    }
+    public boolean isPresent(ListNode head, TreeNode root){
+        if (head==null) {
+            return true;
+        }
+        if (root==null  ) {
+            return false;
+        }
+        if (head.val!=root.val) {
+            return false;
+        }
+        return isPresent(head.next, root.left) || isPresent(head.next, root.right);
     }
     public static void main(String[] args) {
         
