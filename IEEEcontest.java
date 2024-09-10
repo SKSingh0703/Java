@@ -213,6 +213,32 @@ class Solution {
         }
         return isPresent(head.next, root.left) || isPresent(head.next, root.right);
     }
+    public String convertDateToBinary(String date) {
+        String arr[]=date.split("-");
+        for(int i=0;i<3;i++){
+            int x=Integer.parseInt(arr[i]);
+            arr[i]=Integer.toBinaryString(x);
+        }
+        return String.join("-", arr);
+    }
+    public ListNode[] splitListToParts(ListNode head, int k) {
+        ListNode ans[]=new ListNode[k];
+        ListNode temp=head;
+        int count=0;
+        while (temp!=null) {
+            count++;
+            temp=temp.next;
+        }
+        int each=count/k;
+        temp=head;
+        while (temp!=null) {
+            ans[i++]=temp;
+            for(int i=0;i<each;k++){
+                temp=temp.next;
+            }
+        }
+        return ans;
+    }
     public static void main(String[] args) {
         
     }
