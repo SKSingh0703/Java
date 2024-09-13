@@ -33,7 +33,8 @@ public class IEEEcontest {
         }
         else return false;
     }
-    import java.util.*;
+    import java.math.BigInteger;
+import java.util.*;
 
 import LCPOne.TreeNode;
 
@@ -258,6 +259,26 @@ class Solution {
             }
         }
         return count;
+    }
+    public int[] xorQueries(int[] arr, int[][] queries) {
+        int ans[]=new int[queries.length];
+        for(int i=0;i<queries.length;i++){
+            int st=queries[i][0];
+            int ed=queries[i][1];
+            int x=arr[st];
+            for(int j=st+1;j<=ed;j++){
+                x=x^arr[j];
+            }
+            ans[i]=x;
+        }
+        return ans;
+    }
+    public String multiply(String num1, String num2) {
+        BigInteger x=new BigInteger(num1);
+        BigInteger y=new BigInteger(num2);
+        BigInteger ans=x.multiply(y);
+
+        return ans.toString();
     }
     public static void main(String[] args) {
         
