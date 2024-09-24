@@ -25,10 +25,46 @@ public class sumof10suri {
         }
         return minDiff;
     }
-    public String[] uncommonFromSentences(String s1, String s2) {
-        String one[]=s1.split(" ");
-        String two[]=s1.split(" ");
+    public int findKthNumber(int n, int k) {
+        ArrayList<Integer> arr=new ArrayList<>();
+        for(int i=0;i<=9;i++){
+            generate(i, n, arr);
+        }
+        return arr.get(k-1);
+    }
+    public void generate(int num,int n,ArrayList<Integer> arr){
+        if (x>n) {
+            return;
+        }
+        arr.add(num);
+        for(int i=0;i<=9;i++){
+            int newNum=num*10+i;
+            if (newNum>n) {
+                return;
+            }
+            generate(newNum,n, arr);
+        }
+    }
+    public int longestCommonPrefix(int[] arr1, int[] arr2) {
         
+    }
+    public String[] uncommonFromSentences(String s1, String s2) {
+        String[] arr=String.join(" ", s1,s2).split(" ");
+        Arrays.sort(arr);
+        StringBuilder sb=new StringBuilder();
+        for(int i=0;i<arr.length;i++){
+            boolean flag=true;
+            if (flag && i>0 && arr[i].equals(arr[i-1]) ) {
+                flag=false;
+            }
+            if (flag && i<arr.length-1 && arr[i].equals(arr[i+1]) ) {
+                flag=false;
+            }
+            if (flag) {
+                sb.append(arr[i]).append(" ");
+            }
+        }
+        return sb.toString().equals("")?new String[1]:sb.toString().trim().split(" ");
     }
     public int findTheLongestSubstring(String s) {
         int count[]=new int[26];
