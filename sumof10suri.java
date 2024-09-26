@@ -46,7 +46,79 @@ public class sumof10suri {
         }
     }
     public int longestCommonPrefix(int[] arr1, int[] arr2) {
+        int m=arr1.length,n=arr2.length;
+        HashSet<String> one =new HashSet<>();
+        HashSet<String> two=new HashSet<>();
+
+        for (int i = 0; i < arr1.length; i++) {
+            String curr=Integer.toString(arr1[i]);
+            for(int j=0;j<curr.length();j++){
+                one.add(curr.substring(0, i+1));
+            }
+        }
+        int maxLength=0;
+        for (int i = 0; i < arr2.length; i++) {
+            String curr=Integer.toString(arr2[i]);
+            for(int j=0;j<curr.length();j++){
+                String pre=curr.substring(0, i+1);
+                if (one.contains(pre)) {
+                    maxLength=Math.max(maxLength, pre.length());
+                }
+            }
+        }
+        return maxLength;
+    }
+    public int[] sumPrefixScores(String[] words) {
+        HashMap<String,Integer> hm=new HashMap<>();
+        for (int i = 0; i < words.length; i++) {
+            String curr=words[i];
+            for(int j=0;j<curr.length();j++){
+                String sub=curr.substring(0, j+1);
+                hm.put(sub, hm.getOrDefault(sub,0)+1);
+            }
+        }
+        int ans[]=new int[words.length];
+        for (int i = 0; i < words.length; i++) {
+            String curr=words[i];
+            int count=0;
+            for(int j=0;j<curr.length();j++){
+                String sub=curr.substring(0, j+1);
+                count+=hm.get(sub);
+            }
+            ans[i]=count;
+        }
+        return ans;
+    }
+    public class Pair implements Comparable<Pair>{
+        int start;
+        int end;
+        public Pair(Int s,int e){
+            start=s;
+            end=e;
+        }
+        @Override
+        public int compareTo(Pair p2){
+            return this.start-this.end;
+        }
+    }
+    class MyCalendar {
+        ArrayList<Pair> arr;
+        public MyCalendar() {
+            arr=new ArrayList<>();
+        }
         
+        public boolean book(int start, int end) {
+            Pair newcurr=new Pair(start, end);
+            arr.add(newcurr);
+            Collections.sort(arr);
+            for(int i=1;i<arr.size();i++){
+                Pair curr=arr.get(i);
+                if (curr.start<arr.get(i-1).end) {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
     public String[] uncommonFromSentences(String s1, String s2) {
         String[] arr=String.join(" ", s1,s2).split(" ");
