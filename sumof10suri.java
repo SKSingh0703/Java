@@ -120,6 +120,7 @@ public class sumof10suri {
             return true;
         }
     }
+    
     public String[] uncommonFromSentences(String s1, String s2) {
         String[] arr=String.join(" ", s1,s2).split(" ");
         Arrays.sort(arr);
