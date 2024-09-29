@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class subarraysum {
     public static void prefixmethod(int num[]){
         int currsum=0,maxsum=Integer.MIN_VALUE;
@@ -16,6 +18,28 @@ public class subarraysum {
             }
         }
         System.out.println("Max sum is ;"+maxsum);
+    }
+    class AllOne {
+        HashMap<String,Integer> hm=;
+        public AllOne() {
+            hm=new HashMap<>();
+        }
+        
+        public void inc(String key) {
+            
+        }
+        
+        public void dec(String key) {
+            
+        }
+        
+        public String getMaxKey() {
+            
+        }
+        
+        public String getMinKey() {
+            
+        }
     }
 
     public static void main(String[] args){
