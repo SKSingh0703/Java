@@ -120,7 +120,24 @@ public class sumof10suri {
             return true;
         }
     }
-    
+    public long maximumTotalSum(int[] maximumHeight) {
+        HashSet<Integer> hs=new HashSet<>();
+        long ans=0;
+        for(int i=0;i<maximumHeight.length;i++){
+            int currH=maximumHeight[i];
+            if (!hs.contains(currH)) {
+                ans+=currH;
+            }
+            else{
+                while (hs.contains(currH)) {
+                    currH--;
+                }
+                ans+=currH;
+            }
+            hs.add(currH);
+        }
+        return ans;
+    }
     public String[] uncommonFromSentences(String s1, String s2) {
         String[] arr=String.join(" ", s1,s2).split(" ");
         Arrays.sort(arr);
@@ -151,6 +168,81 @@ public class sumof10suri {
             
         }s.indexOf(, 0)
 
+    }
+    public char kthCharacter(int k) {
+        StringBuilder sb = new StringBuilder("a"); 
+        while (sb.length() < k) {
+            for(int i=0;i<sb.length();i++){
+                char curr=sb.charAt(i);
+                int cu=(int)curr;
+                char nextChar=(char)(cu+1);
+                if (curr=='z') {
+                    nextChar='z';
+                }
+                sb.append(nextChar);
+            }
+        }
+        
+        return sb.charAt(k - 1);
+    }
+    public int countOfSubstrings(String word, int k) {
+        int count=0;
+        for(int i=0;i<word.length();i++){
+            for(int j=i+1;j<=word.length();j++){
+                String substr=word.substring(i,j);
+                if (check(substr)) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+    public boolean check(String word,int k){
+        boolean a=false,e=false,i=false,o=false,u=false;
+        int count=0;
+        for(int i=0;i<word.length();i++){
+            char curr=word.charAt(i);
+            if (!a && curr=='a') {
+                a=true;
+            }
+            if (!e && curr=='e') {
+                e=true;
+            }if (!i && curr=='i') {
+                i=true;
+            }if (!o && curr=='o') {
+                o=true;
+            }if (!u && curr=='u') {
+                u=true;
+            }
+            else count++;
+        }
+        if (a && e && i && o && u && count==k) {
+            return true;
+        }
+        else return false;
+    }
+    class AllOne {
+        HashMap<String,Integer> hm=new HashMap<>();
+        
+        public AllOne() {
+            
+        }
+        
+        public void inc(String key) {
+            
+        }
+        
+        public void dec(String key) {
+            
+        }
+        
+        public String getMaxKey() {
+            
+        }
+        
+        public String getMinKey() {
+            
+        }
     }
     public static void main(String[] args) {
         
