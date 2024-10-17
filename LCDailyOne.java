@@ -116,6 +116,26 @@ public class LCDailyOne {
 
         return s.size() / 2;
     }
+    public int maximumSwap(int num) {
+        char[] str = Integer.toString(num).toCharArray();
+        int idx=-1;
+        int max=str[0]-'0';
+        for(int i=1;i<str.length;i++){
+            int curr = str.[i] -'0';
+            if (curr>max) {
+                max=curr;
+                idx=i;
+            }
+        }
+        if (idx==-1) {
+            return num;
+        }
+        char temp=str[idx];
+        str[idx]=str[0];
+        str[0]=temp;
+
+        return Integer.parseInt(str.toString());
+    }
 
     public int minGroups(int[][] intervals) {
         PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
