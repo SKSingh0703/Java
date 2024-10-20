@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.PriorityQueue;
@@ -116,7 +117,7 @@ public class LCDailyOne {
 
         return s.size() / 2;
     }
-    public int maximumSwap(int num) {
+    public int maximumSwap3(int num) {
         char[] str = Integer.toString(num).toCharArray();
         int idx=-1;
         int max=str[0]-'0';
@@ -135,6 +136,84 @@ public class LCDailyOne {
         str[0]=temp;
 
         return Integer.parseInt(str.toString());
+    }
+    public class Pair implements Comparable<Pair> {
+        int idx;
+        int val;
+        public Pair(int i,int v){
+            idx=i;
+            val=v;
+        }
+        @Override
+        public int compareTo(Pair p2){
+            return p2.val-this.val;
+        }
+    }
+    public boolean parseBoolExpr(String expression) {
+        Stack<Character> s = new Stack<>();
+        for(int i=0;i<expression.length();i++){
+            if (expression.charAt(i)==')') {
+                StringBuilder sb = new StringBuilder("");
+                while (s.peek()!="(") {
+                    sb.append(s.pop());
+                }
+                s.pop();
+                char op = s.pop();
+                char curr='t';
+                if (op=='!') {
+                    curr=notOperation(sb.toString());
+                }
+                else if (op=='|') {
+                    curr=orOperation(sb.toString());
+                }
+                else curr=andOperation(sb.toString());
+                s.push(curr);
+            }
+            else s.push(expression.charAt(i));
+        }
+        return s.pop()=='t'?true:false;
+    }
+    public char notOperation(String str){
+        return str.charAt(0)=='t'?'t':'f';
+    }
+    public char orOperation(String str){
+        boolean flag=str.charAt(0)=='t'?true:false;
+        for(int i=1;i<str.length();i++){
+            if (str.charAt(i)=='t') {
+                flag=(flag|true);
+            }
+            else flag=(flag|false);
+        }
+        return flag?'t':'f';
+    }
+    public char andOperation(String str){
+        boolean flag=str.charAt(0)=='t'?true:false;
+        for(int i=1;i<str.length();i++){
+            if (str.charAt(i)=='t') {
+                flag=(flag&true);
+            }
+            else flag=(flag&false);
+        }
+        return flag?'t':'f';
+    }
+    public int maximumSwap(int num) {
+        char[] arr = Integer.toString(num).toCharArray();
+        int max=str[0]-'0';
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+        for(int i=0;i<arr.length;i++){
+            pq.add(new Pair(idx,str[i]-'0' ));
+        }
+        for(int i=0;i<arr.length;i++){
+            Pair curr = pq.poll();
+            if (curr.val>max) {
+                char temp = arr[curr.idx];
+                arr[curr.idx]=arr[i];
+                arr[i]=temp;
+                break;
+            }
+        }
+      
+        return Integer.parseInt(new String(arr));
     }
 
     public int minGroups(int[][] intervals) {
