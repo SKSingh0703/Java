@@ -1,9 +1,14 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Stack;
+
+import javax.swing.tree.TreeNode;
 
 public class LCDailyOne {
 
@@ -301,6 +306,43 @@ public class LCDailyOne {
         public String getMinKey() {
             return minStr.toString();
         }
+    }
+    public class TreeNode {
+      int val;
+      TreeNode left;
+      TreeNode right;
+      TreeNode() {}
+      TreeNode(int val) { this.val = val; }
+      TreeNode(int val, TreeNode left, TreeNode right) {
+          this.val = val;
+          this.left = left;
+          this.right = right;
+      }
+    }
+    public long kthLargestLevelSum(TreeNode root, int k) {
+        Queue<TreeNode> q = new LinkedList();
+        if (root==null) {
+            return -1;
+        }
+        ArrayList<Long> arr = new ArrayList<>();
+        q.offer(root);
+        while (!q.isEmpty()) {
+            long curr=0;
+            int n=q.size();
+            for(int i=0;i<n;i++){
+                TreeNode c = q.poll();
+                curr+=c.val;
+                if (c.left!=null) {
+                    q.add(c.left);
+                }
+                if (c.right!=null) {
+                    q.add(c.right);
+                }
+            }
+            arr.add(curr);
+        }
+        Collections.sort(arr,Collections.reverseOrder());
+        return arr.size()<=k-1?-1:arr.get(k-1);
     }
 
 }
