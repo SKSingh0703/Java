@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
+
+import javax.swing.tree.TreeNode;
 
 public class OOPDP {
     public static abstract class Accounts {
@@ -60,8 +63,44 @@ public class OOPDP {
         }
         return arr;
     }
+     public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
     public int[] treeQueries(TreeNode root, int[] queries) {
-        
+        int ans[]=new int[queries.length];
+        HashMap<Integer,TreeNode> hm = new HashMap<>();
+        for(int i=0;i<queries.length;i++){
+            TreeNode temp=root;
+            temp=removeSubRoot(temp,queries[i]);
+            ans[i]=height(temp);
+        }
+        return ans;
+    }
+    public TreeNode removeSubRoot(TreeNode root,int target){
+        if (root==null || root.val==target) {
+            return root;
+        }
+        root.left=removeSubRoot(root.left, target);
+        root.right=removeSubRoot(root.right, target);
+        return root;
+    }
+    public int longestSquareStreak(int[] nums) {
+        Has
+    }
+    public int height(TreeNode root){
+        if (root==null) {
+            return 0;
+        }
+        return 1+Math.max(height(root.left),height(root.right));
     }
     public interface Queue {
         public void add(int num);
