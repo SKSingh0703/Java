@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Stack;
 
@@ -94,7 +95,61 @@ public class OOPDP {
         return root;
     }
     public int longestSquareStreak(int[] nums) {
-        Has
+        HashSet<Integer> hs = new HashSet<>();
+        Arrays.sort(nums);
+        for(int i=0;i<nums.length;i++){
+            hs.add(nums[i]);
+        }
+        int maxSize=-1;
+        int currSize=1;
+        for(int i=0;i<nums.length;i++){
+            int curr=nums[i];
+            if (!hs.contains(curr)) {
+                continue;
+            }
+            else{
+                currSize=0;
+                while (hs.contains(curr)) {
+                    currSize++;
+                    hs.remove(curr);
+                    curr=curr*curr;
+                }
+                if (currSize>2) {
+                    maxSize=Math.max(maxSize, currSize);
+                }
+            }
+        }
+        return maxSize;
+    }
+    public int maxMoves(int[][] grid) {
+        int max=0;
+        int curr=0;
+        for(int i=0;i<grid.length;i++){
+            curr=helper(i, 0, grid, grid.length, grid[0].length, 0);
+            max=Math.max(max, curr);
+        }
+        return max;
+    }
+    public String makeFancyString(String s) {
+        StringBuilder sb = new StringBuilder("");
+        sb.append(s.charAt(0));
+        sb.append(s.charAt(1));
+        for(int i=2;i<s.length();i++){
+            if (s.charAt(i)==s.charAt(i-1) && s.charAt(i-2)) {
+                continue;
+            }
+            sb.append(s.charAt(i));
+        }
+        return sb.toString();
+    }
+    public int helper(int row,int col,int grid[][],int m,int n,int prev){
+        if (row>=m || col>=n || grid[row][col]<=prev) {
+            return 0;
+        }
+        int one = helper(row-1, col+1, grid, m, n,grid[row][col]);
+        int two = helper(row, col+1, grid, m, n,grid[row][col]);
+        int three = helper(row+1, col+1, grid, m, n,grid[row][col]);
+        return 1+Math.max(two, Math.max(one, three));
     }
     public int height(TreeNode root){
         if (root==null) {
