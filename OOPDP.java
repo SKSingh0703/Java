@@ -142,6 +142,36 @@ public class OOPDP {
         }
         return sb.toString();
     }
+    public boolean isCircularSentence(String sentence) {
+        String arr[]=sentence.split(" ");
+        int n=arr.length;
+        if (sentence.charAt(0)!=sentence.charAt(sentence.length()-1)) {
+            return false;
+        }
+        for(int i=1;i<n;i++){
+            if (arr[i].charAt(0)!=arr[i-1].charAt(arr[i-1].length()-1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public String compressedString(String word) {
+        StringBuilder sb = new StringBuilder();
+        int count=1;
+        char curr = word.charAt(0);
+        for(int i=1;i<word.length();i++){
+            if (curr==word.charAt(i)) {
+                count++;
+            }
+            else{
+                sb.append(Integer.toString(count));
+                sb.append(curr);
+                curr=sb.charAt(i);
+                count=1;
+            }
+        }
+        return sb.toString();
+    }
     public int helper(int row,int col,int grid[][],int m,int n,int prev){
         if (row>=m || col>=n || grid[row][col]<=prev) {
             return 0;
