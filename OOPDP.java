@@ -172,6 +172,27 @@ public class OOPDP {
         }
         return sb.toString();
     }
+    public boolean canSortArray(int[] nums) {
+        int arr[]=new int[nums.length];
+        int n = nums.length;
+        for(int i=0; i<n;i++){
+            arr[i]=nums[i];
+        }
+        Arrays.sort(nums);
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if (arr[i]>arr[i+1] && Integer.bitCount(arr[i])>Integer.bitCount(arr[i+1])) {
+                    int temp=arr[i+1];
+                    arr[i+1]=arr[i];
+                    arr[i]=temp;
+                }
+            }
+        }
+        for(int i=0;i<n;i++){
+            if(arr[i]!=nums[i]) return false;
+        }
+        return true;
+    }
     public int helper(int row,int col,int grid[][],int m,int n,int prev){
         if (row>=m || col>=n || grid[row][col]<=prev) {
             return 0;
