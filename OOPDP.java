@@ -193,6 +193,20 @@ public class OOPDP {
         }
         return true;
     }
+    public int largestCombination(int[] candidates) {
+        int arr[]=new int[24];
+        for(int i=0;i<24;i++){
+            for(int j=0;j<candidates.length;j++){
+                arr[i]+=(candidates[i]&1);
+                candidates[i]=candidates[i]>>1;
+            }
+        }
+        int max=0;
+        for(int i=0;i<24;i++){
+            max=Math.max(max, arr[i]);
+        }
+        return max;
+    }
     public int helper(int row,int col,int grid[][],int m,int n,int prev){
         if (row>=m || col>=n || grid[row][col]<=prev) {
             return 0;
