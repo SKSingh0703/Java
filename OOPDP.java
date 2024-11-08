@@ -204,8 +204,31 @@ public class OOPDP {
         int max=0;
         for(int i=0;i<24;i++){
             max=Math.max(max, arr[i]);
+            System.out.println();
         }
         return max;
+    }
+    public int[] getMaximumXor(int[] nums, int maximumBit) {
+        int n = nums.length;
+        int m=Math.pow(2, maximumBit);
+        int k=0;
+        int max=0;
+        int ans[]=new int[n];
+        for (int i = 0; i < nums.length; i++) {
+            k=0;
+            for (int j = n-1-j; j >=0; j--) {
+                k=(k^nums[j]);
+            }
+            max=k;
+            for (int j = 0; j < m; j++) {
+                if ((k^j)>max) {
+                    ans[i]=j;
+                    max=(k^j);
+                }
+            }
+        }
+        return ans;
+
     }
     public int helper(int row,int col,int grid[][],int m,int n,int prev){
         if (row>=m || col>=n || grid[row][col]<=prev) {
