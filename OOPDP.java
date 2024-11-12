@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Stack;
 
 import javax.swing.tree.TreeNode;
@@ -229,6 +230,31 @@ public class OOPDP {
         }
         return ans;
 
+    }
+    public class Pair implements Comparable<Pair>{
+        int price;
+        int beauty;
+        public Pair(int p,int b){
+            price=p;
+            beauty=b;
+        }
+        @Override
+        public int compareTo(Pair p2){
+            return this.price==p2.price?-this.price+p2.price:p2.beauty-this.beauty
+        }
+    }
+    public int[] maximumBeauty(int[][] items, int[] queries) {
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+        int n=items.length;
+        for(int i=0;i<n;i++){
+            pq.add(new Pair(items[i][0], items[i][1]));
+        }
+        for (Pair pair : pq) {
+            System.out.println(pair.beauty+"  "+pair.price);
+        }
+    }
+    public int[] maximumBeauty(int[][] items, int[] queries) {
+        
     }
     public int helper(int row,int col,int grid[][],int m,int n,int prev){
         if (row>=m || col>=n || grid[row][col]<=prev) {
