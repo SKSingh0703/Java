@@ -254,8 +254,27 @@ public class OOPDP {
         }
     }
     public int[] maximumBeauty(int[][] items, int[] queries) {
-        
-    }
+        int max=0;
+        int n=items.length;
+        int m=queries.length;
+        for(int i=0;i<n;i++){
+            max=Math.max(max, items[i][0]);
+        }
+        int arr[]=new int[max];
+        max=0;
+        for(int i=0;i<n;i++){
+            arr[items[i][0]]=Math.max(items[i][1], arr[items[i][0]]);
+        }
+        for(int i=1;i<n;i++){
+            arr[i]=Math.max(arr[i], arr[i-1]);
+        }
+        int ans[]=new int[m];
+        for(int i=0;i<m;i++){
+            ans[i]=queries[i]>=n?arr[arr.length-1]:arr[queries[i]];
+        }
+        return ans;
+    }  
+    
     public int helper(int row,int col,int grid[][],int m,int n,int prev){
         if (row>=m || col>=n || grid[row][col]<=prev) {
             return 0;
