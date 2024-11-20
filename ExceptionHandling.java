@@ -12,7 +12,7 @@ import java.io.IOException;
 
         File f = new File(args[0]);
         byte[] b;
-
+        
         if (f.exists()) {
             FileInputStream f1 = new FileInputStream(f);
             int num = f1.available(); // Number of bytes in the file
