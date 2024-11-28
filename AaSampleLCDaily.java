@@ -226,6 +226,8 @@ public class AaSampleLCDaily {
         }
         return 1;
     }
+
+    
     public int minSteps(int n) {
         if (n==1) {
             return 0;
