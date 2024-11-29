@@ -1,4 +1,7 @@
 // import java.util.*;
+
+import java.util.PriorityQueue;
+
 public class bit {
     public static void check(int n){
         int bitmask=1;
@@ -15,6 +18,51 @@ public class bit {
             return 0;
         }
         else return 1;
+    }
+    public class Pair implements Comparable<Pair>{
+        int val;
+        int row;
+        int col;
+        int parRow;
+        int parCol;
+        public Pair(int v,int r,int c,int pr,int pc){
+            val=v;
+            row=r;col=c;parRow=pr;parCol=pc;
+        }
+        @Override
+        public int compareTo(Pair p2){
+            return this.val-p2.val
+        }
+    }
+
+    public int minimumTime(int[][] grid) {
+        int m=grid.length;
+        int n=grid[0].length;
+        boolean vis[][]=new boolean[m][n];
+        PriorityQueue<Pair> pq =new PriorityQueue<>();
+        int time=0;
+        pq.add(new Pair(grid[0][0], 0, 0, -1, -1) );
+        int x[]={1,0,0,-1};
+        int y[]={0,-1,1,0};
+        while (!pq.isEmpty()) {
+            Pair curr=pq.poll();
+            if (curr.val>time) {
+                continue;
+            }
+            vis[curr.row][curr.col]=true;
+            if (curr.row==m-1 && curr.col==n-1) {
+                return time;
+            }
+            for(int i=0;i<4;i++){
+                int newX=curr.row+x[i];
+                int newY=curr.col+y[i];
+                if (newX>0 && newX<m && newY>0 && newY<n && vis[newX][newY]==false) {
+                    pq.add(new Pair(grid[newX][newY], newX, newY, curr.row, curr.col));
+                }
+            }
+            time++;
+        }
+        return -1;
     }
 
     public static int setIthbit(int n,int i){
