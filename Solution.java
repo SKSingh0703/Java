@@ -157,15 +157,33 @@ class Solution {
     //     result = Math.max(result, Math.max(helper(str1, str2, m+1, n, dp), helper(str1, str2, m, n+1, dp)));
     //     return dp[m][n]=result;
     // }
-    public String addSpaces(String s, int[] spaces) {
-        StringBuilder sb = new StringBuilder();
-        int j=0;
-        for(int i=0;i<s.length();i++){
-            if(j<spaces.length && spaces[j]==i){
-                sb.append(" ");
-            }
-            sb.append(s.charAt(i));
+    // public String addSpaces(String s, int[] spaces) {
+    //     StringBuilder sb = new StringBuilder();
+    //     int j=0;
+    //     for(int i=0;i<s.length();i++){
+    //         if(j<spaces.length && spaces[j]==i){
+    //             sb.append(" ");
+    //         }
+    //         sb.append(s.charAt(i));
+    //     }
+    //     return sb.toString();
+    // }
+    public boolean wordBreak(String s, List<String> wordDict) {
+        HashSet<String> hs = new HashSet<>();
+        for(String str : wordDict){
+            hs.add(str);
         }
-        return sb.toString();
+        HashMap<String,Boolean> hm = new HashMap<>();
+        return helper(s,hs,hm);
+    }
+    public boolean helper(String s,HashSet<String> hs,HashMap<String,Boolean> hm){
+        if(s.length()==0) return true;
+        if(hm.containsKey(s)) return hm.
+        for(int i=0;i<s.length();i++){
+            if(hs.contains(s.substring(0,i+1)) && helper(s.substring(i+1),hs)){
+                return true;
+            }
+        }
+        return false;
     }
 }
