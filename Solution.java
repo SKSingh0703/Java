@@ -1,6 +1,9 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Scanner;
 
 import org.w3c.dom.Node;
 
@@ -168,22 +171,76 @@ class Solution {
     //     }
     //     return sb.toString();
     // }
-    public boolean wordBreak(String s, List<String> wordDict) {
-        HashSet<String> hs = new HashSet<>();
-        for(String str : wordDict){
-            hs.add(str);
-        }
-        HashMap<String,Boolean> hm = new HashMap<>();
-        return helper(s,hs,hm);
+    // public boolean wordBreak(String s, List<String> wordDict) {
+    //     HashSet<String> hs = new HashSet<>();
+    //     for(String str : wordDict){
+    //         hs.add(str);
+    //     }
+    //     HashMap<String,Boolean> hm = new HashMap<>();
+    //     return helper(s,hs,hm);
+    // }
+    // public boolean helper(String s,HashSet<String> hs,HashMap<String,Boolean> hm){
+    //     if(s.length()==0) return true;
+    //     if(hm.containsKey(s)) return hm.get(s);
+    //     for(int i=0;i<s.length();i++){
+    //         if(hs.contains(s.substring(0,i+1)) && helper(s.substring(i+1),hs)){
+                
+    //             return true;
+    //         }
+    //     }
+    //     hm.put(s, false);
+    //     return false;
+    // }
+
+    // public int findMinimumTime(List<Integer> strength, int K) {
+    //     int x = 1;
+    //     int energy = 0;
+    //     boolean[] vis = new boolean[strength.size()];
+    //     int totalTime = helper(energy, x, strength, K, vis, 0);
+    //     return totalTime == Integer.MAX_VALUE ? -1 : totalTime;
+    // }
+
+    // public int helper(int energy, int x, List<Integer> strength, int k, boolean[] vis, int idx) {
+    //     if (idx >= strength.size()) {
+    //         return 0;
+    //     }
+
+    //     int cost = Integer.MAX_VALUE;
+
+    //     for (int i = 0; i < strength.size(); i++) {
+    //         if (!vis[i] && energy >= strength.get(i)) {
+    //             vis[i] = true;
+    //             int curr = helper(0, x + k, strength, k, vis, idx + 1);
+    //             vis[i] = false;
+    //             cost = Math.min(curr, cost);
+    //         }
+    //     }
+
+    //     cost = Math.min(cost, helper(energy + x, x, strength, k, vis, idx));
+
+    //     return cost == Integer.MAX_VALUE ? Integer.MAX_VALUE : cost + 1;
+    // }
+    static int min=Integer.MAX_VALUE;
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String num = sc.nextLine();
+        int k = sc.nextInt();
+        helper(num,k);
+        System.out.println(min);
+        HashMap<String,ArrayList<String>> hm = new HashMap<>();
+        hm.putIfAbsent(start, hm.getOrDefault(start,new ArrayList<>()).add(end));
     }
-    public boolean helper(String s,HashSet<String> hs,HashMap<String,Boolean> hm){
-        if(s.length()==0) return true;
-        if(hm.containsKey(s)) return hm.
-        for(int i=0;i<s.length();i++){
-            if(hs.contains(s.substring(0,i+1)) && helper(s.substring(i+1),hs)){
-                return true;
-            }
+    public static void helper(String num,int k){
+        if(num.length()==0 || k==0){
+            min=Math.min(min,Integer.parseInt(num));
+            return;
         }
-        return false;
+        for(int i=0;i<num.length();i++){
+            String curr = num.substring(0,i)+num.substring(i+1);
+            helper(curr,k-1);
+        }
+        return ;
     }
+    
 }
