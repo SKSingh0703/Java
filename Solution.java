@@ -229,18 +229,19 @@ class Solution {
         helper(num,k);
         System.out.println(min);
         HashMap<String,ArrayList<String>> hm = new HashMap<>();
+        StringBuilder sb = new StringBuilder();
         hm.putIfAbsent(start, hm.getOrDefault(start,new ArrayList<>()).add(end));
     }
-    public static void helper(String num,int k){
-        if(num.length()==0 || k==0){
-            min=Math.min(min,Integer.parseInt(num));
-            return;
-        }
-        for(int i=0;i<num.length();i++){
-            String curr = num.substring(0,i)+num.substring(i+1);
-            helper(curr,k-1);
-        }
-        return ;
-    }
+    // public static void helper(String num,int k){
+    //     if(num.length()==0 || k==0){
+    //         min=Math.min(min,Integer.parseInt(num));
+    //         return;
+    //     }
+    //     for(int i=0;i<num.length();i++){
+    //         String curr = num.substring(0,i)+num.substring(i+1);
+    //         helper(curr,k-1);
+    //     }
+    //     return ;
+    // }
     
 }
