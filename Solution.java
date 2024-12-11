@@ -220,18 +220,7 @@ class Solution {
 
     //     return cost == Integer.MAX_VALUE ? Integer.MAX_VALUE : cost + 1;
     // }
-    static int min=Integer.MAX_VALUE;
-    
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String num = sc.nextLine();
-        int k = sc.nextInt();
-        helper(num,k);
-        System.out.println(min);
-        HashMap<String,ArrayList<String>> hm = new HashMap<>();
-        StringBuilder sb = new StringBuilder();
-        hm.putIfAbsent(start, hm.getOrDefault(start,new ArrayList<>()).add(end));
-    }
+    // static int min=Integer.MAX_VALUE;
     // public static void helper(String num,int k){
     //     if(num.length()==0 || k==0){
     //         min=Math.min(min,Integer.parseInt(num));
@@ -244,4 +233,125 @@ class Solution {
     //     return ;
     // }
     
+    // public int kthElement(int a[], int b[], int k) {
+    //     int n=a.length;
+    //     int m=b.length;
+    //     int l = Math.min(a[0],b[0]);
+    //     int r = Math.max(a[n-1],b[m-1]);
+    //     int ans=0;
+    //     while(l<=r){
+    //         int mid = l + (r-l)/2;
+    //         int number = numberOfElements(mid,a) + numberOfElements(mid,b);
+            
+    //         if(number>=k-1){
+    //             ans=mid;
+    //             r=mid-1;
+    //         }
+    //         else l = mid +1;
+    //     }
+    //     //Minimum element that exist in array which is larger or equal to mid
+    //     System.out.println(ans);
+    //     int answer = Math.min(helper(ans,a),helper(ans,b));
+    //     return answer;
+    // }
+    // public int numberOfElements(int target,int nums[]){
+    //     int l = 0;
+    //     int r = nums.length-1;
+    //     int ans = nums.length;
+    //     while(l<=r){
+    //         int mid =l+(r-l)/2;
+    //         if(nums[mid]>=target){
+    //             ans = mid;
+    //             r=mid-1;
+    //         }
+    //         else l=mid+1;
+    //     }
+    //     return ans;
+    // }
+    // public int helper(int target , int nums[]){
+    //     int l = 0;
+    //     int r = nums.length-1;
+    //     int ans = nums.length;
+    //     while(l<=r){
+    //         int mid =l+(r-l)/2;
+    //         if(nums[mid]>=target){
+    //             ans = nums[mid];
+    //             r=mid-1;
+    //         }
+    //         else l=mid+1;
+    //     }
+    //     return ans==nums.length?Integer.MAX_VALUE:ans;
+    // }
+    public int books(int a[],int n,int b){
+        int l=Integer.MAX_VALUE;
+        int r=0;
+        if(a.length<b) return -1;
+        for(int num : a){
+            l=Math.min(l, num);
+            r+=num;
+        }
+        int ans=0;
+        while(l<=r){
+            int mid = l + (r-l)/2;
+            int x = isPossible(mid,a,b);
+            if(x!=-1){
+                ans=x;
+                l=mid+1;
+            }
+            else r=mid-1;
+        }
+        return ans;
+    }
+    public int isPossible(int pages ,int arr[] ,int req){
+        int count=0;
+        int currPages = 0;
+        int max=Integer.MIN_VALUE;
+        for(int num : arr){
+            currPages+=num;
+            if(currPages>=pages){
+                count++;
+                max=Math.max(max,currPages);
+                currPages=0;
+            }
+        }
+        return count>=req?max:-1;
+    }
+    public static boolean isPossible(int stalls[],int distance ,int cows){
+        int count = 0;
+        int l =stalls[0];
+        for(int i=0;i<stalls.length;i++){
+            int currDist = stalls[i]-l;
+            if(currDist>=distance){
+                count++;
+                l=stalls[i];
+            }
+        }
+        return count>=cows?true:false;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-->0){
+            int n =sc.nextInt();
+            int c =sc.nextInt();
+            int stalls[] = new int[n];
+            for(int i=0;i<n;i++){
+                stalls[i]=sc.nextInt();
+            }
+            Arrays.sort(stalls);
+            int l=1, r=stalls[n-1];
+
+            int ans=1;
+            while(l<=r){
+                int mid = l+(r-l)/2;
+                if(isPossible(stalls,mid,c-1)){
+                    ans = mid;
+                    l=mid+1;
+                }
+                else r=mid-1;
+            }
+            System.out.println(ans);
+        }
+
+    }
 }
