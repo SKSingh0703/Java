@@ -282,52 +282,52 @@ class Solution {
     //     }
     //     return ans==nums.length?Integer.MAX_VALUE:ans;
     // }
-    public int books(int a[],int n,int b){
-        int l=Integer.MAX_VALUE;
-        int r=0;
-        if(a.length<b) return -1;
-        for(int num : a){
-            l=Math.min(l, num);
-            r+=num;
-        }
-        int ans=0;
-        while(l<=r){
-            int mid = l + (r-l)/2;
-            int x = isPossible(mid,a,b);
-            if(x!=-1){
-                ans=x;
-                l=mid+1;
-            }
-            else r=mid-1;
-        }
-        return ans;
-    }
-    public int isPossible(int pages ,int arr[] ,int req){
-        int count=0;
-        int currPages = 0;
-        int max=Integer.MIN_VALUE;
-        for(int num : arr){
-            currPages+=num;
-            if(currPages>=pages){
-                count++;
-                max=Math.max(max,currPages);
-                currPages=0;
-            }
-        }
-        return count>=req?max:-1;
-    }
-    public static boolean isPossible(int stalls[],int distance ,int cows){
-        int count = 0;
-        int l =stalls[0];
-        for(int i=0;i<stalls.length;i++){
-            int currDist = stalls[i]-l;
-            if(currDist>=distance){
-                count++;
-                l=stalls[i];
-            }
-        }
-        return count>=cows?true:false;
-    }
+    // public int books(int a[],int n,int b){
+    //     int l=Integer.MAX_VALUE;
+    //     int r=0;
+    //     if(a.length<b) return -1;
+    //     for(int num : a){
+    //         l=Math.min(l, num);
+    //         r+=num;
+    //     }
+    //     int ans=0;
+    //     while(l<=r){
+    //         int mid = l + (r-l)/2;
+    //         int x = isPossible(mid,a,b);
+    //         if(x!=-1){
+    //             ans=x;
+    //             l=mid+1;
+    //         }
+    //         else r=mid-1;
+    //     }
+    //     return ans;
+    // }
+    // public int isPossible(int pages ,int arr[] ,int req){
+    //     int count=0;
+    //     int currPages = 0;
+    //     int max=Integer.MIN_VALUE;
+    //     for(int num : arr){
+    //         currPages+=num;
+    //         if(currPages>=pages){
+    //             count++;
+    //             max=Math.max(max,currPages);
+    //             currPages=0;
+    //         }
+    //     }
+    //     return count>=req?max:-1;
+    // }
+    // public static boolean isPossible(int stalls[],int distance ,int cows){
+    //     int count = 0;
+    //     int l =stalls[0];
+    //     for(int i=0;i<stalls.length;i++){
+    //         int currDist = stalls[i]-l;
+    //         if(currDist>=distance){
+    //             count++;
+    //             l=stalls[i];
+    //         }
+    //     }
+    //     return count>=cows?true:false;
+    // }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int t = sc.nextInt();
@@ -352,6 +352,7 @@ class Solution {
             }
             System.out.println(ans);
         }
+        
 
     }
 }
