@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -328,34 +332,30 @@ class Solution {
     //     }
     //     return count>=cows?true:false;
     // }
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
-        while(t-->0){
-            int n =sc.nextInt();
-            int c =sc.nextInt();
-            int stalls[] = new int[n];
-            for(int i=0;i<n;i++){
-                stalls[i]=sc.nextInt();
-            }
-            Arrays.sort(stalls);
-            int l=1, r=stalls[n-1];
+    public static void main(String[] args) throws Exception {
+        URL url = new URL("https://leetcode.com/graphql/");
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Content-Type", "application/json");
+        conn.setDoOutput(true);
 
-            int ans=1;
-            while(l<=r){
-                int mid = l+(r-l)/2;
-                if(isPossible(stalls,mid,c-1)){
-                    ans = mid;
-                    l=mid+1;
-                }
-                else r=mid-1;
-            }
-            System.out.println(ans);
+        // GraphQL query to fetch questions
+        String query = """
+        {
+            "query": "query { problemsetQuestionList(categorySlug: \"\", limit: 10) { questions { titleSlug } } }"
         }
-        
+        """;
 
+        // Send request
+        try (OutputStream os = conn.getOutputStream()) {
+            os.write(query.getBytes());
+        }
 
-
-        
+        // Read response
+        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        String responseLine;
+        while ((responseLine = br.readLine()) != null) {
+            System.out.println(responseLine);
+        }
     }
 }
