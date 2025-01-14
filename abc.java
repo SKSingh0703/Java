@@ -18,7 +18,9 @@ public class abc {
         
         for(int i=0;i<n;i++){
             for(int j=i;j<n;j++){
-                int xor = prefix[i]^prefix[j];
+                int xor=0;
+                if(i==0) xor=prefix[j];
+                else xor = (prefix[i-1]^prefix[j]);
                 if(i==j) xor=a[i];
                 System.out.println(i+"  "+j+"  "+xor);
                 if(xor==b) count++;
@@ -27,7 +29,13 @@ public class abc {
         
         return count;
     }
+    public int reversePairs(int[] nums) {
+        
+    }  
     public static void main(String[] args) {
+        int[] A = {5, 6, 7, 8, 9};
+        int B = 5;
+        System.out.println(solve(A, B));
     }
 }
 
