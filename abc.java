@@ -24,7 +24,7 @@ public class abc {
                 if(i==j) xor=a[i];
                 System.out.println(i+"  "+j+"  "+xor);
                   if(xor==b) count++;
-            }
+            }  
         }
         
         return count;
