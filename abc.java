@@ -23,7 +23,7 @@ public class abc {
                 else xor = (prefix[i-1]^prefix[j]);
                 if(i==j) xor=a[i];
                 System.out.println(i+"  "+j+"  "+xor);
-                if(xor==b) count++;
+                  if(xor==b) count++;
             }
         }
         
