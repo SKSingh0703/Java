@@ -15,7 +15,7 @@ public class abc {
             prefix[i]=(prefix[i-1]^a[i]);
         }
         int count =0;
-        
+          
         for(int i=0;i<n;i++){
             for(int j=i;j<n;j++){
                 int xor=0;
