@@ -25,7 +25,7 @@ public class abc {
                 System.out.println(i+"  "+j+"  "+xor);
                   if(xor==b) count++;
             }  
-        }       
+        }         
         
         return count;
     }
