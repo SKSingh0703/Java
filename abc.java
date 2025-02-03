@@ -32,6 +32,28 @@ public class abc {
     public int reversePairs(int[] nums) {
         
     }  
+    class Solution {
+        public int longestMonotonicSubarray(int[] nums) {
+            int inc = 0;
+            int dec = 0;
+            int ans = 1;
+    
+            for(int i = 1;i<nums.length;i++){
+                if(nums[i]>nums[i-1]){
+                    inc++;
+                }
+                else inc=0;
+                if(nums[i]<nums[i-1]){
+                    dec++;
+                }
+                else dec=0;
+    
+                ans = Math.max(ans,1+Math.max(inc,dec));
+            }
+    
+            return ans;
+        }
+    }
     public static void main(String[] args) {
         int[] A = {5, 6, 7, 8, 9};
         int B = 5;
