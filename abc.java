@@ -64,7 +64,7 @@ public class abc {
                 }
                 else sum+=nums[i];
     
-                ans=Math.max(ans,sum);
+                ans=Math.max(ans,sum);  
             }
             return ans;
         }
