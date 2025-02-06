@@ -4,6 +4,8 @@ import java.io.OutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class abc {
     public static int solve(int[] a, int b) {
@@ -54,6 +56,25 @@ public class abc {
             return ans;
         }
     }
+    class Solution {
+    public int tupleSameProduct(int[] nums) {
+        HashMap<Integer,Integer> hm = new HashMap<>();
+        int n = nums.length;
+
+        for(int i = 0;i<n;i++){
+            for(int j = i+1;j<n;j++){
+                hm.put(nums[i]*nums[j],hm.getOrDefault(nums[i]*nums[j],0)+1);
+            }
+        }
+        int ans = 0;
+        for(Map.Entry<Integer,Integer> entry : hm.entrySet()){
+            int curr = entry.getValue();
+            ans += (curr*(curr-1))*4;
+        }
+
+        return ans;
+    }
+}
     class Solution {
         public int maxAscendingSum(int[] nums) {
             int sum = nums[0];
