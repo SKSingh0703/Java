@@ -75,6 +75,34 @@ public class abc {
         return ans;
     }
 }
+class Solution {
+    public int[] queryResults(int limit, int[][] queries) {
+        HashMap<Integer,Integer> ball = new HashMap<>();
+        HashMap<Integer,Integer> color = new HashMap<>();
+        int n = queries.length;
+
+        int ans[] = new int[n];
+        for(int i = 0 ;i<n;i++){
+            
+            int currBall = queries[i][0];
+            int currColor = queries[i][1];
+
+            if(ball.containsKey(currBall)){
+                int prevColor = ball.get(currBall);
+                color.put(prevColor,color.get(prevColor)-1);
+
+                if(color.get(prevColor)==0){
+                    color.remove(prevColor);
+                }
+            }
+            ball.put(currBall,currColor);
+            color.put(currColor,color.getOrDefault(currColor,0)+1);
+            ans[i] = color.size();
+        }
+
+        return ans;
+    }
+}
     class Solution {
         public int maxAscendingSum(int[] nums) {
             int sum = nums[0];
