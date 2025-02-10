@@ -179,6 +179,34 @@ class Solution {
         return badPairs;
     }
 }
+import java.util.Stack;
+
+public class Solution { 
+    public String clearDigits(String s) {
+        Stack<Character> stack = new Stack<>();
+        
+        for (char c : s.toCharArray()) {
+            if (Character.isDigit(c)) {
+                while (!stack.isEmpty() && !Character.isDigit(stack.peek())) {
+                    stack.pop();
+                    break; 
+                }
+            } else {
+                stack.push(c);
+            }
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        while (!stack.isEmpty()) {
+            sb.insert(0, stack.pop()); 
+        }
+        
+        return sb.toString();
+    }
+
+}
+
+
     class Solution {
         public int maxAscendingSum(int[] nums) {
             int sum = nums[0];
