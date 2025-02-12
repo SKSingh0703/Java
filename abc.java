@@ -258,6 +258,37 @@ class Solution {
     }
 }
 
+import java.util.*;
+
+class Solution {
+    public int maximumSum(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int ans = -1;
+
+        for (int num : nums) {
+            int sum = sumDigits(num);
+
+            if (map.containsKey(sum)) {
+                ans = Math.max(ans, num + map.get(sum)); // Check max pair sum
+                map.put(sum, Math.max(map.get(sum), num)); // Keep the max value
+            } else {
+                map.put(sum, num);
+            }
+        }
+        return ans;
+    }
+
+    private int sumDigits(int n) {
+        int sum = 0;
+        while (n > 0) {
+            sum += n % 10;
+            n /= 10;
+        }
+        return sum;
+    }
+}
+
+
 
     class Solution {
         public int maxAscendingSum(int[] nums) {
