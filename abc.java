@@ -307,10 +307,43 @@ class ProductOfNumbers {
 
     public int getProduct(int k) {
         int n = prefixProduct.size();
+        
         if (k >= n) return 0; 
         return prefixProduct.get(n - 1) / prefixProduct.get(n - 1 - k);
     }
 }
+class Solution {
+    public int punishmentNumber(int n) {
+        int ans = 0;
+        for (int i = 1; i <= n; i++) {
+            int sq = i * i;
+            if (canPartition(String.valueOf(sq), i, 0, 0)) {
+                ans += sq;
+            }
+        }
+        return ans;
+    }
+
+    private boolean canPartition(String str, int target, int currSum, int idx) {
+        int n = str.length();
+        if (idx == n) {
+            return currSum == target;
+        }
+
+        int num = 0;
+        for (int i = idx; i < n; i++) {
+            num = num * 10 + (str.charAt(i) - '0');
+            
+            if (num > target) break; 
+
+            if (canPartition(str, target, currSum + num, i + 1)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
 
 
 
