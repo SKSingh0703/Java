@@ -343,7 +343,31 @@ class Solution {
         return false;
     }
 }
+class Solution {
+    public int[] constructDistancedSequence(int n) {
+        boolean vis[] = new boolean[2*n];
+        int ans[] = new int[n];
+        Arrays.fill(ans,-1);
+        helper(0,n,ans,vis,n);
+        return ans;
+    }
 
+    private boolean helper(int idx,int n,int ans[],boolean vis[],int max){
+        if(idx==max) return;
+        for(int i = max;i>=1;i--){
+            if(!vis[i]){
+                int nextIdx = idx+i;
+                if(nextIdx<2*n-1 && idx<2*n-2 && ans[idx]==-1 && ans[nextIdx]==-1){
+                    ans[idx]=i;
+                    ans[nextIdx]=i;
+                    vis[idx]=true;
+                    helper(idx+1,n,ans,vis,max);
+                }
+            }
+        }
+        return;
+    }
+}
 
 
 
