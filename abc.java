@@ -368,6 +368,31 @@ class Solution {
         return;
     }
 }
+class Solution {
+    private int count;
+    private HashSet<String> hs;
+
+    public int numTilePossibilities(String tiles) {
+        count = 0;
+        hs = new HashSet<>();
+
+        helper(tiles,new StringBuilder(),new boolean[tiles.length()]);
+        return hs.size();  
+    }
+
+    private void helper(String str , StringBuilder sb,boolean vis[]){
+        for(int i = 0 ;i<str.length();i++){
+            if(vis[i]) continue;
+            sb.append(str.charAt(i));
+            hs.add(sb.toString());
+            vis[i] = true;
+            helper(str,sb,vis);
+            vis[i] = false;
+            sb.deleteCharAt(sb.length()-1);
+        }
+        return;
+    }
+}
 
 
 
