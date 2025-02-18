@@ -393,6 +393,41 @@ class Solution {
         return;
     }
 }
+class Solution {
+    private String ans;
+    public String smallestNumber(String pattern) {
+        ans = new String("9999999999");
+        helper(pattern,new StringBuilder(""),-1,-1,new boolean[10]);
+        return ans;
+    }
+    private void helper(String p, StringBuilder curr,int idx,int prev,boolean vis[]){
+        if(idx==p.length()){
+            ans = ans.compareTo(curr.toString())<0?ans:curr.toString();
+            return ;
+        }
+        boolean inc = true;
+        boolean dec = true;
+        if(idx!=-1){
+            if(p.charAt(idx)=='I'){
+                dec = false;
+            }
+            else inc = false;
+        }
+        
+        for(int i = 1;i<10;i++){
+            if(vis[i]) continue;
+            if((inc && i>prev) || (prev==-1) || (dec && i<prev)){
+                vis[i] = true;
+                curr.append((char)(i+'0'));
+                helper(p,curr,idx+1,i,vis);
+                vis[i] = false;
+                curr.deleteCharAt(curr.length()-1);
+            }
+        }
+
+        return;
+    }
+}
 
 
 
