@@ -429,7 +429,38 @@ class Solution {
     }
 }
 
+class Solution {
+    private int count ;
+    private String ans;
+    private char arr[] = {'a','b','c'};
 
+    public String getHappyString(int n, int k) {
+        count = 0;
+        ans = new String("");
+        helper(-1,n,k,new StringBuilder(""));
+        return ans;
+    }
+
+    private void helper(int prev,int n,int k,StringBuilder curr){
+        if(ans.length()!=0) return;
+
+        if(curr.length()==n){
+            count++;
+            if(count==k){
+                ans = curr.toString();
+            }
+            return;
+        }
+        for(int i = 0;i<3;i++){
+            if(i!=prev){
+                curr.append(arr[i]);
+                helper(i,n,k,curr);
+                curr.deleteCharAt(curr.length()-1);
+            }
+        }
+        return;
+    }
+}
 
 
     class Solution {
