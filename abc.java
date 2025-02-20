@@ -461,6 +461,39 @@ class Solution {
         return;
     }
 }
+class Solution {
+    private String ans;
+    private HashSet<String> hs;
+    private boolean flag=false;
+
+    public String findDifferentBinaryString(String[] nums) {
+        ans = new String("");
+        hs = new HashSet<>();
+        for(String num : nums){
+            hs.add(num);
+        }
+        helper(nums[0].length(),new StringBuilder());
+        return ans;
+    }
+
+    private void helper(int n,StringBuilder sb){
+        if(flag) return;
+        if(sb.length()==n){
+            if(!hs.contains(sb.toString())){
+                ans = sb.toString();
+                flag = true;
+            }
+            return;
+        }
+        for(int i = 0;i<2;i++){
+            sb.append((char)(i+'0'));
+            helper(n,sb);
+            sb.deleteCharAt(sb.length()-1);
+        }
+
+        return;
+    }
+}
 
 
     class Solution {
