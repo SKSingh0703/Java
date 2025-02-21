@@ -495,6 +495,38 @@ class Solution {
     }
 }
 
+class FindElements {
+    private TreeNode root;
+    private Set<Integer> values;
+
+    public FindElements(TreeNode root) {
+        this.root = root;
+        values = new HashSet<>();
+        root.val = 0;  
+        recover(root); 
+    }
+
+    private void recover(TreeNode node) {
+        if (node == null) return;
+
+        values.add(node.val); 
+
+        if (node.left != null) {
+            node.left.val = 2 * node.val + 1;
+            recover(node.left);
+        }
+        if (node.right != null) {
+            node.right.val = 2 * node.val + 2;
+            recover(node.right);
+        }
+    }
+
+    public boolean find(int target) {
+        return values.contains(target); 
+    }
+}
+
+
 
     class Solution {
         public int maxAscendingSum(int[] nums) {
