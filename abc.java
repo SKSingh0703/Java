@@ -570,6 +570,52 @@ public class Solution {
         return node;
     }
 }
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    private int preIndex = 0;
+    
+    public TreeNode constructFromPrePost(int[] preorder, int[] postorder) {
+        return build(preorder, postorder, 0, postorder.length - 1);
+    }
+    
+    private TreeNode build(int[] preorder, int[] postorder, int postStart, int postEnd) {
+        if (preIndex >= preorder.length || postStart > postEnd)
+            return null;
+        
+        TreeNode root = new TreeNode(preorder[preIndex++]);
+        
+        if (postStart == postEnd || preIndex >= preorder.length)
+            return root;
+        
+        // The next element in preorder is the left child.
+        // Find that value in the postorder to determine the left subtree range.
+        int leftChildVal = preorder[preIndex];
+        int leftIndex = postStart;
+        while (leftIndex <= postEnd && postorder[leftIndex] != leftChildVal) {
+            leftIndex++;
+        }
+        
+        root.left = build(preorder, postorder, postStart, leftIndex);
+        root.right = build(preorder, postorder, leftIndex + 1, postEnd - 1);
+        
+        return root;
+    }
+}
+
 
 
     class Solution {
