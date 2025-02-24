@@ -615,7 +615,86 @@ class Solution {
         return root;
     }
 }
+class pair{
+    boolean val;
+    int time;
+    pair(){
+        val=false;
+    }
+    pair(boolean a,int b){
+        val=a;
+        time=b;
+    }
+}
+class Solution {
+    public int mostProfitablePath(int[][] edges, int bob, int[] amount) {
+        ArrayList<ArrayList<Integer>>adj=new ArrayList<>(); // creating adjacency list
 
+        int n=amount.length;   // number of nodes in graph
+        for(int i=0;i<n;i++){
+            adj.add(new ArrayList<>());
+        }
+        for(int i=0;i<edges.length;i++){
+            int st=edges[i][0];
+            int dst=edges[i][1];
+            adj.get(st).add(dst);   // adding edge in both the nodes
+            adj.get(dst).add(st);
+        }
+
+        pair[]vis=new pair[n];    // this pair will help the alice to check if bob has visited this node or not and at what time he visited it.
+
+        boolean[]visitedBob=new boolean[n];// visited array for bob
+
+        boolean[]visitedAlice=new boolean[n]; // visited for alice
+        for(int i=0;i<n;i++){
+            vis[i]=new pair();  //initializing pair array
+        }
+
+        dfsbob(adj,vis,0,bob,visitedBob); // dfs traversal call for bob
+        return dfsalice(adj,vis,0,visitedAlice,0,amount);  // dfs traversal for alice
+    }
+    public int dfsbob(ArrayList<ArrayList<Integer>>adj,pair[]vis,int time,int st,boolean[]visited){
+        visited[st]=true;  // marking the node to visited
+        if(st==0)return 0;  // base case,if bob comes to node 0
+        for(int it:adj.get(st)){  // traversing adjacent nodes
+
+            if(!visited[it]){  // we should not visit the 
+                int vri=dfsbob(adj,vis,time+1,it,visited); // giving call to adjacent node
+                if(vri==0){  // if the above traversal returns 0,we will mark this node and time in pair class for alice future use
+                    vis[st]=new pair(true,time);
+                    return 0;
+                }
+            }
+        }
+        return -1;  // returning -1 as we have not found the node 0
+    }
+    public int dfsalice(ArrayList<ArrayList<Integer>>adj,pair[]vis,int time,boolean[]visited,int st,int[]amount){
+        visited[st]=true;  // marking node as visited
+        int cost=0;
+
+        if(vis[st].val==false){  // if the node is not visited by bob,alice has to pay full price
+                cost=amount[st];
+        }else{
+            int bobtime=vis[st].time;  // time at which bob visited this node
+
+            if(time>bobtime){   // if bob visited the node before alice it means gate was already open,alice has to pay no price
+                cost=0;
+            }else if(time==bobtime){ // if they visited the node at same time,they will pay half the price
+                cost=amount[st]/2;
+            }else{
+                cost=amount[st]; // in this case,bob visited the node but after alice,so alice has to pay full price
+            }
+        }
+        int ans=(int)(-1e9);
+        for(int it:adj.get(st)){  // traversing adjacent nodes
+            if(!visited[it]){ 
+                ans=Math.max(ans,dfsalice(adj,vis,time+1,visited,it,amount));  
+            }
+        }
+        if(ans==(int)(-1e9))return cost;
+        return cost+ans;   // returning the maximum cost
+    }
+}
 
 
     class Solution {
