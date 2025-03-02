@@ -846,6 +846,48 @@ class Solution {
         return ans;
     }
 }
+class Solution {
+    public int[][] mergeArrays(int[][] num1, int[][] num2) {
+        int i = 0;
+        int j = 0;
+        int k = 0;
+
+        int n = num1.length,m=num2.length;
+        int ans[][] = new int[n+m][2];
+        while(i<n && j<m){
+            int x[] = num1[i];
+            int y[] = num2[j];
+
+            if(x[0]==y[0]){
+                ans[k] = new int[]{x[0],x[1]+y[1]};
+                i++;j++;
+            }
+            else if(x[0]<y[0]){
+                ans[k] = new int[]{x[0],x[1]};
+                i++;
+            }
+            else{
+                ans[k] = new int[]{y[0],y[1]};
+                j++;
+            }
+            k++;
+        }
+        for(;i<n;i++){
+            ans[k] = new int[]{num1[i][0],num1[i][1]};
+            k++;
+        }
+        for(;j<m;j++){
+            ans[k] = new int[]{num2[j][0],num2[j][1]};
+            k++;
+        }
+        int[][] res = new int[k][2];
+        for (int index = 0; index < k; index++) {
+            res[index] = ans[index];
+        }
+        
+        return res;
+    }
+}
 
     class Solution {
         public int maxAscendingSum(int[] nums) {
