@@ -940,6 +940,13 @@ class Solution {
         return addPower || skipPower;
     }
 }
+
+class Solution {
+    public long coloredCells(int n) {
+        return 1 + (long) n * (n - 1) * 2;
+    }
+}
+
     class Solution {
         public int maxAscendingSum(int[] nums) {
             int sum = nums[0];
