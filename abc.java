@@ -946,7 +946,30 @@ class Solution {
         return 1 + (long) n * (n - 1) * 2;
     }
 }
+class Solution {
+    public int[] findMissingAndRepeatedValues(int[][] grid) {
+        int n = grid.length;
+        int freq[] = new int[n*n+2];
 
+        for(int[] arr : grid){
+            for(int num : arr){
+                freq[num]++;
+            }
+        }
+        int ans[] = new int[2];
+
+        for(int i = 1;i<=n*n ;i++){
+            if(freq[i]==2){
+                ans[0] = i;
+            }
+            if(freq[i]==0){
+                ans[1] = i;
+            }
+        }
+
+        return ans;
+    }
+}
     class Solution {
         public int maxAscendingSum(int[] nums) {
             int sum = nums[0];
