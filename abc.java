@@ -970,6 +970,97 @@ class Solution {
         return ans;
     }
 }
+     //TLE
+
+// class Solution {
+//     public int[] closestPrimes(int left, int right) {
+//         int one = -1;
+//         int two = -1;
+//         int min = Integer.MAX_VALUE;
+//         int prev = -1;
+//         for(int i = left;i<=right;i++){
+//             if(isPrime(i)){
+//                 if(prev!=-1){
+//                     if(i-prev<min){
+//                         two = prev;
+//                         one = i;
+//                         min = i-prev;
+//                     }
+//                 }
+//                 prev = i;
+//             }
+//         }
+        
+//         if(min==Integer.MAX_VALUE){
+//             return new int[]{-1,-1};
+//         }
+//         else return new int[]{two,one};
+//     }
+//     private boolean isPrime(int num){
+//         int count=0;
+//         for(int i = 1;i<=num;i++){
+//             if(num%i==0){
+//                 count++;
+//             }
+//         }
+//         return count==2;
+//     }
+
+// }
+
+    //Solved using seive of erantoses
+class Solution {
+
+    public int[] closestPrimes(int left, int right) {
+        int[] sieveArray = sieve(right);
+
+        List<Integer> primeNumbers = new ArrayList<>();
+        for (int num = left; num <= right; num++) {
+            if (sieveArray[num] == 1) {
+                primeNumbers.add(num);
+            }
+        }
+
+        if (primeNumbers.size() < 2) return new int[] { -1, -1 };
+
+        int minDifference = Integer.MAX_VALUE;
+        int[] closestPair = new int[2];
+        Arrays.fill(closestPair, -1);
+
+        for (int index = 1; index < primeNumbers.size(); index++) {
+            int difference =
+                primeNumbers.get(index) - primeNumbers.get(index - 1);
+            if (difference < minDifference) {
+                minDifference = difference;
+                closestPair[0] = primeNumbers.get(index - 1);
+                closestPair[1] = primeNumbers.get(index);
+            }
+        }
+
+        return closestPair;
+    }
+
+    private int[] sieve(int upperLimit) {
+        int[] sieve = new int[upperLimit + 1];
+        Arrays.fill(sieve, 1);
+
+        sieve[0] = 0;
+        sieve[1] = 0;
+
+        for (int number = 2; number * number <= upperLimit; number++) {
+            if (sieve[number] == 1) {
+                for (
+                    int multiple = number * number;
+                    multiple <= upperLimit;
+                    multiple += number
+                ) {
+                    sieve[multiple] = 0;
+                }
+            }
+        }
+        return sieve;
+    }
+}
     class Solution {
         public int maxAscendingSum(int[] nums) {
             int sum = nums[0];
