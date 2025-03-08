@@ -1061,6 +1061,26 @@ class Solution {
         return sieve;
     }
 }
+class Solution {
+    public int minimumRecolors(String b, int k) {
+        
+        int l = 0;
+        int white = 0;
+        for(int i = 0;i<k;i++){
+            if(b.charAt(i)=='W'){
+                white++;
+            }
+        }
+        int min = white;
+        for(int j=k;j<b.length();j++){
+            white += b.charAt(j)=='W'?1:0;
+            white -= b.charAt(l++)=='W'?1:0;
+            min = Math.min(min,white);  
+        }
+
+        return min;
+    }
+}
     class Solution {
         public int maxAscendingSum(int[] nums) {
             int sum = nums[0];
