@@ -1081,6 +1081,23 @@ class Solution {
         return min;
     }
 }
+class Solution {
+    public int numberOfAlternatingGroups(int[] color, int k) {
+        int count = 0;
+        int l = 0;
+        int n = color.length;
+        for(int r = 0;r<n+k-1;r++){
+            if(color[r%n]==color[(r+1)%n]){
+                l=r;
+            }
+            if(r-l+1==k){
+                l++;
+                count++;
+            }
+        }
+        return count;
+    }
+}
     class Solution {
         public int maxAscendingSum(int[] nums) {
             int sum = nums[0];
