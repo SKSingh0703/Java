@@ -358,5 +358,22 @@ public class ACMCQSIX {
     private boolean isVowel(char c) {
         return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
     }
+    class Solution {
+        public int numberOfSubstrings(String s) {
+            int freq[] = new int[3];
+            int l =0;
+            int n = s.length();
+            int count = 0;
+    
+            for(int r = 0;r<n;r++){
+                freq[s.charAt(r)-'a']++;
+                while(l<n && freq[0]>0 && freq[1]>0 && freq[2]>0){
+                    count +=n-r;
+                    freq[s.charAt(l++)-'a']--;
+                }
+            }
+            return count;
+        }
+    }
 }   
 }
