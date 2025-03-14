@@ -420,6 +420,45 @@ class Solution {
         return true;
     }
 }
+class Solution {
+    public static int maximumCandies(int[] candies, long k) {
+        long totalCandies = 0;
+        long maxCandies = 0;
+        
+        for (int candy : candies) {
+            maxCandies = Math.max(maxCandies, candy);
+            totalCandies += candy;
+        }
+        
+        if (k > totalCandies) return 0; // Not enough candies for each kid to get one
+        
+        long min = 1;
+        long max = maxCandies;
+        
+        while (min < max) {
+            long mid = min + (max - min + 1) / 2;
+            if (isPossible(mid, k, candies)) {
+                min = mid; // Try for a larger possible number of candies per kid
+            } else {
+                max = mid - 1; // Reduce the maximum possible number of candies per kid
+            }
+        }
+        
+        return (int) min;
+    }
+
+    public static boolean isPossible(long capacity, long k, int[] candies) {
+        long requiredKids = 0;
+        
+        for (int candy : candies) {
+            requiredKids += candy / capacity;
+            if (requiredKids >= k) return true; // Early exit if we can satisfy the condition
+        }
+        
+        return requiredKids >= k;
+    }
+}
+
 
 class Solution {
     public int maximumCount(int[] nums) {
