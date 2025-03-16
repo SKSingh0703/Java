@@ -458,7 +458,35 @@ class Solution {
         return requiredKids >= k;
     }
 }
+class Solution {
+    public long repairCars(int[] ranks, int cars) {
+        long h = 0;
+        long l = 1;
 
+        for(int rank : ranks){
+            h = Math.max(h,(long)rank);
+        }
+        h = h*cars*cars;
+
+        while(l<h){
+            long mid = l + (h-l)/2;
+            if(possible(mid,cars,ranks)){
+                h = mid;
+            }
+            else l = mid+1;
+        }
+
+        return l;
+    }
+
+    private boolean possible(long limit,int n,int ranks[]){
+        for(int rank : ranks){
+            n-=Math.floor(Math.sqrt(limit/(rank*1.0)));
+        }
+
+        return n<=0;
+    }
+}
 
 class Solution {
     public int maximumCount(int[] nums) {
