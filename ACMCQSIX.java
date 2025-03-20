@@ -542,6 +542,74 @@ class Solution {
     }
 }
 class Solution {
+    int rank[];
+    int parent[];
+    int and[];
+
+    private int find(int x){
+        if(parent[x]==x){
+            return x;
+        }
+        else return parent[x]=find(parent[x]);
+    }
+
+    private boolean union(int x,int y,int wt){
+        int parX = find(x);
+        int parY = find(y);
+
+        if(parX==parY){
+            and[parX]=and[parX]&wt;
+            return false;
+        }
+
+        if(rank[parX]==rank[parY]){
+            rank[parX]++;
+            parent[parY]=parX;
+            and[parX]=and[parX]&and[parY]&wt;
+        }
+        else if(rank[parX]>rank[parY]){
+            parent[parY]=parX;
+            and[parX]=and[parX]&and[parY]&wt;
+        }
+        else{
+            parent[parX]=parY;
+            and[parY]=and[parY]&and[parX]&wt;
+        }
+
+        return true;
+    }
+
+    public int[] minimumCost(int n, int[][] edges, int[][] query) {
+        rank = new int[n];
+        parent = new int[n];
+        and = new int[n];
+
+        for(int i = 0;i<n;i++){
+            parent[i] = i;
+            and[i] = -1;
+        }
+
+        for(int[] edge : edges){
+            union(edge[0],edge[1],edge[2]);
+        }
+
+        int ans[] = new int[query.length];
+        int k = 0;
+
+        for(int[] q : query){
+            int parX = find(q[0]);
+            int parY = find(q[1]);
+
+            if(parX!=parY){
+                ans[k++]=-1;
+            }
+            else ans[k++] = and[parX];
+        }
+
+        return ans;
+    }
+}
+class Solution {
     public int maximumCount(int[] nums) {
         int p = 0;
         int n = 0;
