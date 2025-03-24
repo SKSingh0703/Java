@@ -735,6 +735,30 @@ class Solution {
     }
 }
 class Solution {
+    public int countDays(int days, int[][] meetings) {
+        int count = 0;
+        int currday = 1;
+        Arrays.sort(meetings,(a,b)->a[0]-b[0]);
+
+        for(int[] meeting :meetings){
+            if(meeting[0]>currday){
+                count+=(meeting[0]-currday)-1;
+            }
+            currday = Math.max(currday,meeting[1]);
+        }
+        
+        if(meetings[0][0]>1){
+            count++;
+        }
+
+        if(currday<days){
+            count+=(days-currday);
+        }
+
+        return count;
+    }
+}
+class Solution {
     public int maximumCount(int[] nums) {
         int p = 0;
         int n = 0;
