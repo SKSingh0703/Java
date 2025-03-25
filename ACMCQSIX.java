@@ -759,6 +759,30 @@ class Solution {
     }
 }
 class Solution {
+    public boolean checkValidCuts(int n, int[][] rectangles) {
+        if(check(n,rectangles,0)){
+            return true;
+        }
+        return check(n,rectangles,1);
+    }
+
+    private boolean check(int n,int[][] rectangles,int rc){
+        int count = 0;
+        Arrays.sort(rectangles,(a,b)->a[rc]-b[rc]);
+        int maxEnd = rectangles[0][rc+2];
+
+        for(int[] rectangle : rectangles){
+            if(rectangle[rc]>maxEnd){
+                count++;
+            }
+
+            maxEnd = Math.max(maxEnd,rectangle[rc+2]);
+        }
+
+        return count>1;
+    }
+}
+class Solution {
     public int maximumCount(int[] nums) {
         int p = 0;
         int n = 0;
