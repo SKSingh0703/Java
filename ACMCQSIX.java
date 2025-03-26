@@ -783,6 +783,33 @@ class Solution {
     }
 }
 class Solution {
+    public int minOperations(int[][] grid, int x) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        int m = grid.length;
+        int n = grid[0].length;
+
+        for(int[] row : grid ){
+            for(int num : row){
+                pq.offer(num);
+                if(pq.size()>Math.max((m*n)/2+1,1)) pq.poll();
+            }
+        }
+
+        int target = pq.poll();
+        int count = 0;
+        for(int[] row : grid ){
+            for(int num : row){
+                int req = Math.abs(num-target);
+                if(req%x!=0) return -1;
+                count+=req/x;
+            }
+        }
+
+        return count;
+
+    }
+}
+class Solution {
     public int maximumCount(int[] nums) {
         int p = 0;
         int n = 0;
