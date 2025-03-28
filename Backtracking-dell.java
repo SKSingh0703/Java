@@ -2,7 +2,7 @@ public class Backtracking {
     public static int gridways(int board[][],int row,int column){
         if(column==board.length-1 && row==board[0].length-1){
             return 1;
-        }
+        } 
         else if(column==board.length) return 0;
         else if(row==board[0].length) return 0;
         int w1=gridways(board,row+1,column);

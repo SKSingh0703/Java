@@ -786,34 +786,129 @@ public class sdgdgadgegwetqerfqsac {
     // public int rangeBitwiseAnd(int left, int right) {
         
     // }
-    public int minOperations(String[] logs) {
-        Stack<String> s=new Stack<>();
-        for(int i=0;i<logs.length;i++){
-            if (logs[i].equals("../")) {
-                if (!s.isEmpty()) {
-                    s.pop();
-                }
-            }
-            else if(logs[i].equals("./")) continue;
-            else{
-                s.push(logs[i]);
+    // public int minOperations(String[] logs) {
+    //     Stack<String> s=new Stack<>();
+    //     for(int i=0;i<logs.length;i++){
+    //         if (logs[i].equals("../")) {
+    //             if (!s.isEmpty()) {
+    //                 s.pop();
+    //             }
+    //         }
+    //         else if(logs[i].equals("./")) continue;
+    //         else{
+    //             s.push(logs[i]);
+    //         }
+    //     }
+    //     return s.size();
+    // }
+    // public static boolean isPrime(long n) {
+    //     if (n <= 1) return false;
+    //     if (n <= 3) return true;
+
+    //     if (n % 2 == 0 || n % 3 == 0) return false;
+
+    //     for (long i = 5; i * i <= n; i += 6) {
+    //         if (n % i == 0 || n % (i + 2) == 0) return false;
+    //     }
+    //     return true;
+    // }
+    // public static boolean isForm2xMinus1(int num) {
+    //     return (num & (num + 1)) == 0 && num != 0;
+    // }
+    // // public String reverseParentheses(String s) {
+    // //     StringBuilder sb =new StringBuilder("");
+    // //     Stack<StringBuilder> stack=new Stack<>();
+    // //     for(int i=0;i<s.length();i++){
+    // //         if (s.charAt(i)=='(') {
+    // //             if(!sb.isEmpty()) stack.push(sb);
+    // //             sb=new StringBuilder("");
+    // //         }
+    // //         else if(s.charAt(i)==')'){
+    // //             StringBuilder temp=sb.reverse();
+    // //             if (!stack.isEmpty()) {
+    // //                 sb=new StringBuilder(stack.pop());
+    // //                 sb.append(temp);
+    // //             }
+    // //             else{
+    // //                 sb=new StringBuilder("");
+    // //                 sb.append(temp);
+    // //             }
+    // //         }
+    // //         else{
+    // //             sb.append(s.charAt(i));
+    // //         }
+    // //     }
+    // // }
+    // public int maximumGain(String s, int x, int y) {
+    //     int count=0;
+    //     if (x>y) {
+    //         while (s.contains("ab")) {
+    //             count+=search(s,"ab",x);
+    //         }
+    //         while (s.contains("ba")) {
+    //             count+=search(s,"ba",y);
+    //         }
+    //     }
+    //     else{
+    //         while (s.contains("ba")) {
+    //             count+=search(s,"ba",y);
+    //         }
+    //         while (s.contains("ab")) {
+    //             count+=search(s,"ab",x);
+    //         }
+
+    //     }
+    //     return count;
+    // }
+
+    // private int search(String s,String req,int cost){
+    //     StringBuilder sb=new StringBuilder(s);
+        
+
+    //     for(int i=0;i<s.length();i++){
+    //         if (i!=s.length()-1) {
+    //             if (s.charAt(i)==req.charAt(0) && s.charAt(i+1)==req.charAt(1) ) {
+    //                 sb.delete(i, i+2);
+    //                 s=sb.toString();
+    //                 return cost;
+    //             }
+    //         }
+    //     }
+    //     return 0;
+    // }
+    
+    * public class TreeNode {
+    *     int val;
+    *     TreeNode left;
+    *     TreeNode right;
+    *     TreeNode() {}
+    *     TreeNode(int val) { this.val = val; }
+    *     TreeNode(int val, TreeNode left, TreeNode right) {
+    *         this.val = val;
+    *         this.left = left;
+    *         this.right = right;
+    *     }
+    * }
+    public class Pair{
+        TreeNode n;
+        int freq;
+        int left;
+        int right;
+        public Pair(int n){
+            this.n.val=n;
+            freq=1;
+        }
+    }
+    //extra lines for git
+    public TreeNode createBinaryTree(int[][] descriptions) {
+        HashMap<Integer,Pair> hm =new HashMap<>();
+        for(int i=0;i<descriptions.length;i++){
+            int curr=descriptions[i][0];
+            if (!hm.containsKey(curr)) {
+               
+                
             }
         }
-        return s.size();
-    }
-    public static boolean isPrime(long n) {
-        if (n <= 1) return false;
-        if (n <= 3) return true;
-
-        if (n % 2 == 0 || n % 3 == 0) return false;
-
-        for (long i = 5; i * i <= n; i += 6) {
-            if (n % i == 0 || n % (i + 2) == 0) return false;
-        }
-        return true;
-    }
-    public static boolean isForm2xMinus1(int num) {
-        return (num & (num + 1)) == 0 && num != 0;
     }
 }
 
