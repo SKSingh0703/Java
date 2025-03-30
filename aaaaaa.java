@@ -149,6 +149,44 @@ class UnionFind {
         }
         return true;
     }
+    class Solution {
+        public List<Integer> partitionLabels(String s) {
+    
+            ArrayList<Integer> arr = new ArrayList<>();
+            int freq[] = new int[26];
+            char st[] = s.toCharArray();
+    
+            for(char ch : st){
+                freq[ch-'a']++;
+            }
+    
+            int isPresent[] = new int[26];
+            int count=0;
+            boolean flag = true;
+    
+            for(char ch : st){
+                
+                freq[ch-'a']--;
+                isPresent[ch-'a']++;
+                count++;
+                flag = true;
+    
+                for(int i = 0;i<26;i++){
+                    if(isPresent[i]>0 && freq[i]>0){
+                        flag = false;
+                        break;
+                    }
+                }
+                if(flag){
+                    Arrays.fill(isPresent,0);
+                    arr.add(count);
+                    count=0;
+                }
+            }
+    
+            return arr;
+        }
+    }
 
     // Get the size of the component containing a given node
     public int getSize(int node) {
