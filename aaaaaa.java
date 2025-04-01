@@ -205,6 +205,26 @@ class UnionFind {
             return answer;
         }
     }
+    class Solution {
+        public long mostPoints(int[][] questions) {
+            long dp[] = new long[questions.length];
+            Arrays.fill(dp,-1);
+            return helper(0,questions,dp);
+        }
+    
+        private long helper(int idx,int q[][],long dp[]){
+            if(idx>=dp.length){
+                return 0;
+            }
+            if(dp[idx]!=-1){
+                return dp[idx];
+            }
+            long ch1 = helper(idx+1,q,dp);
+            long ch2 = helper(idx+q[idx][1]+1,q,dp)+q[idx][0];
+    
+            return dp[idx] = Math.max(ch1,ch2);
+        }
+    }
 
     // Get the size of the component containing a given node
     public int getSize(int node) {
