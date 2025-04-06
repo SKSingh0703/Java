@@ -293,4 +293,49 @@ class UnionFind {
             return result << (nums.length - 1);
         }
     }
+    class Solution {
+        public List<Integer> largestDivisibleSubset(int[] nums) {
+        // Step 1: Initialize variables and arrays
+        int[] dp = new int[nums.length];   // dp array to store the size of the largest divisible subset ending at each index
+        Arrays.fill(dp, 1);                // Initialize dp array with 1, as minimum subset size is at least 1 (the number itself)
+        Arrays.sort(nums);                 // Sort nums array in ascending order
+        
+        int[] hash = new int[nums.length]; // To keep track of the previous index contributing to the largest subset
+        int maxSize = 1;                   // Initialize maximum subset size
+        int maxIndex = 0;                  // Initialize index of the element that ends the largest subset
+        
+        // Step 2: Build the dp array and hash array
+        for (int i = 0; i < nums.length; i++) {
+            hash[i] = i;  // Initialize hash[i] with i, indicating the subset ends with itself initially
+            
+            for (int j = 0; j < i; j++) {
+                // Check if nums[i] is divisible by nums[j]
+                if (nums[i] % nums[j] == 0) {
+                    // Update dp[i] and hash[i] if we found a larger subset ending at index i
+                    if (dp[j] + 1 > dp[i]) {
+                        dp[i] = dp[j] + 1;
+                        hash[i] = j;
+                    }
+                }
+            }
+            
+            // Update the maximum subset size and the index of the element ending the largest subset found so far
+            if (dp[i] > maxSize) {
+                maxSize = dp[i];
+                maxIndex = i;
+            }
+        }
+        
+        // Step 3: Construct the largest divisible subset
+        List<Integer> result = new ArrayList<>();
+        int index = maxIndex;
+        while (index != hash[index]) {
+            result.add(nums[index]);
+            index = hash[index];
+        }
+        result.add(nums[index]); // Add the last element of the subset
+        
+        return result;
+    }
+    }
 }
