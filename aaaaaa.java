@@ -418,6 +418,40 @@ class UnionFind {
         }
         return dp[n][sum];
     }
-    
+    import java.util.*;
+
+class Solution {
+    public int minOperations(int[] nums, int k) {
+        Arrays.sort(nums); 
+        int n = nums.length;
+        boolean containsK = false;
+        for (int num : nums) {
+            if (num < k) {
+                containsK = true;
+                break;
+            }
+        }
+        if (containsK) return -1;
+
+        int operations = 0;
+        int h = nums[n - 1];
+
+        for (int i = n - 1; i >= 0 && nums[i] > k; ) {
+            operations++;
+            h = nums[i]; 
+            while (i >= 0 && nums[i] > k && nums[i] == h) {
+                nums[i] = k; 
+                i--;
+            }
+        }
+
+        for (int num : nums) {
+            if (num != k) return -1;
+        }
+
+        return operations;
+    }
+}
+
 }
 }
