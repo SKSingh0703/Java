@@ -746,4 +746,28 @@ class Solution {
         return (int)res;
     }
 }
+class Solution {
+    public int countLargestGroup(int n) {
+        int freq[] = new int[37];
+        int maxSize = 0;
+        int count= 0;
+
+        for(int i = 1;i<=n;i++){
+            int curr = i;
+            int sum = 0;
+            while(curr!=0){
+                sum+=(curr%10);
+                curr/=10;
+            }
+            freq[sum]++;
+            if(freq[sum]>maxSize) maxSize = freq[sum];
+        }
+
+        for(int f : freq){
+            if(f==maxSize) count++;
+        }
+
+        return count;
+    }
+}
 }
