@@ -1054,4 +1054,41 @@ class Solution {
         return ans;
     }
 }
+class Solution {
+    public int minTimeToReach(int[][] mvt) {
+        int m = mvt.length;
+        int n = mvt[0].length;
+
+        boolean vis[][] = new boolean[m][n];
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a,b)->a[2]-b[2]);
+        pq.offer(new int[]{0,0,0});
+
+        int x[] = {1,0,-1,0};
+        int y[] = {0,1,0,-1};
+
+        while(!pq.isEmpty()){
+            int curr[] = pq.poll();
+            if(curr[0]==m-1 && curr[1]==n-1){
+                return curr[2];
+            }
+            if(vis[curr[0]][curr[1]]==true){
+                continue;
+            }
+            vis[curr[0]][curr[1]]=true;
+            for(int i = 0;i<4;i++){
+                int nx = curr[1]+x[i];
+                int ny = curr[0]+y[i];
+                
+                if(nx>=0 && nx<n && ny>=0 && ny<m){
+                    if(vis[ny][nx]==false){
+                        int time = curr[2]>=mvt[ny][nx]?curr[2]+1:mvt[ny][nx]+1;
+                        pq.offer(new int[]{ny,nx,time});
+                    }
+                }
+            }
+        }
+
+        return -1;
+    }
+}
 }
