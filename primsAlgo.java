@@ -30,6 +30,6 @@ public class primsAlgo {
         return count;
     }
     public static void main(String[] args) {
-        
+          
     }
 }
