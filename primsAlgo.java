@@ -50,8 +50,29 @@ public class primsAlgo {
                 ch2 = (ch2+1)%2;
             }
         }
+        System.out.println();
 
         return ans1.size()>=ans2.size()?ans1:ans2;
     }
+    class Solution {
+    public void sortColors(int[] nums) {
+        int col[] = new int[3];
+
+        for(int num : nums){
+            col[num]++;
+        }
+        
+        int k = 0;
+        for(int i = 0;i<3;i++){
+            while(col[i]!=0){
+                nums[k++]=i;
+                col[i]--;
+            }
+        }
+        
+        return;
+    }
+}
+    
 }
 }
