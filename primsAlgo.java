@@ -76,3 +76,53 @@ public class primsAlgo {
     
 }
 }
+
+public class Solution {
+    static class Cell {
+        int row, col, moves;
+        Set<Character> used;
+
+        Cell(int row, int col, int moves, Set<Character> used) {
+            this.row = row;
+            this.col = col;
+            this.moves = moves;
+            this.used = new HashSet<>(used);
+        }
+
+        String getKey() {
+            return row + "," + col + "," + used.toString();
+        }
+    }
+
+    public int minMoves(String[] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length();
+        char[][] grid = new char[m][n];
+        Map<Character, List<int[]>> portalMap = new HashMap<>();
+        
+        for (int i = 0; i < m; i++) {
+
+            grid[i] = matrix[i].toCharArray();
+            for (int j = 0; j < n; j++) {
+                
+                char c = grid[i][j];
+                if (c != '.' && c != '#') {
+                    
+                    portalMap.putIfAbsent(c, new ArrayList<>());
+                    portalMap.get(c).add(new int[]{i, j});
+                }
+            }
+        }
+
+        Queue<Cell> q = new LinkedList<>();
+        Set<String> vis = new HashSet<>();
+
+        q.add(new Cell(0, 0, 0, new HashSet<>()));
+        vis.add("0,0,[]");
+
+        int[][] dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+
+        while (!q.isEmpty()) {
+            Cell curr = q.poll();
+            int r = curr.row, c = curr.col;
+}
