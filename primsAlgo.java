@@ -126,4 +126,25 @@ public class Solution {
             Cell curr = q.poll();
             int r = curr.row, c = curr.col;
 } 
+class Solution {
+    public boolean isZeroArray(int[] nums, int[][] queries) {
+        int n = nums.length;
+        int pre[] = new int[n+1];
+
+        for(int[] q:queries){
+            pre[q[0]]--;
+            pre[q[1]+1]++;
+        }
+
+        for(int i = 1;i<n;i++){
+            pre[i] =pre[i]+pre[i-1];
+        }
+
+        for(int i = 0 ;i<n;i++){
+            if(pre[i]+nums[i]>0) return false;
+        }
+
+        return true;
+    }
+}
  
