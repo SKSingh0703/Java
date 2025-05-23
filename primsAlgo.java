@@ -148,6 +148,29 @@ class Solution {
     }
 }
 class Solution {
+    public long maximumValueSum(int[] nums, int k, int[][] edges) {
+        long dp[][] = new long[nums.length][2];
+        for(long[] x : dp){
+            Arrays.fill(x,-1);
+        }
+        return helper(0,nums,k,1,dp);
+    }
+
+    public long helper(int idx , int nums[],int k,int isEven,long dp[][]){
+        if(idx==nums.length){
+            return isEven==1?0:Integer.MIN_VALUE;
+        }
+        if(dp[idx][isEven]!=-1){
+            return dp[idx][isEven];
+        }
+
+        long cost1 = nums[idx] + helper(idx+1,nums,k,isEven,dp);
+        long cost2 = (nums[idx]^k) + helper(idx+1,nums,k,isEven^1,dp);
+
+        return dp[idx][isEven]=Math.max(cost1,cost2);
+    }
+}
+class Solution {
     public int maxRemoval(int[] nums, int[][] queries) {
         Arrays.sort(queries, (a, b) -> a[0] - b[0]);
         PriorityQueue<Integer> pq = new PriorityQueue<Integer>((a, b) -> b - a);
