@@ -171,6 +171,22 @@ class Solution {
     }
 }
 class Solution {
+    public List<Integer> findWordsContaining(String[] words, char x) {
+        List<Integer> ans = new ArrayList<>();
+        for(int i=0;i<words.length;i++){
+            int freq[] = new int[26];
+
+            for(char ch : words[i].toCharArray()){
+                freq[ch-'a']++;
+            }
+
+            if(freq[x-'a']>0) ans.add(i);
+        }
+
+        return ans;
+    }
+}
+class Solution {
     public int maxRemoval(int[] nums, int[][] queries) {
         Arrays.sort(queries, (a, b) -> a[0] - b[0]);
         PriorityQueue<Integer> pq = new PriorityQueue<Integer>((a, b) -> b - a);
