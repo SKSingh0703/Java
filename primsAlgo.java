@@ -203,6 +203,56 @@ class Solution {
     }
 }
 class Solution {
+    public int largestPathValue(String colors, int[][] edges) {
+        int n = colors.length();
+        List<Integer>[] graph = new ArrayList[n];
+        int[] indegree = new int[n];
+        
+        for (int i = 0; i < n; i++) graph[i] = new ArrayList<>();
+        
+        for (int[] edge : edges) {
+            int u = edge[0], v = edge[1];
+            graph[u].add(v);
+            indegree[v]++;
+        }
+
+        int[][] colFreq = new int[n][26];
+        Queue<Integer> q = new LinkedList<>();
+        
+        for (int i = 0; i < n; i++) {
+            if (indegree[i] == 0) {
+                q.offer(i);
+            }
+        }
+
+        int processed = 0;
+        int maxColorCount = 0;
+
+        while (!q.isEmpty()) {
+            int node = q.poll();
+            processed++;
+
+            int colorIndex = colors.charAt(node) - 'a';
+            colFreq[node][colorIndex]++;
+            maxColorCount = Math.max(maxColorCount, colFreq[node][colorIndex]);
+
+            for (int nei : graph[node]) {
+                for (int c = 0; c < 26; c++) {
+                    colFreq[nei][c] = Math.max(colFreq[nei][c], colFreq[node][c]);
+                }
+
+                indegree[nei]--;
+                if (indegree[nei] == 0) {
+                    q.offer(nei);
+                }
+            }
+        }
+
+        return processed == n ? maxColorCount : -1;
+    }
+}
+
+class Solution {
     public int maxRemoval(int[] nums, int[][] queries) {
         
         Arrays.sort(queries, (a, b) -> a[0] - b[0]);
