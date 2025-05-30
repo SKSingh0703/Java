@@ -363,6 +363,7 @@ class Solution {
         return res;
     }
 }
+
 class Solution {
     public int maxRemoval(int[] nums, int[][] queries) {
         
