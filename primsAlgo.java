@@ -363,6 +363,33 @@ class Solution {
         return res;
     }
 }
+class Solution {
+    public int snakesAndLadders(int[][] board) {
+        int n = board.length;
+        boolean[] vis = new boolean[n * n + 1];
+        Queue<int[]> q = new LinkedList<>();
+        q.add(new int[]{1, 0});
+
+        while (!q.isEmpty()) {
+            int[] curr = q.poll();
+            int square = curr[0], moves = curr[1];
+            if (square == n * n) return moves;
+
+            for (int next = square + 1; next <= Math.min(square + 6, n * n); next++) {
+                int r = n - 1 - (next - 1) / n;
+                int c = ((n - 1 - r) % 2 == 0) ? (next - 1) % n : n - 1 - (next - 1) % n;
+
+                int dest = board[r][c] == -1 ? next : board[r][c];
+                if (!vis[dest]) {
+                    vis[dest] = true;
+                    q.add(new int[]{dest, moves + 1});
+                }
+            }
+        }
+
+        return -1;
+    }
+}
 
 class Solution {
     public int maxRemoval(int[] nums, int[][] queries) {
