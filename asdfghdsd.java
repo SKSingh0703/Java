@@ -35,3 +35,38 @@ class Solution {
         return ans;
     }
 }
+class Solution {
+    public int maxCandies(int[] status, int[] candies, int[][] keys, int[][] containedBoxes, int[] initialBoxes) {
+        Queue<Integer> q = new LinkedList<>();
+        int ans = 0;
+
+        for(int num : initialBoxes){
+            q.add(num);
+        }
+
+        HashSet<Integer> locked = new HashSet<>();
+        while(!q.isEmpty()){
+            int curr = q.poll();
+
+            if(status[curr]==0){
+                locked.add(curr);
+                continue;
+            }
+
+            ans+=candies[curr];
+            for(int key : keys[curr]){
+                status[key]=1;
+                if(locked.contains(key)){
+                    q.add(key);
+                    locked.remove(key);
+                }
+            }
+
+            for(int next : containedBoxes[curr]){
+                q.add(next);
+            }
+        }
+
+        return ans;
+    }
+}
