@@ -70,3 +70,62 @@ class Solution {
         return ans;
     }
 }
+class Solution {
+    public String answerString(String word, int numFriends) {
+        int freq[] = new int[26];
+        int sizeOfWindow = word.length()-numFriends;
+
+        if(numFriends==1){
+            return word;
+        }
+
+        for(char ch : word.toCharArray()){
+            freq[ch-'a']++;
+        }
+        char largest = 'z';
+        for(int i = 25;i>=0;i--){
+            if(freq[i]>0){
+                largest = (char)(i+'a');
+                break;
+            }
+        }
+        Queue<Integer> q = new LinkedList<>();
+        for(int i = 0;i<word.length();i++){
+            if(word.charAt(i)==largest){
+                q.add(i);
+            }
+        }
+        
+        StringBuilder ans = new StringBuilder("");
+        while(!q.isEmpty()){
+            int st = q.poll();
+            StringBuilder curr = new StringBuilder("");
+
+            for(int i = st;i<= Math.min(st+sizeOfWindow,word.length()-1) ; i++){
+                curr.append(word.charAt(i));
+            }
+            System.out.println(curr);
+            
+            ans = check(ans,curr)==false?ans:curr;
+        }
+
+        return ans.toString();
+
+    }
+    private boolean check(StringBuilder x , StringBuilder y){
+        int n = x.length();
+        int m = y.length();
+
+        for(int i = 0;i<Math.min(n,m);i++){
+            if(x.charAt(i)==y.charAt(i)){
+                continue;
+            }
+            else if(x.charAt(i)>y.charAt(i)){
+                return false;
+            }
+            else return true;
+        }
+
+        return n>=m?false:true;
+    }
+}
