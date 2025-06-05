@@ -128,4 +128,38 @@ class Solution {
 
         return n>=m?false:true;
     }
+    class Solution {
+        public String smallestEquivalentString(String s1, String s2, String baseStr) {
+            int[] parent = new int[26];
+            for (int i = 0; i < 26; i++) parent[i] = i;
+    
+            for (int i = 0; i < s1.length(); i++) {
+                int a = s1.charAt(i) - 'a';
+                int b = s2.charAt(i) - 'a';
+                union(a, b, parent);
+            }
+    
+            StringBuilder sb = new StringBuilder();
+            for (char ch : baseStr.toCharArray()) {
+                int p = find(ch - 'a', parent);
+                sb.append((char) (p + 'a'));
+            }
+    
+            return sb.toString();
+        }
+    
+        private void union(int a, int b, int[] parent) {
+            int pa = find(a, parent);
+            int pb = find(b, parent);
+            if (pa == pb) return;
+            if (pa < pb) parent[pb] = pa;
+            else parent[pa] = pb;
+        }
+    
+        private int find(int x, int[] parent) {
+            if (x != parent[x]) parent[x] = find(parent[x], parent);
+            return parent[x];
+        }
+    }
+    
 }
