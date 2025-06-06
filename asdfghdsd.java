@@ -129,6 +129,44 @@ class Solution {
         return n>=m?false:true;
     }
     class Solution {
+    public String robotWithString(String s) {
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a,b) ->{
+            if(a[0]==b[0]) return a[1]-b[1];
+            else return a[0]-b[0];
+        });
+        int idx = 0;
+        for(char ch : s.toCharArray()){
+            pq.add(new int[]{ch-'a',idx});
+            idx++;
+        }
+        Stack<Character> st = new Stack<>();
+        StringBuilder sb = new StringBuilder("");
+
+        for(int i = 0;i<s.length();i++){
+            while(!pq.isEmpty() && pq.peek()[1]<i){
+                pq.poll();
+            }
+            while(!st.isEmpty() && !pq.isEmpty() && st.peek()-'a'<=pq.peek()[0]){
+                sb.append(st.pop());
+            }
+
+            char ideal = (char)(pq.peek()[0]+'a');
+            char curr = s.charAt(i);
+            if(ideal==curr){
+                sb.append(curr);
+            }
+            else st.push(curr);
+
+        }
+
+        while(!st.isEmpty()){
+            sb.append(st.pop());
+        }
+
+        return sb.toString();
+    }
+}
+    class Solution {
         public String smallestEquivalentString(String s1, String s2, String baseStr) {
             int[] parent = new int[26];
             for (int i = 0; i < 26; i++) parent[i] = i;
