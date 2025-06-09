@@ -262,3 +262,40 @@ public class Solution {
         }
     }
 }
+
+class Solution {
+    public int findKthNumber(int n, int k) {
+        int current = 1;  
+        k--;  
+
+        while (k > 0) {
+            int step = countSteps(current, n); 
+            
+            if (step <= k) {
+                
+                current++;
+                k -= step;
+            } else {
+                
+                current *= 10;
+                k--;
+            }
+        }
+
+        return current;
+    }
+
+    private int countSteps(int prefix, int n) {
+        long current = prefix;
+        long next = prefix + 1;
+        int steps = 0;
+
+        while (current <= n) {
+            steps += Math.min(n + 1, next) - current;
+            current *= 10;
+            next *= 10;
+        }
+
+        return steps;
+    }
+}
