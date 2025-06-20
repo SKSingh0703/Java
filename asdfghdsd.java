@@ -528,4 +528,25 @@ class Solution {
         return count+1;
     }
 }
+class Solution {
+    public int maxDistance(String str, int k) {
+        int n = 0,s=0,w=0,e=0;
+        int ans = 0;
+        for(int i = 0;i<str.length();i++){
+            if(str.charAt(i)=='N') n++;
+            else if(str.charAt(i)=='S') s++;
+            else if(str.charAt(i)=='E') e++;
+            else w++;
+        
+        int x = Math.min(n,s);
+        int y = Math.min(e,w);
+
+
+        ans = Math.max( Math.abs(w-e)+Math.abs(s-n)+2*Math.min(k,x+y),ans);
+        }
+        return ans;
+    }
+}
+
+
 
