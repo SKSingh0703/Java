@@ -1069,3 +1069,56 @@ class Solution {
         return res;
     }
 }
+class Solution {
+    public int mostBooked(int n, int[][] meetings) {
+        Arrays.sort(meetings, (a, b) -> a[0] - b[0]);
+
+        PriorityQueue<Integer> roomsAvailable = new PriorityQueue<>();
+        for (int i = 0; i < n; i++) {
+            roomsAvailable.add(i);
+        }
+
+        PriorityQueue<int[]> roomBusyTill = new PriorityQueue<>((a, b) -> {
+            if (a[1] == b[1]) return a[0] - b[0]; 
+            return a[1] - b[1];
+        });
+
+        int[] freq = new int[n];
+
+        for (int[] meeting : meetings) {
+            int startTime = meeting[0];
+            int endTime = meeting[1];
+            int duration = endTime - startTime;
+
+            while (!roomBusyTill.isEmpty() && roomBusyTill.peek()[1] <= startTime) {
+                roomsAvailable.add(roomBusyTill.poll()[0]);
+            }
+
+            int room;
+            int actualStart;
+
+            if (!roomsAvailable.isEmpty()) {
+                room = roomsAvailable.poll();
+                actualStart = startTime;
+            } else {
+                int[] nextFree = roomBusyTill.poll();
+                room = nextFree[0];
+                actualStart = nextFree[1]; 
+            }
+
+            freq[room]++;
+            roomBusyTill.add(new int[]{room, actualStart + duration});
+        }
+
+        int max = 0, ans = 0;
+        for (int i = 0; i < n; i++) {
+            if (freq[i] > max) {
+                max = freq[i];
+                ans = i;
+            }
+        }
+
+        return ans;
+    }
+}
+
