@@ -1232,4 +1232,31 @@ class Solution {
         return hasVowel && hasConsonant;
     }
 }
+class Solution {
+    public int maximumLength(int[] nums) {
+        int odd = 0,even=0,toggle1=0,toggle2=0;
+        int n = nums.length;
+        int target1=0;
+        int target2=1;
+
+        for(int i  = 0;i<n;i++){
+            if(nums[i]%2==0){
+                even++;
+            }
+            else odd++;
+
+            if( nums[i]%2 == target1 ){
+                target1 = (target1+1)%2;
+                toggle1++;
+            }
+
+            if( nums[i]%2 == target2 ){
+                target2 = (target2+1)%2;
+                toggle2++;
+            }
+        }
+
+        return Math.max(Math.max(even,odd),Math.max(toggle1,toggle2));
+    }
+}
 
