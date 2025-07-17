@@ -1259,4 +1259,58 @@ class Solution {
         return Math.max(Math.max(even,odd),Math.max(toggle1,toggle2));
     }
 }
+// class Solution {
+//     public int maximumLength(int[] nums, int k) {
+//         int ans = 0;
+//         int n = nums.length;
+//         for(int i = 0;i<k;i++){
+//             int dp[][] = new int[n][n+1];
+//             for(int[] x:dp){
+//                 Arrays.fill(x,-1);
+//             }
+//             ans = Math.max(ans,helper(0,-1,i,nums,k,dp));
+//         }
+//         return ans;
+//     }
+//     private int helper(int idx,int prevIdx,int rem ,int nums[],int k,int dp[][]){
+//         if(idx==nums.length){
+//             return 0;
+//         }
+//         if(dp[idx][prevIdx+1]!=-1){
+//             return dp[idx][prevIdx+1];
+//         }
+//         int ans1 = helper(idx+1 , prevIdx ,rem,nums,k,dp);
+//         int ans2 = 0;
+
+//         if(prevIdx==-1 || (nums[prevIdx]+nums[idx])%k==rem){
+//             ans2 = 1+helper(idx+1,idx,rem,nums,k,dp);
+//         }
+
+//         return dp[idx][prevIdx+1]=Math.max(ans1,ans2);
+//     }
+// }
+
+// TLE
+
+class Solution {
+    public int maximumLength(int[] nums, int k) {
+        int n = nums.length;
+        int ans = 0;
+
+        int[][] dp = new int[n][k];
+
+        for(int i = 0;i<n;i++){
+            
+            for(int j = 0;j<i;j++){
+
+                int rem =( nums[i]+nums[j])%k;
+                dp[i][rem] = Math.max(dp[i][rem],dp[j][rem]+1);
+                ans = Math.max(ans,dp[i][rem]);
+            }
+        }
+
+        return ans+1;
+    }
+}
+
 
