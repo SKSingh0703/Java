@@ -1350,4 +1350,21 @@ public class Solution {
         return ans;
     }
 }
-
+class Solution {
+    public List<String> removeSubfolders(String[] folder) {
+        List<String> arr = new ArrayList<>();
+        Stack<String> s = new Stack<>();
+        Arrays.sort(folder);
+        for(int i=0;i<folder.length;i++){
+            String curr = folder[i];
+            if(s.isEmpty()) s.push(curr);
+            else{
+                if(curr.contains(s.peek()+"/") && curr.charAt(1)==s.peek().charAt(1)) continue;
+                arr.add(s.pop());
+                s.push(curr);
+            }
+        }
+        while(!s.isEmpty()) arr.add(s.pop());
+        return arr;
+    }
+}
