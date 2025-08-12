@@ -81,4 +81,24 @@ public class deshawtrying {
         return false;
     }
 }
+class Solution {
+    static int mod = 1_000_000_007;
+
+    public int numberOfWays(int n, int x) {
+        int dp[][] = new int[n+1][n+1];
+        for(int[] arr:dp){
+            Arrays.fill(arr,-1);
+        }
+        return helper(0,1,n,x,dp);
+    }
+
+    private int helper(int curr,int i , int n , int x,int dp[][]){
+        if(curr==n) return 1;
+        if(curr>n || (int)Math.pow(i,x)>n) return 0;
+
+        if(dp[curr][i]!=-1) return dp[curr][i];
+
+        return dp[curr][i]=(helper(curr+(int)Math.pow(i,x),i+1,n,x,dp)+helper(curr,i+1,n,x,dp))%mod;
+    }
+}
 }
