@@ -101,4 +101,15 @@ class Solution {
         return dp[curr][i]=(helper(curr+(int)Math.pow(i,x),i+1,n,x,dp)+helper(curr,i+1,n,x,dp))%mod;
     }
 }
+class Solution {
+    public boolean isPowerOfThree(int n) {
+        long curr = 1;
+        while(curr<=n){
+            if(curr==n) return true;
+            curr*=3;
+        }
+
+        return false;
+    }
+}
 }
