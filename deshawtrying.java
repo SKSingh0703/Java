@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+
 public class deshawtrying {
 
     private static String helper(String str){
@@ -110,6 +114,38 @@ class Solution {
         }
 
         return false;
+    }
+}
+class Solution {
+    public String largestGoodInteger(String num) {
+        int sum = -1;
+        String ans = "";
+        int n = num.length();
+        for(int i = 0;i<n-2;i++){
+            char curr1 = num.charAt(i);
+            char curr2 = num.charAt(i+1);
+            char curr3 = num.charAt(i+2);
+
+            if(curr1==curr2 && curr2==curr3 ){
+                int y = curr1-'0';
+                System.out.println(y+":");
+                int curr = 100*y+10*y+y;
+                System.out.println(curr+"  PP");
+                if(curr>sum){
+                    StringBuilder sb = new StringBuilder("");
+                    sb.append(curr1);
+                    sb.append(curr1);
+                    sb.append(curr1);
+                    sum = curr;
+                    char x = curr1;
+                    ans = sb.toString();
+                    System.out.println(ans+"  "+x+"  aP");
+                }
+                
+            }
+        }
+
+        return ans;
     }
 }
 }
