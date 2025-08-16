@@ -159,4 +159,21 @@ class Solution {
         return false;
     }
 }
+class Solution {
+    public int maximum69Number (int num) {
+        StringBuilder sb = new StringBuilder("");
+        String str = Integer.toString(num);
+        boolean change = false;
+
+        for(int i = 0;i<str.length();i++){
+            if(str.charAt(i)=='6' && change==false){
+                sb.append('9');
+                change = true;
+            }
+            else sb.append(str.charAt(i));
+        }
+
+        return Integer.parseInt(sb.toString());
+    }
+}
 }
