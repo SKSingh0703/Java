@@ -176,4 +176,48 @@ class Solution {
         return Integer.parseInt(sb.toString());
     }
 }
+class Solution {
+    public long zeroFilledSubarray(int[] nums) {
+
+        long ans = 0;
+        int n = nums.length;
+        int l = 0 ;
+
+        for(int r = 0; r<n;r++){
+            while(r<n && nums[r]!=0){
+                r++;
+                l=r;
+            }
+            if(r==n) break;
+
+            ans+=r-l+1;
+            // System.out.println(ans+"     "+l+"   L   "+r+"      R    ");
+        }
+
+        return ans;
+    }
+}
+}
+class Solution {
+    public int minimumArea(int[][] grid) {
+        int minX = 1_000_000;
+        int maxX = 0;
+        int minY = 1_000_000;
+        int maxY = 0;
+
+        for(int i = 0;i<grid.length;i++){
+            for(int j = 0 ;j<grid[0].length;j++){
+                if(grid[i][j] == 1){
+                    minX = Math.min(minX,j);
+                    maxX = Math.max(maxX,j);
+
+                    minY = Math.min(minY,i);
+                    maxY = Math.max(maxY,i);
+                }
+            }
+        }
+        // System.out.println(minX + "    "+maxX + "    "+minY + "    "+maxY + "    ");
+
+        return (maxX-minX+1)*(maxY-minY+1);
+    }
 }
