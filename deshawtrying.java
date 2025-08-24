@@ -220,4 +220,26 @@ class Solution {
 
         return (maxX-minX+1)*(maxY-minY+1);
     }
+    class Solution {
+    public int longestSubarray(int[] nums) {
+
+        int l = 0;
+        int ans = 0;
+        int zeros = 0;
+        int n = nums.length;
+
+        for(int r = 0; r<n ;r++){
+            zeros+= nums[r]==0?1:0;
+
+            while(l<r && zeros>1){
+                zeros-= nums[l]==0?1:0;
+                l++;
+            }
+
+            ans = Math.max(ans,r-l);
+        }
+
+        return ans;
+    }
+}
 }
