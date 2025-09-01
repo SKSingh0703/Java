@@ -242,4 +242,38 @@ class Solution {
         return ans;
     }
 }
+
+class Solution {
+    private double helper(double pass, double total) {
+        return (pass + 1.0) / (total + 1.0) - (pass / total);
+    }
+
+    public double maxAverageRatio(int[][] classes, int extraStudents) {
+        PriorityQueue<double[]> pq = new PriorityQueue<>(
+            (a, b) -> Double.compare(b[2], a[2]) 
+        );
+
+        for (int[] curr : classes) {
+            double pass = curr[0];
+            double total = curr[1];
+            pq.offer(new double[]{pass, total, helper(pass, total)});
+        }
+
+        while (extraStudents-- > 0) {
+            double[] curr = pq.poll();
+            double pass = curr[0] + 1;
+            double total = curr[1] + 1;
+            pq.offer(new double[]{pass, total, helper(pass, total)});
+        }
+
+        double ans = 0;
+        while (!pq.isEmpty()) {
+            double[] curr = pq.poll();
+            ans += curr[0] / curr[1];
+        }
+
+        return ans / classes.length;
+    }
+}
+
 }
