@@ -275,5 +275,41 @@ class Solution {
         return ans / classes.length;
     }
 }
+class Solution {
+    public int numberOfPairs(int[][] points) {
+        int n = points.length;
+        int count = 0;
+        
+        for(int i = 0 ;i<n;i++){
+            for(int j = 0;j<n;j++){
+                if(i!=j && check(points[i],points[j],points)) count++;
+            }
+        }
 
+        return count;
+    }
+
+    private boolean check(int[] x , int[] y, int[][] points ){
+        if( !(x[0]<=y[0] && x[1]>=y[1]) ) return false;
+        int minX = x[0];
+        int minY = y[1];
+
+        int maxX = y[0];
+        int maxY = x[1];
+
+        for(int[] point:points){
+            int x1 = point[0];
+            int y1 = point[1];
+
+            if((x1==x[0] && y1==x[1]) || (x1==y[0] && y1==y[1])) continue;
+
+            if( (x1>=minX && x1<=maxX) && (y1>=minY && y1<=maxY) ){
+                // System.out.println( x[0]+" , "+x[1]+"      "+y[0]+" , "+y[1] +"   "+x1+","+y1 );
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
 }
