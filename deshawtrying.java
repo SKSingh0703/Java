@@ -385,6 +385,38 @@ class Solution {
         return;
     }
 }
-    }g
+    }
+    class Solution {
+    public int[] successfulPairs(int[] spells, int[] potions, long success) {
+        Arrays.sort(potions);
+        int n = spells.length , m = potions.length;
+        int ans[] = new int[n];
+
+        for(int i = 0 ; i<n ; i++){
+            int minReq = (int)Math.ceil(success*1.0/spells[i]);
+
+            int curr = helper(potions,minReq);
+            ans[i] = m - curr;
+        }
+
+        return ans;
+    }
+
+    private int helper(int nums[] , int target){
+        int l = 0;
+        int r = nums.length;
+
+        while(l<r){
+            int mid = l + (r-l)/2;
+
+            if(nums[mid]>=target){
+                r = mid;
+            }
+            else l = mid +1;
+        }
+
+        return l;
+    }
+}
 }   
 }
