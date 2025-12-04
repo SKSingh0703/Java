@@ -419,4 +419,45 @@ class Solution {
     } 
 }          
 }         
-}                              
+}         
+class Solution {
+    public int countCollisions(String directions) {
+        int count = 0;
+        char arr[] = directions.toCharArray();
+        int n = arr.length;
+
+        for(int i = 0;i<n;i++){
+            
+            if(arr[i] == 'R' && i<n-1){
+                if(arr[i+1]=='S'){
+                    count++;
+                    arr[i] = 'S';
+                    // System.out.println(count+"   "+i+"   "+arr[i]+"    RS   ");
+                }
+                else if(arr[i+1] == 'L'){
+                    arr[i+1] = 'S';
+                    arr[i] = 'S';
+                    count+=2;
+                    // System.out.println(count+"   "+i+"   "+arr[i]+"    RL   ");
+                }
+            }
+            else if(arr[i] == 'L' && i>0){
+                if(arr[i-1]=='S'){
+                    arr[i]='S';
+                    count++;
+                    // System.out.println(count+"   "+i+"   "+arr[i]+"    SL   ");
+                }
+            }
+            
+        }
+
+        for(int i = n-1;i>=0;i--){
+            if(arr[i] == 'R' && i<n-1 && arr[i+1]=='S'){
+                arr[i] = 'S';
+                count++;
+            }
+        }
+
+        return count;
+    }
+}                     
