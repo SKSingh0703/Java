@@ -460,4 +460,5 @@ class Solution {
 
         return count;
     }
-}                     
+}
+// dp[0] = 1 because it represents the single valid “starting state”; without it, the DP cannot form the first segment. It works like a neutral element that allows adding dp[0] when the first segment is valid.                     
