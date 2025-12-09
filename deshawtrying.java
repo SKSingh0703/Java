@@ -462,3 +462,33 @@ class Solution {
     }
 }
 // dp[0] = 1 because it represents the single valid “starting state”; without it, the DP cannot form the first segment. It works like a neutral element that allows adding dp[0] when the first segment is valid.                     
+class Solution {
+    private final int MOD = 1_000_000_007;
+
+    public int specialTriplets(int[] nums) {
+
+        HashMap<Integer,Integer> right = new HashMap<>();
+        HashMap<Integer,Integer> left  = new HashMap<>();
+
+        for(int num : nums){
+            right.put(num , right.getOrDefault(num,0)+1);
+        }
+        long ans = 0;
+        for(int num:nums){
+
+            right.put(num,right.get(num)-1);
+            if(right.get(num)<=0){
+                right.remove(num);
+            }
+
+            int l = left.getOrDefault(num*2,0);
+            int r = right.getOrDefault(num*2,0);
+
+            ans = (ans+(long)l*r)%MOD;
+
+            left.put(num,left.getOrDefault(num,0)+1);
+        }
+
+        return (int)ans;
+    }
+}
