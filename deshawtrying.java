@@ -492,3 +492,36 @@ class Solution {
         return (int)ans;
     }
 }
+class Solution {
+    public long totalScore(int hp, int[] damage, int[] requirement) {
+        int n = damage.length;
+
+        long prefix[] = new long[n+1];
+        for(int i = 0;i<n;i++){
+            prefix[i+1] = prefix[i]+damage[i];
+        }
+
+        long ans = 0;
+
+        for(int i = 0;i<n;i++){
+            long maxDmgCanTake = hp - requirement[i];
+            if(  maxDmgCanTake <0) continue;
+
+            long minDmgTillJ = prefix[i+1] - maxDmgCanTake;
+            //It is the minimum damage that must be present or prefix[j] should be more than this then only the difference between i and j will be with the maximum damage we can take
+
+            int l = 0, r = i;
+            while(l<r){
+                int mid = (l+(r-l)/2);
+                if(prefix[mid]>=minDmgTillJ){
+                    r = mid; 
+                }
+                else l = mid+1;
+            }
+
+            if(prefix[l]>=minDmgTillJ) ans+=(i-l+1);
+        }
+
+        return ans;
+    }
+}
