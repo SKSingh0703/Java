@@ -525,3 +525,44 @@ class Solution {
         return ans;
     }
 }
+class Solution {
+    public int countCoveredBuildings(int n, int[][] buildings) {
+        Arrays.sort(buildings , (a,b)->{
+            if(a[0]==b[0]) return a[1] - b[1];
+            else return a[0]-b[0];
+        });
+
+        HashMap<Integer,ArrayList<Integer>> xCoord = new HashMap<>(); 
+        HashMap<Integer,ArrayList<Integer>> yCoord = new HashMap<>();
+
+        for(int[] building:buildings){
+            xCoord.putIfAbsent(building[0],new ArrayList<>());
+            xCoord.get(building[0]).add(building[1]);
+        }
+
+        Arrays.sort(buildings , (a,b)->{
+            if(a[1]==b[1]) return a[0] - b[0];
+            else return a[1]-b[1];
+        });
+
+        for(int[] building:buildings){
+            yCoord.putIfAbsent(building[1],new ArrayList<>());
+            yCoord.get(building[1]).add(building[0]);
+        }
+
+        int count = 0;
+        for(int[] building:buildings){
+            int x = building[0];
+            int y = building[1];
+
+            ArrayList<Integer> xArr = xCoord.get(x);
+            ArrayList<Integer> yArr = yCoord.get(y);
+
+            if( (xArr.size()<=2) || (yArr.size()<=2) || (yArr.get(yArr.size()-1)<=x) || (yArr.get(0)>=x) || (xArr.get(xArr.size()-1)<=y) || (xArr.get(0)>=y) ) continue;
+
+            count++;
+        }
+
+        return count;
+    }
+}
