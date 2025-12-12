@@ -566,3 +566,142 @@ class Solution {
         return count;
     }
 }
+class Solution {
+    public int[] countMentions(int n, List<List<String>> events) {
+        
+        // PriorityQueue<int[]> onlineAt = new PriorityQueue<>((a,b)->a[1]-b[1]);
+        Queue<int[]> onlineAt = new LinkedList<>();
+        HashMap<Integer,Integer> offline = new HashMap<>();
+        int mentions[] = new int[n];
+        Collections.sort(events , (a,b) -> {
+            
+            int x = Integer.parseInt(a.get(1));
+            int y = Integer.parseInt(b.get(1));
+            if(x==y){
+                return a.get(0).equals("OFFLINE")?-1:1;
+            }
+            else return x-y;
+        });
+
+        for(List<String> event : events){
+
+            String type = event.get(0);
+            int time = Integer.parseInt(event.get(1));
+            System.out.println("Type : "+type+"   time:"+time );
+
+            while(!onlineAt.isEmpty() && onlineAt.peek()[1]<=time){
+                int currUser[] = onlineAt.poll();
+                if(offline.get(currUser[0]) <= currUser[1]) offline.remove(currUser[0]);
+            }
+            
+            if(type.equals("MESSAGE")){
+                ArrayList<Integer> users = parseUsers(event.get(2),n, offline);
+                for(Integer user:users) mentions[user]++;
+            }
+            else{
+                int currUser = Integer.parseInt(event.get(2));
+                offline.put(currUser,time);
+                onlineAt.add(new int[]{currUser, time+60});
+            }
+        }
+        
+        return mentions;
+    }
+
+    private ArrayList<Integer> parseUsers(String str,int n , HashMap<Integer,Integer> hm){
+        ArrayList<Integer> arr = new ArrayList<>();
+        System.out.println("SK");
+        if(str.equals("ALL")){
+            for(int i = 0;i<n;i++) arr.add(i);
+        }
+        else if(str.equals("HERE")){
+            for(int i = 0;i<n;i++){
+                if(!hm.containsKey(i)) arr.add(i);
+            }
+        }
+        else{
+            String ids[] = str.split("\\s+");
+            // System.out.println(str+" str ");
+            for(String id : ids){
+                // System.out.println(id+" id ");
+                arr.add( Integer.parseInt(id.substring(2)) );
+                // arr.add(0);
+            }
+        }
+        for(int user : arr) System.out.println(user);
+
+        return arr;
+    }
+}
+
+// class Solution {
+//     public int[] countMentions(int n, List<List<String>> events) {
+//         // min-heap of [userId, resumeTime], ordered by resumeTime
+//         PriorityQueue<int[]> resumePQ = new PriorityQueue<>((a, b) -> Integer.compare(a[1], b[1]));
+//         // map userId -> resumeTime (if present then user is offline until that resumeTime)
+//         HashMap<Integer, Integer> offline = new HashMap<>();
+//         int[] mentions = new int[n];
+
+//         // Sort events by timestamp ascending.
+//         // When timestamps equal, process OFFLINE BEFORE MESSAGE.
+//         Collections.sort(events, (a, b) -> {
+//             int ta = Integer.parseInt(a.get(1));
+//             int tb = Integer.parseInt(b.get(1));
+//             if (ta != tb) return Integer.compare(ta, tb);
+//             // tie-breaker: OFFLINE first
+//             String typeA = a.get(0), typeB = b.get(0);
+//             if (typeA.equals(typeB)) return 0;
+//             if (typeA.equals("OFFLINE")) return -1; // a before b
+//             return 1; // a after b
+//         });
+
+//         for (List<String> event : events) {
+//             String type = event.get(0);
+//             int time = Integer.parseInt(event.get(1));
+
+//             // Process all resume events that should have happened by 'time'
+//             while (!resumePQ.isEmpty() && resumePQ.peek()[1] <= time) {
+//                 int[] e = resumePQ.poll();
+//                 int uid = e[0];
+//                 int resumeTime = e[1];
+//                 Integer storedResume = offline.get(uid);
+//                 // remove only if stored resume matches this popped resume (avoid stale)
+//                 if (storedResume != null && storedResume == resumeTime) {
+//                     offline.remove(uid);
+//                 }
+//             }
+
+//             if (type.equals("MESSAGE")) {
+//                 ArrayList<Integer> users = parseUsers(event.get(2), n, offline);
+//                 // count each mention (duplicates allowed)
+//                 for (int user : users) mentions[user]++;
+//             } else { // OFFLINE
+//                 int uid = Integer.parseInt(event.get(2));
+//                 int resumeTime = time + 60;
+//                 offline.put(uid, resumeTime);             // store resume time
+//                 resumePQ.add(new int[] { uid, resumeTime }); // schedule resume
+//             }
+//         }
+
+//         return mentions;
+//     }
+
+//     private ArrayList<Integer> parseUsers(String str, int n, HashMap<Integer, Integer> offline) {
+//         ArrayList<Integer> arr = new ArrayList<>();
+//         if (str.equals("ALL")) {
+//             for (int i = 0; i < n; i++) arr.add(i);
+//         } else if (str.equals("HERE")) {
+//             for (int i = 0; i < n; i++) {
+//                 if (!offline.containsKey(i)) arr.add(i);
+//             }
+//         } else { // list of ids like "id1 id0 id1"
+//             String[] ids = str.split("\\s+");
+//             for (String id : ids) {
+//                 // assume format "id<number>"
+//                 int num = Integer.parseInt(id.substring(2));
+//                 arr.add(num);
+//             }
+//         }
+//         return arr;
+//     }
+// }
