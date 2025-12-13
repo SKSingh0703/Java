@@ -705,3 +705,38 @@ class Solution {
 //         return arr;
 //     }
 // }
+class Solution {
+    public List<String> validateCoupons(String[] code, String[] businessLine, boolean[] isActive) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>( (a,b) ->{
+            String x = businessLine[a];
+            String y = businessLine[b];
+
+            if(x.equals(y)){
+                return code[a].compareTo(code[b]);
+            }
+            else return x.compareTo(y);
+        } );
+
+        int n = code.length;
+        for(int i = 0;i<n;i++){
+            if(isActive[i] && check(code[i]) && validate(businessLine[i]) ) pq.add(i);
+        }
+
+        List<String> ans = new ArrayList<>();
+        while(!pq.isEmpty()){
+            ans.add( code[pq.poll()] );
+        }
+
+        return ans;
+    }
+
+    private boolean check(String code){
+        return code.matches("[a-zA-Z0-9_]+");
+    }
+
+    private boolean validate(String str){
+        if(str.equals("electronics") || str.equals("grocery") || str.equals("pharmacy") || str.equals("restaurant")) return true;
+
+        return false;
+    }
+}
