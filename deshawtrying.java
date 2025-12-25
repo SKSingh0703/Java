@@ -740,3 +740,17 @@ class Solution {
         return false;
     }
 }
+
+class Solution {
+    public long maximumHappinessSum(int[] happiness, int k) {
+        long ans = 0 ;
+        Arrays.sort(happiness);
+        int n = happiness.length;
+
+        for(int i = 0;i<k;i++){
+            ans+= Math.max(0 , happiness[n-i-1]-i );
+        }
+
+        return ans;
+    }
+}
