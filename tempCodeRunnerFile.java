@@ -1,1 +1,1 @@
-tac.pop(
+head
