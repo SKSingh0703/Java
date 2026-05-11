@@ -10,4 +10,4 @@ public class aRecursion {
     public static void main(String[] args) {
         System.out.println(pow(1.5, 2));
     }    
-}
+} 
