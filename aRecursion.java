@@ -13,7 +13,7 @@ public class aRecursion {
             if(currmax<0){
                 currmax = 0;
                 curr = new ArrayList<>(); 
-            }
+            }  
             curr.add(nums[i]);
             if(currmax>max){
                 max = currmax;
