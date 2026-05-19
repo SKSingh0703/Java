@@ -1,37 +1,49 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class aRecursion {
-    public static int maxSubArray(int[] nums) {
-        int currmax = Integer.MIN_VALUE , max = Integer.MIN_VALUE , n = nums.length;
+public class aRecursion { 
+    public int lcs( String str1, String str2) {
+        int m = str1.length() , n = str2.length();
+        int dp[][] = new int[m+1][n+1];
 
-        List<Integer> ans = new ArrayList<>();
-        List<Integer> curr = new ArrayList<>();
- 
-        for(int i = 0;i<n;i++){
-            currmax = currmax+nums[i];
-            if(currmax<0){
-                currmax = 0;
-                curr = new ArrayList<>(); 
-            }  
-            curr.add(nums[i]);
-            if(currmax>max){
-                max = currmax;
-                ans = curr;
+        for(int i = 1 ; i<=m;i++){
+            for(int j = 1;j<=n;j++){
+                if(str1.charAt(i-1)==str2.charAt(j-1)){
+                    dp[i][j] = 1+dp[i-1][j-1];
+                }
+                else{
+                    dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1]);
+                }
             }
         }
+        StringBuilder ans = new StringBuilder("");
 
-        for(Integer num : ans){
-            System.out.print(num+"  ");
+        int i = m;
+        int j = n;
+
+        while(i>0 && j>0){
+            if(str1.charAt(i-1)==str2.charAt(j-1)){
+                ans.append(str1.charAt(i-1));
+                i--;
+                j--;
+            }
+            else if(dp[i-1][j]>dp[i][j-1]) i--;
+            else j--;
         }
 
-        return max;
+        ans.reverse();
+
+        for(int k = 0 ; k<ans.length();k++){
+            System.out.print(ans.charAt(k)+"   ");
+        }
+
+        return ans.length();
     }
-
-
     public static void main(String[] args) {
-        int ans[] = {2, 3, 5, -2, 7, -4};
-        System.out.println(maxSubArray(ans));
+        aRecursion solution = new aRecursion();
+        System.out.println(solution.lcs("mnop", "mnq"));
+        System.out.println();
     }     
 }  
     
