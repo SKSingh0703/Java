@@ -4,7 +4,7 @@ def minToMaxHeap(nums):
     for i in range(n//2 - 1, -1, -1):
         heapify(i,nums)
 
-    return nums
+    return nums  
                 
 def heapify(i , nums):
     largest = i
