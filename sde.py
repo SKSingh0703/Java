@@ -3,10 +3,10 @@ def minToMaxHeap(nums):
 
     for i in range(n//2 - 1, -1, -1):
         heapify(i,nums)
-         
+           
     return nums         
                                          
-def heapify(i , nums):
+def heapify(i , nums): 
     largest = i
     left = 2*i + 1
     right = 2*i +2
